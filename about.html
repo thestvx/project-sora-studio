@@ -17,6 +17,10 @@
         .team-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); background: #fcfcfc; border: 1px solid #eee; }
         .team-card:hover { transform: translateY(-10px); border-color: var(--brand); box-shadow: 0 40px 80px -20px rgba(22,27,145,0.1); }
         .name-ltr { direction: ltr !important; display: inline-block; }
+        
+        /* تأثيرات الفوتر */
+        .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
     </style>
 </head>
 <body>
@@ -70,7 +74,7 @@
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">CHAMI TAHAR</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Visual Editor</p>
             </div>
-            <div class="team-card p-10 rounded-[3rem] text-center lg:col-start-1 lg:ml-auto lg:w-full" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-card p-10 rounded-[3rem] text-center" data-aos="fade-up" data-aos-delay="300">
                 <div class="w-24 h-24 mx-auto mb-6 bg-blue-50 rounded-full flex items-center justify-center text-3xl text-[#161B91]"><i class="fa-solid fa-clapperboard"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">BENNI MEHDI</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Creative Director</p>
@@ -83,9 +87,45 @@
         </div>
     </section>
 
+    <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
+                <div class="text-center md:text-right" data-aos="fade-up">
+                    <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
+                </div>
+
+                <div class="flex gap-8 text-2xl text-gray-300" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
+                <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                    <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                    <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+        
+        // تأثير القائمة عند التمرير
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                nav.style.transform = 'translateY(-10px)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+        });
     </script>
 </body>
 </html>
