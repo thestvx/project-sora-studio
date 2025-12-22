@@ -7,27 +7,49 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700;900&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; background: #ffffff; scroll-behavior: smooth; }
         
-        /* تأثيرات بطاقة الفريق */
-        .team-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        .team-card:hover { transform: translateY(-12px); }
-        .team-img-container { overflow: hidden; position: relative; background: #f3f4f6; }
-        .team-img-container img { transition: transform 0.8s ease; mix-blend-mode: multiply; opacity: 0.6; }
-        .team-card:hover img { transform: scale(1.05); opacity: 1; }
-        
-        /* تزيين الخلفية */
-        .bg-pattern {
-            background-image: radial-gradient(#161B91 0.5px, transparent 0.5px);
-            background-size: 30px 30px;
-            opacity: 0.05;
-        }
-
-        .hero-title {
+        /* توسيع حدود العنوان الرئيسي */
+        .wide-title {
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            display: inline-block;
             background: linear-gradient(135deg, #161B91 0%, #4f46e5 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        /* تأثيرات بطاقة الفريق */
+        .team-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .team-card:hover { transform: translateY(-12px); }
+        .team-img-container { overflow: hidden; position: relative; background: #f8f9fa; border: 1px solid #eee; }
+        
+        /* أيقونات التواصل الاجتماعي */
+        .social-link {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            background: white;
+            color: #161B91;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #161B91;
+            color: white;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(#161B91 0.5px, transparent 0.5px);
+            background-size: 40px 40px;
+            opacity: 0.05;
         }
     </style>
 </head>
@@ -42,24 +64,19 @@
                 <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
                 <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
             </div>
-            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:shadow-lg transition">Connect</a>
+            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest">Connect</a>
         </div>
     </nav>
 
-    <section class="pt-48 pb-20 px-8 relative">
+    <section class="pt-56 pb-24 px-8 relative">
         <div class="absolute inset-0 bg-pattern -z-10"></div>
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div data-aos="fade-left">
-                <span class="text-[#161B91] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">من نحن — WHO WE ARE</span>
-                <h1 class="text-6xl md:text-8xl font-black hero-title leading-[0.9] mb-8">نكتب القصص <br> بالضوء.</h1>
-                <p class="text-xl text-gray-500 leading-relaxed mb-10 max-w-lg">
-                    سورا أستوديو ليس مجرد مكان للتصوير، بل هو مختبر إبداعي في الوادي يجمع بين التكنولوجيا والفن لتوثيق أغلى لحظاتكم.
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center md:text-right" data-aos="fade-up">
+                <span class="text-[#161B91] font-bold tracking-[0.4em] uppercase text-xs mb-8 block">إبداع بلا حدود — UNLIMITED CREATIVITY</span>
+                <h1 class="text-7xl md:text-[120px] font-black wide-title mb-12">نكتب القصص <br> بالضوء.</h1>
+                <p class="text-2xl text-gray-500 leading-relaxed max-w-2xl">
+                    في سورا أستوديو، نتجاوز حدود العدسة لنصنع لك واقعاً بصرياً مذهلاً. شغفنا هو التفاصيل، وهدفنا هو الخلود.
                 </p>
-            </div>
-            <div class="relative" data-aos="zoom-in">
-                <div class="relative rounded-[4rem] overflow-hidden shadow-2xl border-[15px] border-white">
-                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1000" class="w-full h-[500px] object-cover">
-                </div>
             </div>
         </div>
     </section>
@@ -68,82 +85,48 @@
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-24" data-aos="fade-up">
                 <h2 class="text-5xl font-black text-[#161B91] mb-6">عائلة سورا</h2>
-                <div class="w-24 h-1 bg-[#161B91] mx-auto mb-6"></div>
                 <p class="text-gray-400 uppercase tracking-widest text-sm font-bold">المبدعون الخمسة — THE CORE TEAM</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 justify-center">
-                
-                <div class="team-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-img-container rounded-[3rem] aspect-[4/5] mb-8 shadow-inner flex items-center justify-center">
-                        <svg class="w-24 h-24 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <img src="https://via.placeholder.com/600x800/f3f4f6/161B91?text=SORA+MEMBER" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div class="team-card group" data-aos="fade-up">
+                    <div class="team-img-container rounded-[3rem] aspect-[4/5] mb-8 flex items-center justify-center">
+                        <i class="fa-solid fa-user-tie text-6xl text-gray-200"></i>
                     </div>
                     <div class="px-4 text-center">
-                        <h3 class="text-2xl font-black text-[#161B91] mb-2">Heddad Boubaker</h3>
-                        <p class="text-gray-400 font-bold text-xs uppercase tracking-widest italic">-</p>
+                        <h3 class="text-2xl font-black text-[#161B91] mb-2">اسم العضو</h3>
+                        <p class="text-gray-400 font-bold text-xs uppercase italic">المنصب الوظيفي</p>
                     </div>
                 </div>
-
-                <div class="team-card group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="team-img-container rounded-[3rem] aspect-[4/5] mb-8 shadow-inner flex items-center justify-center">
-                        <svg class="w-24 h-24 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <img src="https://via.placeholder.com/600x800/f3f4f6/161B91?text=SORA+MEMBER" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="px-4 text-center">
-                        <h3 class="text-2xl font-black text-[#161B91] mb-2">Chami Abdennour</h3>
-                        <p class="text-gray-400 font-bold text-xs uppercase tracking-widest italic">-</p>
-                    </div>
                 </div>
+        </div>
+    </section>
 
-                <div class="team-card group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="team-img-container rounded-[3rem] aspect-[4/5] mb-8 shadow-inner flex items-center justify-center">
-                        <svg class="w-24 h-24 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <img src="https://via.placeholder.com/600x800/f3f4f6/161B91?text=SORA+MEMBER" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="px-4 text-center">
-                        <h3 class="text-2xl font-black text-[#161B91] mb-2">Chami Tahar</h3>
-                        <p class="text-gray-400 font-bold text-xs uppercase tracking-widest italic">-</p>
-                    </div>
-                </div>
-
-                <div class="lg:col-start-1 lg:col-end-2 hidden lg:block"></div> <div class="team-card group lg:col-start-1 md:col-start-1" data-aos="fade-up" data-aos-delay="400">
-                    <div class="team-img-container rounded-[3rem] aspect-[4/5] mb-8 shadow-inner flex items-center justify-center">
-                        <svg class="w-24 h-24 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <img src="https://via.placeholder.com/600x800/f3f4f6/161B91?text=SORA+MEMBER" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="px-4 text-center">
-                        <h3 class="text-2xl font-black text-[#161B91] mb-2">Banni Mehdi</h3>
-                        <p class="text-gray-400 font-bold text-xs uppercase tracking-widest italic">-</p>
-                    </div>
-                </div>
-
-                <div class="team-card group md:col-start-2" data-aos="fade-up" data-aos-delay="500">
-                    <div class="team-img-container rounded-[3rem] aspect-[4/5] mb-8 shadow-inner flex items-center justify-center">
-                        <svg class="w-24 h-24 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <img src="https://via.placeholder.com/600x800/f3f4f6/161B91?text=SORA+MEMBER" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="px-4 text-center">
-                        <h3 class="text-2xl font-black text-[#161B91] mb-2">Kir Farouk</h3>
-                        <p class="text-gray-400 font-bold text-xs uppercase tracking-widest italic">-</p>
-                    </div>
-                </div>
-
+    <section class="py-32 px-8 bg-[#f0f2ff] rounded-[5rem] mx-4 mb-10 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black text-[#161B91] mb-12" data-aos="fade-up">تابع رحلتنا الإبداعية</h2>
+            <p class="text-gray-500 mb-16 text-xl" data-aos="fade-up" data-aos-delay="100">كن جزءاً من عائلتنا على منصات التواصل الاجتماعي</p>
+            
+            <div class="flex flex-wrap justify-center gap-8" data-aos="zoom-in" data-aos-delay="200">
+                <a href="#" class="social-link" title="Instagram">
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="social-link" title="Facebook">
+                    <i class="fa-brands fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="#" class="social-link" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </a>
+                <a href="#" class="social-link" title="YouTube">
+                    <i class="fa-brands fa-youtube text-2xl"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-[#161B91] text-white rounded-[5rem] mx-4 mb-10 px-8 text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto relative z-10" data-aos="zoom-in">
-            <span class="text-6xl block mb-8 opacity-30">"</span>
-            <p class="text-3xl md:text-5xl font-light leading-tight italic">
-                نحن لا نصور فقط ما تراه أعيننا، بل ما تشعر به قلوبنا.
-            </p>
-            <div class="mt-12 flex justify-center gap-2">
-                <div class="w-12 h-1 bg-blue-400 rounded-full"></div>
-            </div>
-        </div>
-    </section>
+    <footer class="py-12 text-center text-gray-400 text-sm font-bold uppercase tracking-widest">
+        &copy; 2024 SORA STUDIO. ALL RIGHTS RESERVED.
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init({ duration: 1000, once: true });</script>
