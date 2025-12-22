@@ -11,25 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@900&display=swap" rel="stylesheet">
     
     <style>
-        :root { --brand: #161B91; }
+        :root { --brand: #161B91; --soft-bg: #f8f9ff; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; }
-        
         .hero-gradient-text {
             background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
         .custom-button {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3);
         }
         .custom-button:hover { transform: translateY(-5px); scale: 1.02; }
-
         .float-anim { animation: floating 3s ease-in-out infinite; }
         @keyframes floating {
-            0%, 100% { transform: translateY(0px) rotate(2deg); }
+            0% { transform: translateY(0px) rotate(2deg); }
             50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(2deg); }
         }
     </style>
 </head>
@@ -38,7 +35,7 @@
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
         <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2rem] shadow-sm">
             <a href="index.html" class="flex items-center gap-3 group">
-                <img src="images/logo-studio.png" alt="SORA STUDIO" class="h-10 w-auto object-contain transition-transform duration-700 group-hover:rotate-[360deg]">
+                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain transition-transform duration-700 group-hover:rotate-[360deg]">
                 <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
             </a>
             <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-500">
@@ -62,7 +59,7 @@
                     CRAFTING <br> EMOTION.
                 </h1>
                 <p class="text-lg text-gray-500 max-w-md leading-relaxed mb-10 text-right">
-                    نحن نحول اللحظات العابرة إلى أعمال فنية خالدة. تصوير فوتوغرافي وسينمائي بمعايير عالمية.
+                    نحن نحول اللحظات العابرة إلى أعمال فنية خالدة. تصوير فوتوغرافي وسينمائي بمعايير عالمية في قلب الجزائر.
                 </p>
                 <div class="flex items-center gap-6">
                     <a href="portfolio.html" class="bg-[#161B91] text-white px-10 py-5 rounded-2xl font-bold custom-button">Explore Gallery</a>
@@ -77,6 +74,10 @@
                 <div class="absolute -inset-10 bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
                 <div class="relative rounded-[4rem] overflow-hidden shadow-2xl float-anim border-[12px] border-white">
                     <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1200" class="w-full aspect-[4/5] object-cover">
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl z-20" data-aos="fade-up" data-aos-delay="500">
+                    <p class="text-3xl font-black text-[#161B91]">200+</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Projects Done</p>
                 </div>
             </div>
         </div>
