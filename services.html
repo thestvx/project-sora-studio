@@ -13,104 +13,53 @@
     <style>
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #fcfcfc; }
-        
-        /* تأثير الزر الموحد من Index */
-        .custom-button {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3);
-        }
-        .custom-button:hover { transform: translateY(-5px); scale: 1.02; }
-
-        /* تأثير بطاقات الخدمات */
-        .service-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; }
+        .custom-button { transition: 0.4s; box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
+        .service-card { transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; background: white; border-radius: 3rem; border: 1px solid #f0f0f0; }
         .service-card:hover { transform: translateY(-15px); background: var(--brand); color: white; }
-        .icon-box { transition: all 0.5s ease; }
+        .icon-box { transition: 0.5s; background: #f4f7ff; color: var(--brand); }
         .service-card:hover .icon-box { background: white; color: var(--brand); transform: rotate(360deg); }
-        .service-card:hover p { color: rgba(255,255,255,0.7); }
-
-        /* تدرج العناوين الموحد */
-        .hero-gradient-text {
-            background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .hero-gradient-text { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
         <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2rem] shadow-sm">
-            <a href="index.html" class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</a>
-            
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="images/logo-studio.png" alt="SORA STUDIO" class="h-10 w-auto object-contain transition-transform duration-700 group-hover:rotate-[360deg]">
+                <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
+            </a>
             <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-400">
                 <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
                 <a href="about.html" class="hover:text-[#161B91] transition">About</a>
                 <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
                 <a href="services.html" class="text-[#161B91]">Services</a>
             </div>
-            
             <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Start Project</a>
         </div>
     </nav>
 
-    <header class="pt-56 pb-20 px-8">
-        <div class="max-w-7xl mx-auto text-center">
-            <span class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 mb-4 block" data-aos="fade-down">What We Offer</span>
-            <h1 class="text-6xl md:text-[100px] font-black hero-gradient-text tracking-tighter leading-none mb-8" data-aos="fade-up">
-                خدماتنا.<br>EXPERTISE.
-            </h1>
-            <p class="text-gray-500 max-w-xl mx-auto text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-                حلول بصرية متكاملة تبدأ من الفكرة وتصل إلى الإبداع النهائي، صُممت خصيصاً لتناسب رؤيتكم.
-            </p>
-        </div>
+    <header class="pt-56 pb-20 px-8 text-center">
+        <h1 class="text-6xl md:text-[100px] font-black hero-gradient-text tracking-tighter leading-none mb-8" data-aos="fade-up">خدماتنا.<br>EXPERTISE.</h1>
+        <p class="text-gray-500 max-w-xl mx-auto text-lg leading-relaxed">حلول بصرية احترافية تبدأ من الفكرة وتصل إلى النور.</p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-32">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="service-card bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm text-right" data-aos="fade-up">
-                <div class="icon-box w-16 h-16 bg-blue-50 text-[#161B91] rounded-2xl flex items-center justify-center mb-8">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
-                </div>
-                <h3 class="text-3xl font-bold mb-4 tracking-tighter">التصوير الفوتوغرافي</h3>
-                <p class="text-gray-500 leading-relaxed">نلتقط أدق التفاصيل في تصوير المنتجات، البورتريه، والأزياء بلمسة فنية تحاكي العالمية.</p>
+    <main class="max-w-7xl mx-auto px-8 pb-32 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="service-card p-12 text-right shadow-sm" data-aos="fade-up">
+            <div class="icon-box w-16 h-16 rounded-2xl flex items-center justify-center mb-8 text-2xl">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
             </div>
-
-            <div class="service-card bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm text-right" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon-box w-16 h-16 bg-blue-50 text-[#161B91] rounded-2xl flex items-center justify-center mb-8">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 00-2 2z"></path></svg>
-                </div>
-                <h3 class="text-3xl font-bold mb-4 tracking-tighter">الإنتاج السينمائي</h3>
-                <p class="text-gray-500 leading-relaxed">إخراج وتصوير فيديوهات إعلانية وقصيرة تروي قصة علامتك التجارية وتصنع تأثيراً حقيقياً.</p>
-            </div>
-
-            <div class="service-card bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm text-right" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box w-16 h-16 bg-blue-50 text-[#161B91] rounded-2xl flex items-center justify-center mb-8">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                </div>
-                <h3 class="text-3xl font-bold mb-4 tracking-tighter">المونتاج وتصحيح الألوان</h3>
-                <p class="text-gray-500 leading-relaxed">تحويل الخام البصري إلى تحفة فنية من خلال معالجة الألوان الاحترافية وسرد بصري متقن.</p>
-            </div>
-
+            <h3 class="text-3xl font-bold mb-4 tracking-tighter">التصوير الفوتوغرافي</h3>
+            <p class="text-gray-500 leading-relaxed">نلتقط أدق التفاصيل في تصوير المنتجات، البورتريه، والأزياء بلمسة فنية.</p>
         </div>
-    </main>
-
-    <footer class="py-12 text-center text-gray-300 text-[10px] font-bold uppercase tracking-[0.5em]">
-        &copy; 2025 SORA STUDIO — ALGERIA
-    </footer>
+        </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
-        // Navbar Scroll Effect الموحد
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            if(window.scrollY > 50) {
-                nav.style.transform = 'translateY(-10px)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
+            nav.style.transform = window.scrollY > 50 ? 'translateY(-10px)' : 'translateY(0)';
         });
     </script>
 </body>
