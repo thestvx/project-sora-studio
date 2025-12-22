@@ -15,13 +15,16 @@
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
         .hero-gradient { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* تصميم البطاقات الجديد */
+        /* تصميم البطاقات المطور */
         .team-card { 
             position: relative;
             background: #ffffff;
             border: 1px solid #f0f0f0;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .team-card::before {
@@ -94,8 +97,9 @@
             <h2 class="text-6xl font-black text-[#161B91] tracking-tighter">الفريق الإبداعي</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="team-card p-12 rounded-[3.5rem] text-center" data-aos="fade-up">
+        <div class="flex flex-wrap justify-center gap-8">
+            
+            <div class="team-card p-12 rounded-[3.5rem] text-center w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up">
                 <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
                     <i class="fa-solid fa-camera"></i>
                 </div>
@@ -103,7 +107,7 @@
                 <p class="text-[10px] text-gray-400 font-bold mt-3 uppercase tracking-[0.2em]">Founder / Photographer</p>
             </div>
 
-            <div class="team-card p-12 rounded-[3.5rem] text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-card p-12 rounded-[3.5rem] text-center w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
                     <i class="fa-solid fa-video"></i>
                 </div>
@@ -111,7 +115,7 @@
                 <p class="text-[10px] text-gray-400 font-bold mt-3 uppercase tracking-[0.2em]">Cinematographer</p>
             </div>
 
-            <div class="team-card p-12 rounded-[3.5rem] text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card p-12 rounded-[3.5rem] text-center w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="200">
                 <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
@@ -119,7 +123,7 @@
                 <p class="text-[10px] text-gray-400 font-bold mt-3 uppercase tracking-[0.2em]">Visual Editor</p>
             </div>
 
-            <div class="team-card p-12 rounded-[3.5rem] text-center lg:col-start-1 lg:translate-x-[50%] md:translate-x-0" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-card p-12 rounded-[3.5rem] text-center w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
                     <i class="fa-solid fa-clapperboard"></i>
                 </div>
@@ -127,13 +131,14 @@
                 <p class="text-[10px] text-gray-400 font-bold mt-3 uppercase tracking-[0.2em]">Creative Director</p>
             </div>
 
-            <div class="team-card p-12 rounded-[3.5rem] text-center lg:col-start-2 lg:translate-x-[50%] md:translate-x-0" data-aos="fade-up" data-aos-delay="400">
+            <div class="team-card p-12 rounded-[3.5rem] text-center w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
                     <i class="fa-solid fa-lightbulb"></i>
                 </div>
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">KIR FAROUK</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-3 uppercase tracking-[0.2em]">Project Manager</p>
             </div>
+
         </div>
     </section>
 
