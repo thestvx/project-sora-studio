@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SORA STUDIO — About</title>
+    <title>عن صورة أستوديو | About SORA STUDIO</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700;900&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; background: #ffffff; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-        .stat-circle { border: 2px dashed #161B91; animation: rotate 20s linear infinite; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; background: #ffffff; scroll-behavior: smooth; }
+        
+        /* تأثيرات بطاقة الفريق */
+        .team-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .team-card:hover { transform: translateY(-10px); }
+        .team-img-container { overflow: hidden; position: relative; }
+        .team-img-container img { transition: transform 0.8s ease; }
+        .team-card:hover img { transform: scale(1.1) rotate(-2deg); }
+        
+        /* تزيين الخلفية */
+        .bg-pattern {
+            background-image: radial-gradient(#161B91 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
     </style>
 </head>
-<body class="overflow-x-hidden text-right">
+<body class="overflow-x-hidden text-right bg-[#fafafa]">
 
     <nav class="fixed w-full z-[100] px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-gray-100 px-8 py-4 rounded-[2.5rem] shadow-sm">
@@ -29,47 +40,83 @@
         </div>
     </nav>
 
-    <section class="pt-48 pb-20 px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div data-aos="fade-left">
-                    <span class="text-[#161B91] font-bold tracking-widest uppercase text-xs mb-4 block">قصتنا — Our Story</span>
-                    <h1 class="text-6xl md:text-8xl font-black text-[#161B91] leading-tight mb-8">نحن نكتب بالضوء.</h1>
-                    <p class="text-xl text-gray-500 leading-relaxed mb-8">
-                        بدأ SORA STUDIO في قلب الوادي، الجزائر، برؤية واحدة: كسر القواعد التقليدية للتصوير. نحن لا نلتقط الصور فحسب، بل نصنع تجارب بصرية تلمس المشاعر وتبقى محفورة في الذاكرة.
-                    </p>
-                    <div class="flex gap-12 border-t border-gray-100 pt-10">
-                        <div>
-                            <p class="text-4xl font-black text-[#161B91]">05+</p>
-                            <p class="text-gray-400 text-sm mt-2">سنوات من الخبرة</p>
-                        </div>
-                        <div>
-                            <p class="text-4xl font-black text-[#161B91]">150+</p>
-                            <p class="text-gray-400 text-sm mt-2">عميل سعيد</p>
-                        </div>
-                    </div>
+    <section class="pt-48 pb-20 px-8 relative">
+        <div class="absolute inset-0 bg-pattern -z-10"></div>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div data-aos="fade-left">
+                <span class="text-[#161B91] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">من نحن — WHO WE ARE</span>
+                <h1 class="text-6xl md:text-8xl font-black text-[#161B91] leading-[0.9] mb-8">نحن نكتب <br> بالضوء.</h1>
+                <p class="text-xl text-gray-500 leading-relaxed mb-10 max-w-lg">
+                    بدأ سورا أستوديو في قلب مدينة الوادي، الجزائر. نحن فريق من المبدعين شغوفين بتحويل اللحظات البسيطة إلى قصص بصرية تفيض بالمشاعر والجودة العالية.
+                </p>
+                <div class="flex gap-12 border-t border-gray-100 pt-10">
+                    <div><p class="text-4xl font-black text-[#161B91]">05+</p><p class="text-gray-400 text-sm mt-2 font-bold">سنوات خبرة</p></div>
+                    <div><p class="text-4xl font-black text-[#161B91]">200+</p><p class="text-gray-400 text-sm mt-2 font-bold">مشروع ناجح</p></div>
                 </div>
-                <div class="relative" data-aos="fade-right">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 stat-circle rounded-full -z-10 opacity-20"></div>
-                    <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1000" class="rounded-[4rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-700">
+            </div>
+            <div class="relative" data-aos="zoom-in" data-aos-duration="1500">
+                <div class="relative rounded-[4rem] overflow-hidden shadow-2xl border-[15px] border-white">
+                    <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1000" class="w-full">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-[#161B91] text-white rounded-[5rem] mx-4 mb-10 px-8 overflow-hidden relative">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 relative z-10">
-            <div data-aos="zoom-in" data-aos-delay="100">
-                <h3 class="text-blue-300 font-bold mb-4 tracking-tighter">01. الدقة</h3>
-                <p class="text-gray-300 text-lg">كل تفصيلة صغيرة، من الإضاءة إلى زاوية الظل، مدروسة بعناية فائقة.</p>
+    <section class="py-32 px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-5xl font-black text-[#161B91] mb-4">عائلة سورا</h2>
+                <p class="text-gray-400 uppercase tracking-widest text-sm font-bold">المبدعون خلف الكاميرا — THE CREATIVES</p>
             </div>
-            <div data-aos="zoom-in" data-aos-delay="200">
-                <h3 class="text-blue-300 font-bold mb-4 tracking-tighter">02. الابتكار</h3>
-                <p class="text-gray-300 text-lg">نستخدم أحدث تقنيات المعالجة البصرية لنقدم نتائج تتجاوز التوقعات.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                
+                <div class="team-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-img-container rounded-[3rem] aspect-[3/4] mb-8 bg-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600" class="w-full h-full object-cover">
+                    </div>
+                    <div class="px-4">
+                        <h3 class="text-2xl font-black text-[#161B91] mb-2">اسم العضو هنا</h3>
+                        <p class="text-gray-400 font-bold text-sm uppercase tracking-tighter mb-4 italic">Founder & Lead Photographer</p>
+                        <div class="w-12 h-1 bg-[#161B91]/20 group-hover:w-full transition-all duration-500"></div>
+                    </div>
+                </div>
+
+                <div class="team-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-img-container rounded-[3rem] aspect-[3/4] mb-8 bg-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600" class="w-full h-full object-cover">
+                    </div>
+                    <div class="px-4">
+                        <h3 class="text-2xl font-black text-[#161B91] mb-2">اسم العضو هنا</h3>
+                        <p class="text-gray-400 font-bold text-sm uppercase tracking-tighter mb-4 italic">Cinematographer</p>
+                        <div class="w-12 h-1 bg-[#161B91]/20 group-hover:w-full transition-all duration-500"></div>
+                    </div>
+                </div>
+
+                <div class="team-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-img-container rounded-[3rem] aspect-[3/4] mb-8 bg-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600" class="w-full h-full object-cover">
+                    </div>
+                    <div class="px-4">
+                        <h3 class="text-2xl font-black text-[#161B91] mb-2">اسم العضو هنا</h3>
+                        <p class="text-gray-400 font-bold text-sm uppercase tracking-tighter mb-4 italic">Colorist & Editor</p>
+                        <div class="w-12 h-1 bg-[#161B91]/20 group-hover:w-full transition-all duration-500"></div>
+                    </div>
+                </div>
+
             </div>
-            <div data-aos="zoom-in" data-aos-delay="300">
-                <h3 class="text-blue-300 font-bold mb-4 tracking-tighter">03. الشغف</h3>
-                <p class="text-gray-300 text-lg">نحن نحب ما نفعل، وهذا الحب يظهر في كل كادر نلتقطه.</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#161B91] text-white rounded-[5rem] mx-4 mb-10 px-8 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+            <p class="text-2xl md:text-4xl font-light leading-relaxed">
+                "الصور هي تذاكر العودة للحظات التي رحلت."
+            </p>
+            <div class="mt-8 flex justify-center gap-4">
+                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                <span class="w-2 h-2 rounded-full bg-blue-400 opacity-50"></span>
+                <span class="w-2 h-2 rounded-full bg-blue-400 opacity-20"></span>
             </div>
         </div>
     </section>
