@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SORA STUDIO — About</title>
+    <title>SORA STUDIO — About Our Story</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --brand: #161B91; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; }
-        .hero-gradient-text { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .name-ltr { direction: ltr !important; unicode-bidi: bidi-override; display: inline-block; }
-        .team-card { background: #fff; border-radius: 2.5rem; padding: 2.5rem; border: 1px solid #f3f3f3; transition: 0.5s; }
-        .team-card:hover { border-color: var(--brand); transform: translateY(-10px); }
-        .custom-button { transition: 0.4s; box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
+        :root { --brand: #161B91; --accent: #4f46e5; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; color: #1a1a1a; }
+        
+        .hero-gradient-text {
+            background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .team-card {
+            background: #fff; border-radius: 2.5rem; padding: 2rem;
+            border: 1px solid #f3f3f3; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .team-card:hover { 
+            border-color: var(--brand); transform: translateY(-15px);
+            box-shadow: 0 30px 60px -15px rgba(22, 27, 145, 0.1);
+        }
+
+        .name-ltr { direction: ltr !important; display: inline-block; }
+        
+        .stat-box { border-right: 2px solid #f0f0f0; }
+        .stat-box:last-child { border-right: none; }
+
+        .custom-button {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3);
+        }
+        .custom-button:hover { transform: translateY(-5px); scale: 1.05; }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -39,62 +59,125 @@
         </div>
     </nav>
 
-    <header class="pt-64 pb-20 px-8">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start text-right">
+    <header class="pt-64 pb-32 px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center text-right">
             <div data-aos="fade-left">
-                <div class="flex items-center gap-3 mb-6 justify-start flex-row-reverse">
-                    <span class="w-10 h-[2px] bg-[#161B91]"></span>
-                    <span class="text-xs font-black uppercase tracking-[0.4em] text-[#161B91]">Who We Are</span>
+                <div class="flex items-center gap-3 mb-8 justify-start flex-row-reverse">
+                    <span class="w-12 h-[3px] bg-[#161B91]"></span>
+                    <span class="text-xs font-black uppercase tracking-[0.5em] text-[#161B91]">The Story of SORA</span>
                 </div>
-                <h1 class="text-7xl md:text-[110px] leading-[0.85] font-black mb-10 hero-gradient-text tracking-tighter">نكتب القصص <br> بالضوء.</h1>
+                <h1 class="text-7xl md:text-[100px] leading-[0.9] font-black mb-10 hero-gradient-text tracking-tighter">نصنع واقعاً <br> أكثر جمالاً.</h1>
+                <p class="text-xl text-gray-500 leading-relaxed mb-12 max-w-xl">
+                    من قلب ولاية الوادي، انطلقنا برؤية تجمع بين الأصالة والاحترافية العالمية. سورا أستوديو ليس مجرد مكان للتصوير، بل هو مختبر إبداعي حيث تتحول الأفكار إلى تحف بصرية تخلد اللحظات.
+                </p>
+                <div class="flex gap-12 flex-row-reverse justify-start">
+                    <div class="stat-box pl-12 text-center">
+                        <span class="block text-5xl font-black text-[#161B91]">05+</span>
+                        <span class="text-[10px] text-gray-400 font-black uppercase tracking-[0.2em]">Years Exp</span>
+                    </div>
+                    <div class="stat-box pl-12 text-center">
+                        <span class="block text-5xl font-black text-[#161B91]">200+</span>
+                        <span class="text-[10px] text-gray-400 font-black uppercase tracking-[0.2em]">Projects</span>
+                    </div>
+                </div>
             </div>
-            <div class="pt-12" data-aos="fade-up">
-                <p class="text-xl text-gray-500 leading-relaxed mb-10">سورا أستوديو هو بيت المبدعين في الوادي. نحن نؤمن أن كل لقطة هي حكاية فريدة تستحق أن تُروى بأفضل جودة بصرية ممكنة.</p>
-                <div class="flex gap-12 justify-start flex-row-reverse">
-                    <div class="text-center"><span class="block text-4xl font-black text-[#161B91]">05+</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Experience</span></div>
-                    <div class="text-center"><span class="block text-4xl font-black text-[#161B91]">200+</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Projects</span></div>
+            <div class="relative" data-aos="zoom-in" data-aos-delay="200">
+                <div class="rounded-[4rem] overflow-hidden border-[15px] border-[#f8f9ff] shadow-2xl rotate-3 translate-x-4">
+                    <img src="https://images.unsplash.com/photo-1492691523567-6170c36083e6?auto=format&fit=crop&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="py-24 px-8 max-w-7xl mx-auto">
-        <div class="text-center mb-20" data-aos="fade-up">
-            <h2 class="text-5xl font-black text-[#161B91] mb-4">فريق العمل</h2>
-            <p class="text-gray-400 text-sm font-bold uppercase tracking-widest">THE CORE TEAM</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="team-card text-center" data-aos="fade-up">
-                <div class="aspect-square bg-[#f8f9ff] rounded-2xl flex items-center justify-center mb-6 text-3xl text-[#161B91]"><i class="fa-solid fa-camera"></i></div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">HEDDAD BOUBAKER</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Founder / Photographer</p>
+    <section class="py-32 bg-[#f8f9ff] px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-right">
+            <div data-aos="fade-up">
+                <div class="text-[#161B91] text-4xl mb-6"><i class="fa-solid fa-eye"></i></div>
+                <h3 class="text-2xl font-black mb-4 uppercase">رؤيتنا</h3>
+                <p class="text-gray-500 leading-relaxed font-bold">أن نكون الوجهة الأولى للإبداع البصري في الجزائر، ونضع بصمتنا في كل مشروع عالمي.</p>
             </div>
-            <div class="team-card text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="aspect-square bg-[#f8f9ff] rounded-2xl flex items-center justify-center mb-6 text-3xl text-[#161B91]"><i class="fa-solid fa-video"></i></div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">CHAMI ABDENNOUR</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Cinematographer</p>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div class="text-[#161B91] text-4xl mb-6"><i class="fa-solid fa-bullseye"></i></div>
+                <h3 class="text-2xl font-black mb-4 uppercase">رسالتنا</h3>
+                <p class="text-gray-500 leading-relaxed font-bold">تقديم جودة تصوير وإنتاج تكسر المألوف، وتخدم أهداف شركائنا التجارية والفنية بدقة متناهية.</p>
             </div>
-            <div class="team-card text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="aspect-square bg-[#f8f9ff] rounded-2xl flex items-center justify-center mb-6 text-3xl text-[#161B91]"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">CHAMI TAHAR</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Visual Editor</p>
-            </div>
-            <div class="team-card text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="aspect-square bg-[#f8f9ff] rounded-2xl flex items-center justify-center mb-6 text-3xl text-[#161B91]"><i class="fa-solid fa-clapperboard"></i></div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">BENNI MEHDI</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Creative Director</p>
-            </div>
-            <div class="team-card text-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="aspect-square bg-[#f8f9ff] rounded-2xl flex items-center justify-center mb-6 text-3xl text-[#161B91]"><i class="fa-solid fa-lightbulb"></i></div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase">KIR FAROUK</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest">Project Manager</p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="text-[#161B91] text-4xl mb-6"><i class="fa-solid fa-heart"></i></div>
+                <h3 class="text-2xl font-black mb-4 uppercase">قيمنا</h3>
+                <p class="text-gray-500 leading-relaxed font-bold">الشغف، الابتكار المستمر، والالتزام بالتميز في كل كادر نصوره أو مشهد ننتجه.</p>
             </div>
         </div>
     </section>
 
+    <section class="py-32 px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-24" data-aos="fade-up">
+            <span class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 mb-4 block">Meet The Creators</span>
+            <h2 class="text-6xl font-black text-[#161B91] tracking-tighter">العقول المبدعة خلف سورا.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="team-card text-center group" data-aos="fade-up">
+                <div class="w-full aspect-square bg-[#f0f2ff] rounded-[2rem] flex items-center justify-center mb-8 overflow-hidden">
+                    <i class="fa-solid fa-camera text-6xl text-[#161B91] group-hover:scale-125 transition duration-500"></i>
+                </div>
+                <h3 class="text-2xl font-black text-[#161B91] name-ltr uppercase">HEDDAD BOUBAKER</h3>
+                <p class="text-[11px] text-gray-400 font-black mt-3 uppercase tracking-[0.3em]">Founder & Lead Photographer</p>
+                <div class="mt-6 flex justify-center gap-4 text-gray-300">
+                    <a href="#" class="hover:text-[#161B91] transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-[#161B91] transition text-xl"><i class="fa-brands fa-behance"></i></a>
+                </div>
+            </div>
+
+            <div class="team-card text-center group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-full aspect-square bg-[#f0f2ff] rounded-[2rem] flex items-center justify-center mb-8 overflow-hidden">
+                    <i class="fa-solid fa-video text-6xl text-[#161B91] group-hover:scale-125 transition duration-500"></i>
+                </div>
+                <h3 class="text-2xl font-black text-[#161B91] name-ltr uppercase">CHAMI ABDENNOUR</h3>
+                <p class="text-[11px] text-gray-400 font-black mt-3 uppercase tracking-[0.3em]">Director of Photography</p>
+                <div class="mt-6 flex justify-center gap-4 text-gray-300">
+                    <a href="#" class="hover:text-[#161B91] transition text-xl"><i class="fa-brands fa-vimeo-v"></i></a>
+                </div>
+            </div>
+
+            <div class="team-card text-center group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-full aspect-square bg-[#f0f2ff] rounded-[2rem] flex items-center justify-center mb-8 overflow-hidden">
+                    <i class="fa-solid fa-wand-magic-sparkles text-6xl text-[#161B91] group-hover:scale-125 transition duration-500"></i>
+                </div>
+                <h3 class="text-2xl font-black text-[#161B91] name-ltr uppercase">CHAMI TAHAR</h3>
+                <p class="text-[11px] text-gray-400 font-black mt-3 uppercase tracking-[0.3em]">Senior Video Editor</p>
+            </div>
+
+            <div class="team-card text-center group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-full aspect-square bg-[#f0f2ff] rounded-[2rem] flex items-center justify-center mb-8 overflow-hidden">
+                    <i class="fa-solid fa-clapperboard text-6xl text-[#161B91] group-hover:scale-125 transition duration-500"></i>
+                </div>
+                <h3 class="text-2xl font-black text-[#161B91] name-ltr uppercase">BENNI MEHDI</h3>
+                <p class="text-[11px] text-gray-400 font-black mt-3 uppercase tracking-[0.3em]">Creative Producer</p>
+            </div>
+
+            <div class="team-card text-center group" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-full aspect-square bg-[#f0f2ff] rounded-[2rem] flex items-center justify-center mb-8 overflow-hidden">
+                    <i class="fa-solid fa-lightbulb text-6xl text-[#161B91] group-hover:scale-125 transition duration-500"></i>
+                </div>
+                <h3 class="text-2xl font-black text-[#161B91] name-ltr uppercase">KIR FAROUK</h3>
+                <p class="text-[11px] text-gray-400 font-black mt-3 uppercase tracking-[0.3em]">Operations Manager</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 bg-white border-t border-gray-100 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-right">
+                <p class="text-2xl font-black text-[#161B91] mb-2 uppercase tracking-tighter">SORA STUDIO</p>
+                <p class="text-gray-400 text-xs font-bold">ALGERIA — EL OUED</p>
+            </div>
+            <a href="contact.html" class="bg-[#161B91] text-white px-12 py-4 rounded-2xl font-black text-xs uppercase tracking-widest custom-button">Start Your Story</a>
+        </div>
+    </footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({ duration: 1000, once: true });
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             nav.style.transform = window.scrollY > 50 ? 'translateY(-10px)' : 'translateY(0)';
