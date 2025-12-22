@@ -16,11 +16,11 @@
   <style>
     :root{
       --bg:#FFFFFF;
-      --fg:#1F2937; /* dark neutral gray */
+      --fg:#1F2937; 
       --muted:#6B7280;
       --muted2:#9CA3AF;
       --line:rgba(22,27,145,.14);
-      --brand:#161B91; /* deep royal blue */
+      --brand:#161B91; 
     }
 
     html{scroll-behavior:smooth;}
@@ -35,46 +35,34 @@
     }
     .font-ar{font-family:"Noto Sans Arabic", Inter, system-ui, sans-serif;}
 
-    /* Remove grain & gradients; keep a clean editorial canvas */
     .grain::before{display:none !important; content:none !important;}
     .spotlight{background:#FFFFFF !important;}
 
-    /* Logo: keep crisp, proportional, responsive */
     .nav-logo{height:36px; width:auto; max-width:160px; object-fit:contain; image-rendering:auto;}
     @media (min-width: 640px){
       .nav-logo{height:38px; max-width:180px;}
     }
 
-    /* reveal animation: slower, elegant, ease-in-out */
     .reveal{
       opacity:0;
-      transform:translateY(10px);
-      filter:none;
-      transition:
-        opacity 1.05s ease-in-out,
-        transform 1.05s ease-in-out;
+      transform:translateY(20px);
+      transition: opacity 1.05s ease-out, transform 1.05s ease-out;
     }
     .reveal.is-in{opacity:1; transform:none;}
 
-    /* custom scrollbar (clean) */
     ::-webkit-scrollbar{width:10px;}
     ::-webkit-scrollbar-track{background:transparent;}
     ::-webkit-scrollbar-thumb{background:rgba(22,27,145,.18); border-radius:999px; border:2px solid transparent; background-clip:content-box;}
     ::-webkit-scrollbar-thumb:hover{background:rgba(22,27,145,.26); background-clip:content-box;}
 
-    /* masonry */
     .masonry{column-count:1; column-gap:16px;}
     @media (min-width: 640px){.masonry{column-count:2; column-gap:18px;}}
     @media (min-width: 1024px){.masonry{column-count:3; column-gap:20px;}}
-    .m-item{break-inside:avoid; margin:0 0 16px 0;}
+    .m-item{break-inside:avoid; margin:0 0 16px 0; transition: all 0.4s ease-in-out;}
 
-    /* focus ring */
     .focus-ring:focus{outline:none; box-shadow:0 0 0 3px rgba(22,27,145,.22);}
-
-    /* soften any remaining shadows globally (keep extremely subtle) */
     .soft-shadow{box-shadow:0 8px 24px rgba(17,24,39,.06) !important;}
 
-    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto;}
       .reveal{opacity:1 !important; transform:none !important;}
@@ -86,835 +74,147 @@
 <body class="grain">
   <a class="sr-only focus:not-sr-only focus-ring fixed left-4 top-4 z-[100] rounded-full border border-[rgba(22,27,145,.25)] bg-white px-4 py-2 text-sm" style="color:var(--brand)" href="#home">Skip to content</a>
 
-  <!-- Sticky Nav -->
   <header class="fixed inset-x-0 top-0 z-[60]">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
       <nav class="mt-4 soft-shadow flex items-center justify-between rounded-2xl border" style="border-color:var(--line); background:rgba(255,255,255,.92); backdrop-filter: blur(10px);">
         <div class="flex items-center gap-3 px-4 py-3">
-          <button id="menuBtn" class="focus-ring group inline-flex items-center justify-center rounded-xl border bg-white p-2 sm:hidden" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" aria-label="Open menu" aria-expanded="false">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 6h16"/>
-              <path d="M4 12h16"/>
-              <path d="M4 18h16"/>
-            </svg>
+          <button id="menuBtn" class="focus-ring group inline-flex items-center justify-center rounded-xl border bg-white p-2 sm:hidden" style="border-color:rgba(22,27,145,.25); color:var(--brand);" aria-label="Open menu">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
           </button>
-          <a href="#home" class="group inline-flex items-center gap-3" style="color:var(--brand)" aria-label="SORA STUDIO Home">
-            <img
-              src="images/logo-sora.png"
-              alt="SORA STUDIO logo"
-              class="nav-logo"
-              style="display:block;"
-              loading="eager"
-              decoding="async"
-            />
+          <a href="#home" class="group inline-flex items-center gap-3">
+            <img src="images/logo-sora.png" alt="SORA STUDIO" class="nav-logo" loading="eager" />
           </a>
         </div>
 
         <div class="hidden items-center gap-7 px-4 py-3 text-sm sm:flex" style="color:rgba(31,41,55,.8)">
-          <a class="transition" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.8)'" href="#home">Home</a>
-          <a class="transition" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.8)'" href="#about">About</a>
-          <a class="transition" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.8)'" href="#portfolio">Portfolio</a>
-          <a class="transition" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.8)'" href="#services">Services</a>
-          <a class="transition" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.8)'" href="#contact">Booking</a>
+          <a class="hover:text-[#161B91] transition-colors" href="#home">Home</a>
+          <a class="hover:text-[#161B91] transition-colors" href="#about">About</a>
+          <a class="hover:text-[#161B91] transition-colors" href="#portfolio">Portfolio</a>
+          <a class="hover:text-[#161B91] transition-colors" href="#services">Services</a>
         </div>
 
         <div class="hidden items-center gap-3 px-4 py-3 sm:flex">
-          <button id="langToggle" class="focus-ring rounded-xl border bg-white px-3 py-2 text-xs tracking-wider" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out;" aria-label="Toggle language">AR / EN</button>
-          <a href="#contact" class="focus-ring rounded-xl border bg-white px-4 py-2 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Book</a>
+          <button class="focus-ring rounded-xl border bg-white px-3 py-2 text-xs tracking-wider" style="border-color:rgba(22,27,145,.25); color:var(--brand);">AR / EN</button>
+          <a href="#contact" class="focus-ring rounded-xl border bg-white px-4 py-2 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: all .25s;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Book</a>
         </div>
       </nav>
 
-      <!-- Mobile menu -->
       <div id="mobileMenu" class="hidden sm:hidden">
         <div class="soft-shadow mt-3 rounded-2xl border bg-white p-4" style="border-color:var(--line)">
-          <div class="grid gap-2 text-sm" style="color:rgba(31,41,55,.85)">
-            <a class="rounded-xl px-3 py-2" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.85)'" href="#home">Home</a>
-            <a class="rounded-xl px-3 py-2" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.85)'" href="#about">About</a>
-            <a class="rounded-xl px-3 py-2" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.85)'" href="#portfolio">Portfolio</a>
-            <a class="rounded-xl px-3 py-2" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.85)'" href="#services">Services</a>
-            <a class="rounded-xl px-3 py-2" style="transition: color .25s ease-in-out;" onmouseover="this.style.color='var(--brand)'" onmouseout="this.style.color='rgba(31,41,55,.85)'" href="#contact">Contact / Booking</a>
-            <div class="mt-2 flex items-center justify-between gap-3">
-              <button id="langToggleMobile" class="focus-ring flex-1 rounded-xl border bg-white px-3 py-2 text-xs tracking-wider" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out;">AR / EN</button>
-              <a class="focus-ring flex-1 rounded-xl border bg-white px-3 py-2 text-center text-xs font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" href="#contact" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Book</a>
-            </div>
+          <div class="grid gap-2 text-sm">
+            <a class="px-3 py-2 hover:text-[#161B91]" href="#home">Home</a>
+            <a class="px-3 py-2 hover:text-[#161B91]" href="#about">About</a>
+            <a class="px-3 py-2 hover:text-[#161B91]" href="#portfolio">Portfolio</a>
+            <a class="px-3 py-2 hover:text-[#161B91]" href="#services">Services</a>
+            <a class="px-3 py-2 font-bold text-[#161B91]" href="#contact">Book Now</a>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
   <main id="home" class="spotlight">
     <section class="relative min-h-[100svh] overflow-hidden">
-      <!-- Background image -->
       <div class="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1520975682038-bc2d0f8c2cc4?auto=format&fit=crop&w=2400&q=80"
-          alt="Cinematic studio lighting"
-          class="h-full w-full object-cover"
-          style="opacity:.96"
-          loading="eager"
-          decoding="async"
-        />
-        <!-- Strict: no gradients. Use a flat overlay for readability -->
-        <div class="absolute inset-0" style="background: rgba(255,255,255,.82);" aria-hidden="true"></div>
+        <img src="https://images.unsplash.com/photo-1520975682038-bc2d0f8c2cc4?auto=format&fit=crop&w=2400&q=80" alt="Studio" class="h-full w-full object-cover" style="opacity:.96" />
+        <div class="absolute inset-0" style="background: rgba(255,255,255,.82);"></div>
       </div>
 
       <div class="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-14 pt-32 sm:px-8 sm:pb-20">
         <div class="max-w-3xl">
-          <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.75)" data-reveal>
-            Photography & Visual Production
-          </p>
-          <h1 class="reveal mt-4 text-balance text-4xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl" style="color:var(--brand)" data-reveal>
-            <span class="block">SORA STUDIO</span>
-          </h1>
-          <p class="reveal mt-5 max-w-xl text-pretty text-base leading-relaxed sm:text-lg" style="color:rgba(31,41,55,.82)" data-reveal>
-            Visual Stories That Last — crafted with restraint, light, and intention.
-          </p>
-
-          <div class="reveal mt-9 flex flex-wrap items-center gap-3" data-reveal>
-            <a href="#portfolio" class="focus-ring inline-flex items-center gap-2 rounded-xl border bg-white px-5 py-3 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">
-              <span>View Portfolio</span>
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#contact" class="focus-ring inline-flex items-center justify-center rounded-xl border bg-white px-5 py-3 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Book a Session</a>
-          </div>
-
-          <div class="reveal mt-10 grid max-w-2xl grid-cols-3 gap-4 text-xs" style="color:rgba(31,41,55,.72)" data-reveal>
-            <div class="rounded-2xl border bg-white p-4" style="border-color:var(--line)">
-              <div style="color:var(--brand); font-weight:600">Portrait</div>
-              <div class="mt-1">studio / lifestyle</div>
-            </div>
-            <div class="rounded-2xl border bg-white p-4" style="border-color:var(--line)">
-              <div style="color:var(--brand); font-weight:600">Cinematic</div>
-              <div class="mt-1">film-grade mood</div>
-            </div>
-            <div class="rounded-2xl border bg-white p-4" style="border-color:var(--line)">
-              <div style="color:var(--brand); font-weight:600">Production</div>
-              <div class="mt-1">photo & video</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-12 flex items-center justify-between gap-6 text-xs" style="color:rgba(31,41,55,.65)">
-          <div class="flex items-center gap-3">
-            <span class="inline-block h-px w-10" style="background:rgba(22,27,145,.25)"></span>
-            <span>Scroll</span>
-          </div>
-          <div class="hidden sm:block">ALGERIA • EL-OUED • GUEMAR</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-      <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
-        <div class="lg:col-span-5">
-          <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.65)" data-reveal>About</p>
-          <h2 class="reveal mt-4 text-3xl font-bold tracking-tight sm:text-4xl" style="color:var(--brand)" data-reveal>
-            A studio built on feeling, detail, and discipline.
-          </h2>
-          <p class="reveal mt-5 text-pretty leading-relaxed" style="color:rgba(31,41,55,.82)" data-reveal>
-            We create refined imagery for people and brands—quietly cinematic, emotionally honest, and designed to endure.
-            From pre-production to final grade, every frame is treated as a story.
-          </p>
-
-          <div class="reveal mt-8 rounded-2xl border bg-white p-6" style="border-color:var(--line)" data-reveal>
-            <p class="font-ar text-sm leading-relaxed" style="color:rgba(31,41,55,.82)" lang="ar" dir="rtl">
-              نحن نؤمن أن الصورة ليست مجرد لقطة—بل تجربة. في صورة أستوديو نصنع مشاهد بصرية راقية، واضحة، ومليئة بالمشاعر، مع اهتمام دقيق بالإضاءة واللون والتفاصيل.
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="rounded-full border bg-white px-3 py-1 text-xs" style="border-color:rgba(22,27,145,.22); color:var(--brand)">Lighting-first</span>
-              <span class="rounded-full border bg-white px-3 py-1 text-xs" style="border-color:rgba(22,27,145,.22); color:var(--brand)">Minimal direction</span>
-              <span class="rounded-full border bg-white px-3 py-1 text-xs" style="border-color:rgba(22,27,145,.22); color:var(--brand)">Premium retouch</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-7">
-          <div class="reveal relative overflow-hidden rounded-3xl border bg-white" style="border-color:var(--line)" data-reveal>
-            <img
-              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2200&q=80"
-              alt="Behind the scenes in a studio"
-              class="h-[420px] w-full object-cover sm:h-[520px]"
-              loading="lazy"
-              decoding="async"
-            />
-            <!-- No gradients: use a clean white caption panel -->
-            <div class="absolute bottom-5 left-5 right-5 flex flex-wrap items-end justify-between gap-3">
-              <div class="max-w-md rounded-2xl border bg-white px-4 py-3" style="border-color:rgba(22,27,145,.18)">
-                <div class="text-xs uppercase tracking-[0.36em]" style="color:rgba(31,41,55,.65)">Studio ethos</div>
-                <div class="mt-2 text-lg font-semibold" style="color:var(--brand)">Light that feels real. Composition that breathes.</div>
-              </div>
-              <div class="rounded-2xl border bg-white px-4 py-3 text-xs" style="border-color:rgba(22,27,145,.18); color:rgba(31,41,55,.72)">
-                Turnaround: 48–72h • Premium grading
-              </div>
-            </div>
+          <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.75)">Photography & Visual Production</p>
+          <h1 class="reveal mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl" style="color:var(--brand)">SORA STUDIO</h1>
+          <p class="reveal mt-5 max-w-xl text-base leading-relaxed sm:text-lg text-gray-600">Visual Stories That Last — crafted with restraint, light, and intention.</p>
+          
+          <div class="reveal mt-9 flex flex-wrap gap-3">
+            <a href="#portfolio" class="bg-[#161B91] text-white px-6 py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition">View Portfolio</a>
+            <a href="#contact" class="border border-[#161B91] text-[#161B91] px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-50 transition">Book a Session</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="relative border-y" style="border-color:var(--line); background:#FFFFFF">
-      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div class="max-w-2xl">
-            <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.65)" data-reveal>Portfolio</p>
-            <h2 class="reveal mt-4 text-3xl font-bold tracking-tight sm:text-4xl" style="color:var(--brand)" data-reveal>
-              Selected work. Clean compositions. Cinematic tone.
-            </h2>
-            <p class="reveal mt-5" style="color:rgba(31,41,55,.78)" data-reveal>
-              Filter by category, open any frame in a distraction-free lightbox.
-            </p>
-          </div>
-
-          <div class="reveal flex flex-wrap gap-2" data-reveal>
-            <button class="filterBtn focus-ring rounded-full border bg-white px-4 py-2 text-xs font-semibold" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" data-filter="all">All</button>
-            <button class="filterBtn focus-ring rounded-full border bg-white px-4 py-2 text-xs font-semibold" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" data-filter="portrait">Portrait</button>
-            <button class="filterBtn focus-ring rounded-full border bg-white px-4 py-2 text-xs font-semibold" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" data-filter="events">Events</button>
-            <button class="filterBtn focus-ring rounded-full border bg-white px-4 py-2 text-xs font-semibold" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" data-filter="fashion">Fashion</button>
-            <button class="filterBtn focus-ring rounded-full border bg-white px-4 py-2 text-xs font-semibold" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" data-filter="product">Product</button>
-            <button class="filterBtn focus-ring rounded-full border bg-white px-4 py-2 text-xs font-semibold" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" data-filter="cinematic">Cinematic</button>
-          </div>
-        </div>
-
-        <div class="mt-10">
-          <div id="portfolioGrid" class="masonry" aria-live="polite"></div>
-        </div>
+    <section id="portfolio" class="py-24 px-5 sm:px-8 bg-white">
+      <div class="mx-auto max-w-7xl">
+        <h2 class="reveal text-3xl font-bold text-[#161B91] mb-10">Selected Work</h2>
+        <div id="portfolioGrid" class="masonry">
+            </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-      <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
-        <div class="lg:col-span-4">
-          <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.65)" data-reveal>Services</p>
-          <h2 class="reveal mt-4 text-3xl font-bold tracking-tight sm:text-4xl" style="color:var(--brand)" data-reveal>
-            Production that feels effortless.
-          </h2>
-          <p class="reveal mt-5" style="color:rgba(31,41,55,.78)" data-reveal>
-            A focused set of offerings—optimized for quality, not noise.
-          </p>
+    <section id="contact" class="py-24 px-5 sm:px-8 bg-gray-50">
+      <div class="mx-auto max-w-3xl">
+        <div class="reveal mb-12 text-center">
+            <h2 class="text-3xl font-bold text-[#161B91]">Book a Session</h2>
+            <p class="mt-4 text-gray-500">Let's build a visual world together.</p>
         </div>
-
-        <div class="lg:col-span-8">
+        
+        <form id="bookingForm" class="reveal rounded-3xl border bg-white p-6 sm:p-8 shadow-sm" style="border-color:var(--line)">
           <div class="grid gap-4 sm:grid-cols-2">
-            <div class="reveal group rounded-2xl border bg-white p-6" style="border-color:var(--line); transition: border-color .25s ease-in-out, background-color .25s ease-in-out;" data-reveal>
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="text-base font-semibold" style="color:var(--brand)">Photography</div>
-                  <div class="mt-2 text-sm leading-relaxed" style="color:rgba(31,41,55,.78)">Portraits, campaigns, editorials—clean, premium, intentional.</div>
-                </div>
-                <div class="rounded-xl border bg-white p-3" style="border-color:rgba(22,27,145,.2); color:var(--brand)">
-                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h4l2-2h4l2 2h4v14H4z"/><path d="M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
-                </div>
-              </div>
+            <div>
+              <label class="text-xs uppercase tracking-widest text-gray-400" for="name">Name</label>
+              <input id="name" required class="focus-ring mt-2 w-full rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm" placeholder="Your name" />
             </div>
-
-            <div class="reveal group rounded-2xl border bg-white p-6" style="border-color:var(--line); transition: border-color .25s ease-in-out, background-color .25s ease-in-out;" data-reveal>
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="text-base font-semibold" style="color:var(--brand)">Videography</div>
-                  <div class="mt-2 text-sm leading-relaxed" style="color:rgba(31,41,55,.78)">Cinematic coverage, product films, and social-first storytelling.</div>
-                </div>
-                <div class="rounded-xl border bg-white p-3" style="border-color:rgba(22,27,145,.2); color:var(--brand)">
-                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10l6-3v10l-6-3v-4z"/><path d="M4 7h10v10H4z"/></svg>
-                </div>
-              </div>
-            </div>
-
-            <div class="reveal group rounded-2xl border bg-white p-6" style="border-color:var(--line); transition: border-color .25s ease-in-out, background-color .25s ease-in-out;" data-reveal>
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="text-base font-semibold" style="color:var(--brand)">Editing & Retouch</div>
-                  <div class="mt-2 text-sm leading-relaxed" style="color:rgba(31,41,55,.78)">Natural skin, filmic tone, consistent color language—no overprocessing.</div>
-                </div>
-                <div class="rounded-xl border bg-white p-3" style="border-color:rgba(22,27,145,.2); color:var(--brand)">
-                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
-                </div>
-              </div>
-            </div>
-
-            <div class="reveal group rounded-2xl border bg-white p-6" style="border-color:var(--line); transition: border-color .25s ease-in-out, background-color .25s ease-in-out;" data-reveal>
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="text-base font-semibold" style="color:var(--brand)">Branding Shoots</div>
-                  <div class="mt-2 text-sm leading-relaxed" style="color:rgba(31,41,55,.78)">A cohesive visual system for founders, teams, and product worlds.</div>
-                </div>
-                <div class="rounded-xl border bg-white p-3" style="border-color:rgba(22,27,145,.2); color:var(--brand)">
-                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"/></svg>
-                </div>
-              </div>
+            <div>
+              <label class="text-xs uppercase tracking-widest text-gray-400" for="email">Email</label>
+              <input id="email" type="email" required class="focus-ring mt-2 w-full rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm" placeholder="email@example.com" />
             </div>
           </div>
-
-          <div class="reveal mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border bg-white p-6" style="border-color:var(--line)" data-reveal>
-            <div class="text-sm" style="color:rgba(31,41,55,.78)">
-              Need a tailored production plan? We can scale from intimate to full crew.
-            </div>
-            <a href="#contact" class="focus-ring rounded-xl border bg-white px-4 py-2 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Request a quote</a>
+          <div class="mt-4">
+            <label class="text-xs uppercase tracking-widest text-gray-400" for="message">Message</label>
+            <textarea id="message" rows="4" class="focus-ring mt-2 w-full rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm" placeholder="Tell us about your project..."></textarea>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact / Booking -->
-    <section id="contact" class="relative border-t" style="border-color:var(--line); background:#FFFFFF">
-      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-        <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div class="lg:col-span-5">
-            <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.65)" data-reveal>Contact</p>
-            <h2 class="reveal mt-4 text-3xl font-bold tracking-tight sm:text-4xl" style="color:var(--brand)" data-reveal>
-              Book a session. Build a visual world.
-            </h2>
-            <p class="reveal mt-5" style="color:rgba(31,41,55,.78)" data-reveal>
-              Tell us what you’re making—timeline, mood, and references. We’ll respond with a clean plan.
-            </p>
-
-            <div class="reveal mt-8 grid gap-3" data-reveal>
-              <a class="focus-ring flex items-center justify-between rounded-2xl border bg-white px-5 py-4 text-sm" style="border-color:var(--line); color:rgba(31,41,55,.85); transition: color .25s ease-in-out, border-color .25s ease-in-out;" href="https://wa.me/+213556036570" target="_blank" rel="noreferrer" onmouseover="this.style.color='var(--brand)'; this.style.borderColor='rgba(22,27,145,.35)';" onmouseout="this.style.color='rgba(31,41,55,.85)'; this.style.borderColor='var(--line)';">
-                <span class="flex items-center gap-3">
-                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-white" style="border-color:rgba(22,27,145,.2); color:var(--brand)">
-                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.32 1.77.59 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.11a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.6.59a2 2 0 0 1 1.72 2.0z"/></svg>
-                  </span>
-                  <span>WhatsApp</span>
-                </span>
-                <span style="color:rgba(31,41,55,.6)">Fast response</span>
-              </a>
-              <a class="focus-ring flex items-center justify-between rounded-2xl border bg-white px-5 py-4 text-sm" style="border-color:var(--line); color:rgba(31,41,55,.85); transition: color .25s ease-in-out, border-color .25s ease-in-out;" href="https://www.instagram.com/sora_studioo/" target="_blank" rel="noreferrer" onmouseover="this.style.color='var(--brand)'; this.style.borderColor='rgba(22,27,145,.35)';" onmouseout="this.style.color='rgba(31,41,55,.85)'; this.style.borderColor='var(--line)';">
-                <span class="flex items-center gap-3">
-                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-white" style="border-color:rgba(22,27,145,.2); color:var(--brand)">
-                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
-                  </span>
-                  <span>Instagram</span>
-                </span>
-                <span style="color:rgba(31,41,55,.6)">Latest work</span>
-              </a>
-            </div>
-
-            <div class="reveal mt-8 rounded-2xl border bg-white p-6" style="border-color:var(--line)" data-reveal>
-              <p class="font-ar text-sm leading-relaxed" style="color:rgba(31,41,55,.82)" lang="ar" dir="rtl">
-                للحجز أو الاستفسار، اكتب تفاصيل الجلسة (النوع، الموقع، التاريخ)، وسنعود إليك بخطة واضحة وتوقيت مناسب.
-              </p>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7">
-            <form id="bookingForm" class="reveal rounded-3xl border bg-white p-6 sm:p-8" style="border-color:var(--line)" data-reveal>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em]" style="color:rgba(31,41,55,.65)" for="name">Name</label>
-                  <input id="name" name="name" required class="focus-ring mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm" style="border-color:rgba(22,27,145,.22); color:rgba(31,41,55,.9)" placeholder="Your full name" />
-                </div>
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em]" style="color:rgba(31,41,55,.65)" for="email">Email</label>
-                  <input id="email" name="email" type="email" required class="focus-ring mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm" style="border-color:rgba(22,27,145,.22); color:rgba(31,41,55,.9)" placeholder="name@email.com" />
-                </div>
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em]" style="color:rgba(31,41,55,.65)" for="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" class="focus-ring mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm" style="border-color:rgba(22,27,145,.22); color:rgba(31,41,55,.9)" placeholder="+213…" />
-                </div>
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em]" style="color:rgba(31,41,55,.65)" for="type">Type of session</label>
-                  <select id="type" name="type" class="focus-ring mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm" style="border-color:rgba(22,27,145,.22); color:rgba(31,41,55,.9)">
-                    <option value="Portrait">Portrait</option>
-                    <option value="Events">Events</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Product">Product</option>
-                    <option value="Cinematic">Cinematic</option>
-                    <option value="Branding">Branding</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="mt-4">
-                <label class="text-xs uppercase tracking-[0.3em]" style="color:rgba(31,41,55,.65)" for="message">Message</label>
-                <textarea id="message" name="message" rows="5" class="focus-ring mt-2 w-full resize-none rounded-xl border bg-white px-4 py-3 text-sm" style="border-color:rgba(22,27,145,.22); color:rgba(31,41,55,.9)" placeholder="Mood, timeline, location, references…"></textarea>
-              </div>
-
-              <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
-                <div class="text-xs" style="color:rgba(31,41,55,.6)">
-                  By submitting, you agree to be contacted about your booking.
-                </div>
-                <button type="submit" class="focus-ring inline-flex items-center gap-2 rounded-xl border bg-white px-5 py-3 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">
-                  <span>Send request</span>
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                </button>
-              </div>
-
-              <div id="formToast" class="mt-4 hidden rounded-2xl border bg-white p-4 text-sm" style="border-color:rgba(22,27,145,.22); color:rgba(31,41,55,.78)"></div>
-            </form>
-          </div>
-        </div>
+          <button type="submit" class="mt-6 w-full bg-[#161B91] text-white py-4 rounded-xl font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-900/10">
+            Send Request
+          </button>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t" style="border-color:var(--line)">
-    <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8">
-      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <div class="text-sm font-semibold tracking-[0.22em]" style="color:var(--brand)">SORA STUDIO</div>
-          <div class="mt-2 text-xs" style="color:rgba(31,41,55,.65)">Premium photography & visual production.</div>
-        </div>
-        <div class="flex flex-wrap items-center gap-3 text-sm">
-          <a class="focus-ring rounded-xl border bg-white px-4 py-2 text-xs" style="border-color:rgba(22,27,145,.22); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" href="#portfolio" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Portfolio</a>
-          <a class="focus-ring rounded-xl border bg-white px-4 py-2 text-xs" style="border-color:rgba(22,27,145,.22); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" href="#contact" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Booking</a>
-          <a class="focus-ring rounded-xl border bg-white px-4 py-2 text-xs" style="border-color:rgba(22,27,145,.22); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out, border-color .25s ease-in-out;" href="https://www.instagram.com/sora_studioo/" target="_blank" rel="noreferrer" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Instagram</a>
-        </div>
-      </div>
-      <div class="mt-8 flex flex-col gap-2 border-t pt-6 text-xs sm:flex-row sm:items-center sm:justify-between" style="border-color:var(--line); color:rgba(31,41,55,.6)">
-        <div>© <span id="year"></span> SORA STUDIO. All rights reserved.</div>
-        <div class="font-ar" lang="ar" dir="rtl" style="color:rgba(31,41,55,.7)">تصوير وإنتاج بصري بمعايير عالية</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="fixed inset-0 z-[80] hidden">
-    <div class="absolute inset-0" style="background: rgba(255,255,255,.92);" aria-hidden="true"></div>
-    <div class="relative mx-auto flex h-full max-w-6xl items-center justify-center p-4 sm:p-8">
-      <button id="lbClose" class="focus-ring absolute right-5 top-5 rounded-xl border bg-white p-2" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out;" aria-label="Close" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
-      </button>
-
-      <button id="lbPrev" class="focus-ring absolute left-5 top-1/2 -translate-y-1/2 rounded-xl border bg-white p-2" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out;" aria-label="Previous" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button id="lbNext" class="focus-ring absolute right-5 top-1/2 -translate-y-1/2 rounded-xl border bg-white p-2" style="border-color:rgba(22,27,145,.25); color:var(--brand); transition: background-color .25s ease-in-out, color .25s ease-in-out;" aria-label="Next" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-
-      <figure class="w-full">
-        <img id="lbImg" alt="Portfolio image" class="mx-auto max-h-[78svh] w-auto rounded-3xl border object-contain" style="border-color:rgba(22,27,145,.18)" />
-        <figcaption class="mx-auto mt-4 max-w-3xl text-center">
-          <div id="lbTitle" class="text-sm font-semibold" style="color:var(--brand)"></div>
-          <div id="lbMeta" class="mt-1 text-xs" style="color:rgba(31,41,55,.65)"></div>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-
   <script>
-    // ---------- Utilities ----------
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-
-    // Year
-    $('#year').textContent = new Date().getFullYear();
-
-    // Mobile menu
-    const menuBtn = $('#menuBtn');
-    const mobileMenu = $('#mobileMenu');
-    const toggleMenu = () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      menuBtn.setAttribute('aria-expanded', String(!isOpen));
-    };
-    menuBtn?.addEventListener('click', toggleMenu);
-    $$('#mobileMenu a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-    // Reveal on scroll (slower + gentle)
-    const revealEls = $$('[data-reveal]');
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-in');
-          io.unobserve(e.target);
+    // 1. نظام التحميل والظهور (Reveal Effect)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
         }
-      }
-    }, { threshold: 0.16 });
-    revealEls.forEach(el => io.observe(el));
+      });
+    }, { threshold: 0.1 });
 
-    // ---------- Portfolio Data ----------
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 2. القائمة الجوالة (Mobile Menu)
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 3. معرض الصور الديناميكي (Portfolio Grid)
     const portfolioItems = [
-      {
-        id: 'p1',
-        title: 'Quiet Portrait — Studio Light',
-        category: 'portrait',
-        meta: 'Portrait • High-contrast key light',
-        w: 1400,
-        h: 1900,
-        src: 'gallery/image1.jpg'
-      },
-      {
-        id: 'p2',
-        title: 'Cinematic Frame — Shadow & Tone',
-        category: 'cinematic',
-        meta: 'Cinematic • Film-grade color',
-        w: 1600,
-        h: 1000,
-        src: 'gallery/image2.jpg'
-      },
-      {
-        id: 'p3',
-        title: 'Fashion — Clean Editorial',
-        category: 'fashion',
-        meta: 'Fashion • Editorial minimalism',
-        w: 1400,
-        h: 1700,
-        src: 'gallery/image3.jpg'
-      },
-      {
-        id: 'p4',
-        title: 'Product — Texture Study',
-        category: 'product',
-        meta: 'Product • Clean highlights',
-        w: 1600,
-        h: 1200,
-        src: 'gallery/image4.jpg'
-      },
-      {
-        id: 'p5',
-        title: 'Events — Atmosphere & Motion',
-        category: 'events',
-        meta: 'Events • Ambient storytelling',
-        w: 1600,
-        h: 1100,
-        src: 'gallery/image5.jpg'
-      },
-      {
-        id: 'p6',
-        title: 'Portrait — Soft Grain',
-        category: 'portrait',
-        meta: 'Portrait • Minimal retouch',
-        w: 1400,
-        h: 1800,
-        src: 'gallery/image6.jpg'
-      },
-      {
-        id: 'p7',
-        title: 'Cinematic — Night Street',
-        category: 'cinematic',
-        meta: 'Cinematic • Controlled contrast',
-        w: 1600,
-        h: 1066,
-        src: 'gallery/image7.jpg'
-      },
-      {
-        id: 'p8',
-        title: 'Fashion — Movement Study',
-        category: 'fashion',
-        meta: 'Fashion • Texture & silhouette',
-        w: 1400,
-        h: 1750,
-        src: 'gallery/image8.jpg'
-      },
-      {
-        id: 'p9',
-        title: 'Product — Studio Reflection',
-        category: 'product',
-        meta: 'Product • Controlled highlights',
-        w: 1600,
-        h: 1200,
-        src: 'gallery/image9.jpg'
-      },
-      {
-        id: 'p10',
-        title: 'Events — Detail & Emotion',
-        category: 'events',
-        meta: 'Events • Documentary feel',
-        w: 1600,
-        h: 1066,
-        src: 'gallery/image10.jpg'
-      },
-      {
-        id: 'p11',
-        title: 'Cinematic — Light Study',
-        category: 'cinematic',
-        meta: 'Cinematic • Atmosphere',
-        w: 1600,
-        h: 1000,
-        src: 'gallery/image11.jpg'
-      },
-      {
-        id: 'p12',
-        title: 'Portrait — Calm Color',
-        category: 'portrait',
-        meta: 'Portrait • Editorial simplicity',
-        w: 1400,
-        h: 1750,
-        src: 'gallery/image12.jpg'
-      }
+      { category: 'portrait', url: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80' },
+      { category: 'fashion', url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80' },
+      { category: 'cinematic', url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80' },
+      { category: 'product', url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80' },
+      { category: 'portrait', url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80' },
+      { category: 'fashion', url: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=800&q=80' }
     ];
 
-    const grid = $('#portfolioGrid');
-    let activeFilter = 'all';
-    let visibleItems = portfolioItems.slice();
-
-    function makeCard(item, index){
-      const wrapper = document.createElement('article');
-      wrapper.className = 'm-item';
-      wrapper.dataset.category = item.category;
-
-      const btn = document.createElement('button');
-      btn.className = 'focus-ring group w-full overflow-hidden rounded-3xl border bg-white text-left';
-      btn.style.borderColor = 'rgba(22,27,145,.18)';
-      btn.style.transition = 'border-color .25s ease-in-out, color .25s ease-in-out, background-color .25s ease-in-out';
-      btn.setAttribute('aria-label', `Open ${item.title}`);
-      btn.dataset.index = String(index);
-
-      const thumb = item.src + '&fit=crop';
-
-      btn.innerHTML = `
-        <div class="relative">
-          <img
-            class="h-auto w-full object-cover"
-            style="transition: opacity .25s ease-in-out;"
-            src="${thumb}"
-            alt="${item.title}"
-            loading="lazy"
-            decoding="async"
-          />
-          <!-- No gradients: simple top/bottom white label area using flat overlay -->
-          <div class="absolute inset-x-0 bottom-0" style="background: rgba(255,255,255,.92);">
-            <div class="p-5">
-              <div class="flex items-center justify-between gap-4">
-                <div>
-                  <div class="text-sm font-semibold" style="color: var(--brand);">${item.title}</div>
-                  <div class="mt-1 text-xs" style="color: rgba(31,41,55,.65);">${item.meta}</div>
-                </div>
-                <div class="hidden sm:flex items-center gap-2 rounded-2xl border bg-white px-3 py-2 text-[11px] uppercase tracking-[0.22em]" style="border-color: rgba(22,27,145,.22); color: var(--brand);">
-                  <span class="inline-block h-1.5 w-1.5 rounded-full" style="background: var(--brand);"></span>
-                  <span>${item.category}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // subtle enter
-      btn.classList.add('reveal');
-      btn.dataset.reveal = '';
-
-      btn.addEventListener('mouseenter', () => { btn.style.borderColor = 'rgba(22,27,145,.35)'; });
-      btn.addEventListener('mouseleave', () => { btn.style.borderColor = 'rgba(22,27,145,.18)'; });
-
-      btn.addEventListener('click', () => openLightbox(index));
-
-      wrapper.appendChild(btn);
-      return wrapper;
-    }
-
-    function renderPortfolio(){
-      grid.innerHTML = '';
-      visibleItems.forEach((item, i) => grid.appendChild(makeCard(item, i)));
-      $$('[data-reveal]', grid).forEach(el => io.observe(el));
-    }
-
-    const filterBtns = $$('.filterBtn');
-    function setActiveButton(filter){
-      filterBtns.forEach(b => {
-        const on = b.dataset.filter === filter;
-        b.style.background = on ? 'var(--brand)' : 'white';
-        b.style.color = on ? 'white' : 'var(--brand)';
-        b.style.borderColor = on ? 'var(--brand)' : 'rgba(22,27,145,.25)';
-      });
-    }
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        activeFilter = btn.dataset.filter;
-        setActiveButton(activeFilter);
-        visibleItems = activeFilter === 'all' ? portfolioItems.slice() : portfolioItems.filter(i => i.category === activeFilter);
-        renderPortfolio();
-      });
-
-      // hover style: blue bg, white text
-      btn.addEventListener('mouseenter', () => {
-        if (btn.dataset.filter !== activeFilter){
-          btn.style.background = 'var(--brand)';
-          btn.style.color = 'white';
-          btn.style.borderColor = 'var(--brand)';
-        }
-      });
-      btn.addEventListener('mouseleave', () => {
-        if (btn.dataset.filter !== activeFilter){
-          btn.style.background = 'white';
-          btn.style.color = 'var(--brand)';
-          btn.style.borderColor = 'rgba(22,27,145,.25)';
-        }
-      });
+    const grid = document.getElementById('portfolioGrid');
+    portfolioItems.forEach(item => {
+      const div = document.createElement('div');
+      div.className = `m-item reveal`;
+      div.innerHTML = `<img src="${item.url}" class="rounded-2xl w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" loading="lazy" />`;
+      grid.appendChild(div);
+      observer.observe(div);
     });
 
-    setActiveButton('all');
-    renderPortfolio();
-
-    // ---------- Lightbox ----------
-    const lightbox = $('#lightbox');
-    const lbImg = $('#lbImg');
-    const lbTitle = $('#lbTitle');
-    const lbMeta = $('#lbMeta');
-    const lbClose = $('#lbClose');
-    const lbPrev = $('#lbPrev');
-    const lbNext = $('#lbNext');
-
-    let lbIndex = 0;
-
-    function showLB(index){
-      lbIndex = (index + visibleItems.length) % visibleItems.length;
-      const item = visibleItems[lbIndex];
-      lbImg.src = item.src;
-      lbImg.alt = item.title;
-      lbTitle.textContent = item.title;
-      lbMeta.textContent = item.meta;
-    }
-
-    function openLightbox(index){
-      if (!visibleItems.length) return;
-      lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      showLB(index);
-      lbClose.focus();
-    }
-
-    function closeLightbox(){
-      lightbox.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    lbClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox.firstElementChild) closeLightbox();
-    });
-    lbPrev.addEventListener('click', () => showLB(lbIndex - 1));
-    lbNext.addEventListener('click', () => showLB(lbIndex + 1));
-
-    window.addEventListener('keydown', (e) => {
-      if (lightbox.classList.contains('hidden')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showLB(lbIndex - 1);
-      if (e.key === 'ArrowRight') showLB(lbIndex + 1);
-    });
-
-    // ---------- Booking form (demo, mailto-style output) ----------
-    const form = $('#bookingForm');
-    const toast = $('#formToast');
-
-    form.addEventListener('submit', (e) => {
+    // 4. معالجة نموذج الحجز
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const data = new FormData(form);
-      const payload = Object.fromEntries(data.entries());
-
-      const summary = `Request received.\n\nName: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone || '-'}\nSession: ${payload.type}\nMessage: ${payload.message || '-'}\n\nNext step: we will reply with availability and a tailored quote.`;
-      toast.textContent = summary;
-      toast.classList.remove('hidden');
-
-      const subject = encodeURIComponent(`Booking request — ${payload.type} — ${payload.name}`);
-      const body = encodeURIComponent(summary.replace('Request received.\n\n', ''));
-      const mailto = `mailto:hello@sorastudio.com?subject=${subject}&body=${body}`;
-      window.setTimeout(() => {
-        window.location.href = mailto;
-      }, 500);
-
-      form.reset();
+      alert('Thank you! We have received your request.');
     });
-
-    // ---------- Language toggle (EN/AR UI micro-copy) ----------
-    let isArabic = false;
-
-    const i18n = {
-      en: {
-        heroKicker: 'Photography & Visual Production',
-        heroTagline: 'Visual Stories That Last — crafted with restraint, light, and intention.',
-        view: 'View Portfolio',
-        book: 'Book a Session',
-        aboutKicker: 'About',
-        aboutTitle: 'A studio built on feeling, detail, and discipline.',
-        aboutBody: 'We create refined imagery for people and brands—quietly cinematic, emotionally honest, and designed to endure. From pre-production to final grade, every frame is treated as a story.',
-        portfolioKicker: 'Portfolio',
-        portfolioTitle: 'Selected work. Clean compositions. Cinematic tone.',
-        portfolioBody: 'Filter by category, open any frame in a distraction-free lightbox.',
-        servicesKicker: 'Services',
-        servicesTitle: 'Production that feels effortless.',
-        servicesBody: 'A focused set of offerings—optimized for quality, not noise.',
-        contactKicker: 'Contact',
-        contactTitle: 'Book a session. Build a visual world.',
-        contactBody: 'Tell us what you’re making—timeline, mood, and references. We’ll respond with a clean plan.'
-      },
-      ar: {
-        heroKicker: 'تصوير وإنتاج بصري',
-        heroTagline: 'قصص بصرية تدوم — بإضاءة مدروسة ولمسة سينمائية راقية.',
-        view: 'عرض الأعمال',
-        book: 'احجز جلسة',
-        aboutKicker: 'نبذة',
-        aboutTitle: 'استوديو مبني على الإحساس والدقة والانضباط.',
-        aboutBody: 'نصنع صورًا راقية للأشخاص والعلامات التجارية—سينمائية وهادئة وصادقة. من التحضير إلى التلوين النهائي، نتعامل مع كل إطار كقصة.',
-        portfolioKicker: 'الأعمال',
-        portfolioTitle: 'مختارات من أعمالنا. تكوين نظيف. طابع سينمائي.',
-        portfolioBody: 'صفِّ حسب الفئة وافتح أي صورة في عارض خالٍ من التشتيت.',
-        servicesKicker: 'الخدمات',
-        servicesTitle: 'إنتاج بصري يبدو سلسًا.',
-        servicesBody: 'مجموعة خدمات مركزة—الجودة أولًا بدون ضجيج.',
-        contactKicker: 'تواصل',
-        contactTitle: 'احجز جلسة. ابنِ عالمًا بصريًا.',
-        contactBody: 'أخبرنا عمّا تعمل عليه—الوقت، المزاج، والمراجع—وسنرد بخطة واضحة.'
-      }
-    };
-
-    function setLanguage(ar){
-      isArabic = ar;
-      const t = ar ? i18n.ar : i18n.en;
-
-      document.documentElement.lang = ar ? 'ar' : 'en';
-      document.documentElement.dir = ar ? 'rtl' : 'ltr';
-
-      const heroKicker = $('[data-reveal].text-xs.uppercase');
-      if (heroKicker) heroKicker.textContent = t.heroKicker;
-
-      const heroTag = $('main#home section p.reveal.mt-5');
-      if (heroTag) heroTag.textContent = t.heroTagline;
-
-      const ctas = $$('main#home section .reveal.mt-9 a');
-      if (ctas[0]) ctas[0].querySelector('span').textContent = t.view;
-      if (ctas[1]) ctas[1].textContent = t.book;
-
-      const aboutK = $('#about p[data-reveal]');
-      const aboutH = $('#about h2[data-reveal]');
-      const aboutP = $('#about p[data-reveal]:not(.text-xs)');
-      if (aboutK) aboutK.textContent = t.aboutKicker;
-      if (aboutH) aboutH.textContent = t.aboutTitle;
-      if (aboutP) aboutP.textContent = t.aboutBody;
-
-      const portK = $('#portfolio p[data-reveal]');
-      const portH = $('#portfolio h2[data-reveal]');
-      const portP = $('#portfolio p[data-reveal]:not(.text-xs)');
-      if (portK) portK.textContent = t.portfolioKicker;
-      if (portH) portH.textContent = t.portfolioTitle;
-      if (portP) portP.textContent = t.portfolioBody;
-
-      const servK = $('#services p[data-reveal]');
-      const servH = $('#services h2[data-reveal]');
-      const servP = $('#services p[data-reveal]:not(.text-xs)');
-      if (servK) servK.textContent = t.servicesKicker;
-      if (servH) servH.textContent = t.servicesTitle;
-      if (servP) servP.textContent = t.servicesBody;
-
-      const conK = $('#contact p[data-reveal]');
-      const conH = $('#contact h2[data-reveal]');
-      const conP = $('#contact p[data-reveal]:not(.text-xs)');
-      if (conK) conK.textContent = t.contactKicker;
-      if (conH) conH.textContent = t.contactTitle;
-      if (conP) conP.textContent = t.contactBody;
-
-      document.body.classList.toggle('font-ar', ar);
-
-      $('#langToggle').textContent = ar ? 'EN / AR' : 'AR / EN';
-      $('#langToggleMobile').textContent = ar ? 'EN / AR' : 'AR / EN';
-    }
-
-    function toggleLang(){ setLanguage(!isArabic); }
-    $('#langToggle')?.addEventListener('click', toggleLang);
-    $('#langToggleMobile')?.addEventListener('click', toggleLang);
-
-    const rtlObserver = new MutationObserver(() => {
-      const rtl = document.documentElement.dir === 'rtl';
-      document.body.classList.toggle('font-ar', rtl);
-    });
-    rtlObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['dir'] });
   </script>
 </body>
 </html>
