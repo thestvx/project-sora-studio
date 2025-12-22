@@ -6,31 +6,23 @@
     <title>SORA STUDIO — Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --brand: #161B91; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #fafafa; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; }
         .hero-gradient { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .work-card { position: relative; overflow: hidden; border-radius: 3rem; transition: 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-        .work-card img { transition: 1.2s; width: 100%; height: 100%; object-fit: cover; }
+        .work-card { position: relative; overflow: hidden; border-radius: 3rem; transition: 0.9s cubic-bezier(0.19, 1, 0.22, 1); }
+        .work-card img { transition: 1.5s; width: 100%; height: 100%; object-fit: cover; }
         .work-card:hover img { transform: scale(1.1); }
-        .work-overlay { background: linear-gradient(0deg, rgba(22,27,145,0.9) 0%, transparent 100%); opacity: 0; transition: 0.5s; }
+        .work-overlay { background: linear-gradient(0deg, rgba(22,27,145,0.95) 0%, transparent 100%); opacity: 0; transition: 0.6s; }
         .work-card:hover .work-overlay { opacity: 1; }
-        .footer-link { transition: 0.3s; opacity: 0.6; }
-        .footer-link:hover { opacity: 1; color: var(--brand); }
     </style>
 </head>
 <body>
-    <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/90 backdrop-blur-xl border border-gray-100 px-8 py-4 rounded-[2.5rem] shadow-lg">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain">
-                <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
-            </a>
-            <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-400">
+    <nav class="fixed w-full z-[100] px-6 py-6" dir="ltr">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
+            <a href="index.html" class="flex items-center gap-3"><img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto"><span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span></a>
+            <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-500">
                 <a href="index.html" class="hover:text-[#161B91]">Home</a>
                 <a href="about.html" class="hover:text-[#161B91]">About</a>
                 <a href="portfolio.html" class="text-[#161B91]">Portfolio</a>
@@ -41,49 +33,39 @@
     </nav>
 
     <header class="pt-80 pb-20 px-8 max-w-7xl mx-auto text-right">
-        <span class="text-[10px] font-black text-gray-300 uppercase tracking-[0.5em] mb-4 block" data-aos="fade-down">The Gallery</span>
-        <h1 class="text-7xl md:text-[100px] font-black hero-gradient tracking-tighter leading-[1.1] mb-12 uppercase">الأرشيف الفني.</h1>
-        <div class="flex flex-wrap gap-4 justify-start flex-row-reverse" data-aos="fade-up">
-            <button class="bg-[#161B91] text-white px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">All Work</button>
-            <button class="bg-white text-gray-400 px-10 py-4 rounded-full text-[10px] font-black uppercase border border-gray-100 hover:border-[#161B91] transition">Commercial</button>
+        <h1 class="text-7xl md:text-[110px] font-black hero-gradient tracking-tighter leading-[0.9] mb-12 uppercase" data-aos="fade-up">الأرشيف <br> الفني.</h1>
+        <div class="flex gap-4 justify-start flex-row-reverse" data-aos="fade-up" data-aos-delay="200">
+            <button class="bg-[#161B91] text-white px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">All Works</button>
+            <button class="border border-gray-100 px-10 py-4 rounded-full text-[10px] font-black text-gray-400 uppercase tracking-widest hover:border-[#161B91] transition">Fashion</button>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-        <div class="work-card aspect-[4/5] shadow-2xl" data-aos="fade-up">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800">
-            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right text-white">
-                <h3 class="text-2xl font-black">Golden Hour</h3>
-            </div>
+    <main class="max-w-7xl mx-auto px-8 pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="work-card aspect-[4/5]" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800">
+            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right"><h3 class="text-white text-3xl font-black">Shadow Art</h3></div>
         </div>
-        <div class="work-card aspect-[3/4] shadow-2xl lg:translate-y-20" data-aos="fade-up" data-aos-delay="100">
+        <div class="work-card aspect-[3/4] lg:translate-y-24" data-aos="fade-up" data-aos-delay="150">
             <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800">
-            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right text-white">
-                <h3 class="text-2xl font-black">Desert Echoes</h3>
-            </div>
+            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right"><h3 class="text-white text-3xl font-black">Vogue Mood</h3></div>
         </div>
-        <div class="work-card aspect-[4/5] shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+        <div class="work-card aspect-[4/5]" data-aos="fade-up" data-aos-delay="300">
             <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800">
-            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right text-white">
-                <h3 class="text-2xl font-black">Shadow Play</h3>
-            </div>
+            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right"><h3 class="text-white text-3xl font-black">Deep Motion</h3></div>
         </div>
     </main>
 
-    <footer class="bg-white border-t border-gray-100 pt-20 pb-10 px-8">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <div class="text-right flex flex-col items-center md:items-end">
-                <img src="images/logo-sora.png" alt="SORA" class="h-10 mb-6">
-                <div class="flex gap-6 text-2xl">
-                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="footer-link"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="footer-link"><i class="fa-brands fa-facebook"></i></a>
-                </div>
+    <footer class="bg-white border-t border-gray-100 py-16 px-8 text-center md:text-right">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <img src="images/logo-sora.png" class="h-10">
+            <div class="flex gap-8 text-2xl">
+                <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="text-gray-300 hover:text-[#161B91] transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="text-gray-300 hover:text-[#161B91] transition"><i class="fa-brands fa-facebook"></i></a>
             </div>
-            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300">© 2025 SORA STUDIO. VISUAL EXCELLENCE.</p>
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-300">© 2025 SORA STUDIO. VISUAL ARCHIVE.</p>
         </div>
     </footer>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
+    <script>AOS.init({ once: true });</script>
 </body>
 </html>
