@@ -9,36 +9,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@900&display=swap" rel="stylesheet">
-    
     <style>
-        :root { --brand: #161B91; --soft-bg: #f8f9ff; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; }
-        .hero-gradient-text {
-            background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .custom-button {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3);
-        }
+        :root { --brand: #161B91; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
+        .hero-gradient-text { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .custom-button { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
         .custom-button:hover { transform: translateY(-5px); scale: 1.02; }
-        .float-anim { animation: floating 3s ease-in-out infinite; }
-        @keyframes floating {
-            0% { transform: translateY(0px) rotate(2deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(2deg); }
-        }
+        .float-anim { animation: floating 4s ease-in-out infinite; }
+        @keyframes floating { 0%, 100% { transform: translateY(0px) rotate(2deg); } 50% { transform: translateY(-20px) rotate(1deg); } }
     </style>
 </head>
-<body class="overflow-x-hidden">
-
+<body>
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2rem] shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
             <a href="index.html" class="flex items-center gap-3 group">
-                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain transition-transform duration-700 group-hover:rotate-[360deg]">
+                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain transition-transform duration-1000 group-hover:rotate-[360deg]">
                 <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
             </a>
-            <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-500">
+            <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-[0.2em] text-gray-500">
                 <a href="index.html" class="text-[#161B91]">Home</a>
                 <a href="about.html" class="hover:text-[#161B91] transition">About</a>
                 <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
@@ -50,26 +38,21 @@
 
     <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-8 w-full grid lg:grid-cols-2 gap-16 items-center">
-            <div data-aos="fade-right" data-aos-duration="1200">
-                <div class="flex items-center gap-3 mb-6">
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-right">
+                <div class="flex items-center gap-3 mb-6 justify-start flex-row-reverse">
                     <span class="w-10 h-[2px] bg-[#161B91]"></span>
                     <span class="text-xs font-black uppercase tracking-[0.4em] text-[#161B91]">Visual Arts Studio</span>
                 </div>
-                <h1 class="text-7xl md:text-[110px] leading-[0.85] font-black mb-8 hero-gradient-text tracking-tighter">
-                    CRAFTING <br> EMOTION.
-                </h1>
-                <p class="text-lg text-gray-500 max-w-md leading-relaxed mb-10 text-right">
-                    نحن نحول اللحظات العابرة إلى أعمال فنية خالدة. تصوير فوتوغرافي وسينمائي بمعايير عالمية في قلب الجزائر.
-                </p>
-                <div class="flex items-center gap-6">
+                <h1 class="text-7xl md:text-[110px] leading-[0.85] font-black mb-8 hero-gradient-text tracking-tighter">CRAFTING <br> EMOTION.</h1>
+                <p class="text-lg text-gray-500 max-w-md leading-relaxed mb-10 mr-0">نحن نحول اللحظات العابرة إلى أعمال فنية خالدة. تصوير فوتوغرافي وسينمائي بمعايير عالمية في قلب الجزائر.</p>
+                <div class="flex items-center gap-6 justify-start flex-row-reverse">
                     <a href="portfolio.html" class="bg-[#161B91] text-white px-10 py-5 rounded-2xl font-bold custom-button">Explore Gallery</a>
                     <a href="about.html" class="group flex items-center gap-2 font-bold text-gray-800 hover:text-[#161B91] transition">
+                        <svg class="w-5 h-5 group-hover:-translate-x-2 transition rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round"/></svg>
                         Our Story
-                        <svg class="w-5 h-5 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round"/></svg>
                     </a>
                 </div>
             </div>
-
             <div class="relative" data-aos="zoom-in-left" data-aos-duration="1500">
                 <div class="absolute -inset-10 bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
                 <div class="relative rounded-[4rem] overflow-hidden shadow-2xl float-anim border-[12px] border-white">
