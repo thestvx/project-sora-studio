@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SORA STUDIO — About</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; background: #ffffff; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .stat-circle { border: 2px dashed #161B91; animation: rotate 20s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="overflow-x-hidden text-right">
+
+    <nav class="fixed w-full z-[100] px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-gray-100 px-8 py-4 rounded-[2.5rem] shadow-sm">
+            <a href="index.html" class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</a>
+            <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-400">
+                <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
+                <a href="about.html" class="text-[#161B91]">About</a>
+                <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
+            </div>
+            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest">Connect</a>
+        </div>
+    </nav>
+
+    <section class="pt-48 pb-20 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div data-aos="fade-left">
+                    <span class="text-[#161B91] font-bold tracking-widest uppercase text-xs mb-4 block">قصتنا — Our Story</span>
+                    <h1 class="text-6xl md:text-8xl font-black text-[#161B91] leading-tight mb-8">نحن نكتب بالضوء.</h1>
+                    <p class="text-xl text-gray-500 leading-relaxed mb-8">
+                        بدأ SORA STUDIO في قلب الوادي، الجزائر، برؤية واحدة: كسر القواعد التقليدية للتصوير. نحن لا نلتقط الصور فحسب، بل نصنع تجارب بصرية تلمس المشاعر وتبقى محفورة في الذاكرة.
+                    </p>
+                    <div class="flex gap-12 border-t border-gray-100 pt-10">
+                        <div>
+                            <p class="text-4xl font-black text-[#161B91]">05+</p>
+                            <p class="text-gray-400 text-sm mt-2">سنوات من الخبرة</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-black text-[#161B91]">150+</p>
+                            <p class="text-gray-400 text-sm mt-2">عميل سعيد</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative" data-aos="fade-right">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 stat-circle rounded-full -z-10 opacity-20"></div>
+                    <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1000" class="rounded-[4rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#161B91] text-white rounded-[5rem] mx-4 mb-10 px-8 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 relative z-10">
+            <div data-aos="zoom-in" data-aos-delay="100">
+                <h3 class="text-blue-300 font-bold mb-4 tracking-tighter">01. الدقة</h3>
+                <p class="text-gray-300 text-lg">كل تفصيلة صغيرة، من الإضاءة إلى زاوية الظل، مدروسة بعناية فائقة.</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="200">
+                <h3 class="text-blue-300 font-bold mb-4 tracking-tighter">02. الابتكار</h3>
+                <p class="text-gray-300 text-lg">نستخدم أحدث تقنيات المعالجة البصرية لنقدم نتائج تتجاوز التوقعات.</p>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="300">
+                <h3 class="text-blue-300 font-bold mb-4 tracking-tighter">03. الشغف</h3>
+                <p class="text-gray-300 text-lg">نحن نحب ما نفعل، وهذا الحب يظهر في كل كادر نلتقطه.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>
