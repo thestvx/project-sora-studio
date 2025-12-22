@@ -11,9 +11,16 @@
     
     <style>
         :root { --brand-blue: #161B91; --soft-blue: #f4f7ff; }
-        body { font-family: 'Noto Sans Arabic', sans-serif; background: #ffffff; color: #1a1a1a; }
+        body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; overflow-x: hidden; }
         
-        /* تحسين العناوين المتجاوبة */
+        /* Navbar الموحد (نفس كود الصفحة الرئيسية) */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
         .hero-title {
             font-size: clamp(3.5rem, 10vw, 8rem);
             line-height: 0.9;
@@ -22,7 +29,6 @@
             color: var(--brand-blue);
         }
 
-        /* تنسيق بطاقات الفريق الموحد */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -32,7 +38,7 @@
         .team-card {
             background: #fff;
             border-radius: 2.5rem;
-            padding: 2rem;
+            padding: 2.5rem;
             transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
             border: 1px solid #f0f0f0;
             text-align: center;
@@ -57,7 +63,6 @@
             font-size: 3rem;
         }
 
-        /* أيقونات التواصل الاجتماعي */
         .social-box {
             width: 65px; height: 65px;
             display: flex; align-items: center; justify-content: center;
@@ -74,98 +79,100 @@
         }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
-    <nav class="fixed w-full z-[100] px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-md border border-gray-100 px-8 py-3 rounded-full">
-            <a href="index.html" class="text-xl font-black text-[#161B91] uppercase italic">SORA</a>
-            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <a href="index.html" class="hover:text-[#161B91]">الرئيسية</a>
-                <a href="about.html" class="text-[#161B91]">عن الاستوديو</a>
-                <a href="portfolio.html" class="hover:text-[#161B91]">الأعمال</a>
-                <a href="services.html" class="hover:text-[#161B91]">الخدمات</a>
+    <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav">
+        <div class="max-w-7xl mx-auto flex justify-between items-center nav-glass px-8 py-4 rounded-[2rem]">
+            <a href="index.html" class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</a>
+            
+            <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-500">
+                <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
+                <a href="about.html" class="text-[#161B91]">About</a>
+                <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
             </div>
-            <a href="contact.html" class="bg-[#161B91] text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase">تواصل معنا</a>
+            
+            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/10">Book Now</a>
         </div>
     </nav>
 
-    <header class="pt-48 pb-20 px-6">
+    <header class="pt-56 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-16 items-end">
-                <div data-aos="fade-up">
+                <div data-aos="fade-left">
                     <p class="text-xs font-black tracking-[0.3em] text-[#161B91] mb-6 uppercase">SORA STUDIO — EST 2024</p>
-                    <h1 class="hero-title mb-8">نكتب القصص<br>بالضوء.</h1>
+                    <h1 class="hero-title mb-8 italic">نكتب القصص<br>بالضوء.</h1>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="100">
                     <p class="text-xl text-gray-500 leading-relaxed max-w-lg mb-8">
                         نحن لسنا مجرد استوديو تصوير، نحن مساحة للإبداع في الوادي. نجمع بين الخبرة والشغف لنخلد ذكرياتكم بأعلى جودة بصرية.
                     </p>
                     <div class="flex gap-10">
-                        <div><span class="block text-3xl font-black text-[#161B91]">05+</span><span class="text-xs text-gray-400 font-bold uppercase">سنوات خبرة</span></div>
-                        <div><span class="block text-3xl font-black text-[#161B91]">200+</span><span class="text-xs text-gray-400 font-bold uppercase">مشروع ناجح</span></div>
+                        <div><span class="block text-4xl font-black text-[#161B91]">05+</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">سنوات خبرة</span></div>
+                        <div><span class="block text-4xl font-black text-[#161B91]">200+</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">مشروع ناجح</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="py-20 px-6 bg-[#161B91] text-white rounded-[4rem] mx-4 mb-32">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
-            <div class="space-y-4">
+    <section class="py-24 px-6 bg-[#161B91] text-white rounded-[4rem] mx-4 mb-32">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="space-y-4" data-aos="fade-up">
                 <div class="w-12 h-1 bg-blue-400"></div>
-                <h3 class="text-2xl font-bold italic uppercase">01. الدقة</h3>
-                <p class="text-blue-100/60 leading-relaxed">نهتم بأدق تفاصيل الإضاءة والزوايا لضمان نتيجة مثالية.</p>
+                <h3 class="text-2xl font-bold italic uppercase tracking-tighter">01. Precision</h3>
+                <p class="text-blue-100/60 leading-relaxed text-lg italic">نهتم بأدق تفاصيل الإضاءة والزوايا لضمان نتيجة مثالية.</p>
             </div>
-            <div class="space-y-4">
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="w-12 h-1 bg-blue-400"></div>
-                <h3 class="text-2xl font-bold italic uppercase">02. الابتكار</h3>
-                <p class="text-blue-100/60 leading-relaxed">نستخدم أحدث التقنيات لنقدم رؤية بصرية متطورة وغير تقليدية.</p>
+                <h3 class="text-2xl font-bold italic uppercase tracking-tighter">02. Innovation</h3>
+                <p class="text-blue-100/60 leading-relaxed text-lg italic">نستخدم أحدث التقنيات لنقدم رؤية بصرية متطورة وغير تقليدية.</p>
             </div>
-            <div class="space-y-4">
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="w-12 h-1 bg-blue-400"></div>
-                <h3 class="text-2xl font-bold italic uppercase">03. الشغف</h3>
-                <p class="text-blue-100/60 leading-relaxed">حبنا للتصوير هو المحرك الأساسي لكل عمل نقوم به.</p>
+                <h3 class="text-2xl font-bold italic uppercase tracking-tighter">03. Passion</h3>
+                <p class="text-blue-100/60 leading-relaxed text-lg italic">حبنا للتصوير هو المحرك الأساسي لكل عمل نقوم به.</p>
             </div>
         </div>
     </section>
 
     <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-20" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-black text-[#161B91] mb-4">فريق العمل</h2>
-            <p class="text-gray-400 text-sm font-bold uppercase tracking-widest italic">المبدعون خلف العدسة</p>
+        <div class="text-center mb-24" data-aos="fade-up">
+            <h2 class="text-5xl font-black text-[#161B91] mb-4">عائلة سورا</h2>
+            <p class="text-gray-400 text-sm font-bold uppercase tracking-[0.3em] italic">The Creative Core</p>
         </div>
 
         <div class="team-grid">
             <div class="team-card" data-aos="fade-up">
                 <div class="image-placeholder"><i class="fa-solid fa-camera"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] uppercase">HEDDAD BOUBAKER</h3>
-                <p class="text-xs text-gray-400 font-bold mt-2 uppercase">Founder / Photographer</p>
+                <p class="text-xs text-gray-400 font-bold mt-2 uppercase tracking-widest italic">Founder / Photographer</p>
             </div>
             <div class="team-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="image-placeholder"><i class="fa-solid fa-video"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] uppercase">CHAMI ABDENNOUR</h3>
-                <p class="text-xs text-gray-400 font-bold mt-2 uppercase">Cinematographer</p>
+                <p class="text-xs text-gray-400 font-bold mt-2 uppercase tracking-widest italic">Cinematographer</p>
             </div>
             <div class="team-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="image-placeholder"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] uppercase">CHAMI TAHAR</h3>
-                <p class="text-xs text-gray-400 font-bold mt-2 uppercase">Visual Editor</p>
+                <p class="text-xs text-gray-400 font-bold mt-2 uppercase tracking-widest italic">Visual Editor</p>
             </div>
             <div class="team-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="image-placeholder"><i class="fa-solid fa-clapperboard"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] uppercase">BENNI MEHDI</h3>
-                <p class="text-xs text-gray-400 font-bold mt-2 uppercase">Creative Director</p>
+                <p class="text-xs text-gray-400 font-bold mt-2 uppercase tracking-widest italic">Creative Director</p>
             </div>
             <div class="team-card" data-aos="fade-up" data-aos-delay="400">
                 <div class="image-placeholder"><i class="fa-solid fa-lightbulb"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] uppercase">KIR FAROUK</h3>
-                <p class="text-xs text-gray-400 font-bold mt-2 uppercase">Project Manager</p>
+                <p class="text-xs text-gray-400 font-bold mt-2 uppercase tracking-widest italic">Project Manager</p>
             </div>
         </div>
     </section>
 
-    <section class="py-32 px-6 text-center bg-[#fafafa] rounded-[4rem] mx-4 mb-10">
-        <h2 class="text-3xl md:text-5xl font-black text-[#161B91] mb-12" data-aos="fade-up">كن جزءاً من مجتمعنا</h2>
+    <section class="py-32 px-6 text-center bg-[#f4f7ff] rounded-[4rem] mx-4 mb-10">
+        <h2 class="text-4xl md:text-6xl font-black text-[#161B91] mb-12" data-aos="fade-up">كن جزءاً من مجتمعنا</h2>
         <div class="flex flex-wrap justify-center gap-6" data-aos="zoom-in">
             <a href="#" class="social-box"><i class="fa-brands fa-instagram text-2xl"></i></a>
             <a href="#" class="social-box"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
@@ -174,11 +181,23 @@
         </div>
     </section>
 
-    <footer class="py-10 text-center text-gray-300 text-[10px] font-bold uppercase tracking-widest">
+    <footer class="py-12 text-center text-gray-300 text-[10px] font-bold uppercase tracking-[0.5em]">
         &copy; 2024 SORA STUDIO — EL OUED
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 800, once: true });</script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        
+        // Navbar scroll behavior (نفس تأثير صفحة index)
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if(window.scrollY > 50) {
+                nav.style.transform = 'translateY(-10px)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
 </body>
 </html>
