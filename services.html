@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SORA STUDIO — Services</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans Arabic', sans-serif; background: #fcfcfc; }
+        .service-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .service-card:hover { transform: translateY(-15px); background: #161B91; color: white; }
+        .icon-box { transition: all 0.5s ease; }
+        .service-card:hover .icon-box { background: white; color: #161B91; transform: rotate(360deg); }
+        .service-card:hover p { color: rgba(255,255,255,0.7); }
+    </style>
+</head>
+<body class="text-right">
+
+    <nav class="fixed w-full z-[100] px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white border border-gray-50 px-8 py-4 rounded-[2.5rem] shadow-sm">
+            <a href="index.html" class="text-2xl font-black text-[#161B91] uppercase tracking-tighter">SORA STUDIO</a>
+            <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-400">
+                <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
+                <a href="about.html" class="hover:text-[#161B91] transition">About</a>
+                <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                <a href="services.html" class="text-[#161B91]">Services</a>
+            </div>
+            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase">Start Project</a>
+        </div>
+    </nav>
+
+    <header class="pt-48 pb-20 px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-6xl md:text-[100px] font-black text-[#161B91] tracking-tighter leading-none mb-6" data-aos="fade-up">خدماتنا.<br>EXPERTISE.</h1>
+            <p class="text-gray-400 max-w-xl mx-auto text-lg" data-aos="fade-up" data-aos-delay="200">حلول بصرية متكاملة تبدأ من الفكرة وتصل إلى الإبداع النهائي.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-8 pb-32">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="service-card bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm" data-aos="fade-up">
+                <div class="icon-box w-16 h-16 bg-blue-50 text-[#161B91] rounded-2xl flex items-center justify-center mb-8">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tighter">التصوير الفوتوغرافي</h3>
+                <p class="text-gray-500 leading-relaxed">تصوير المنتجات، البورتريه، والأزياء بلمسة فنية تحاكي العالمية.</p>
+            </div>
+
+            <div class="service-card bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box w-16 h-16 bg-blue-50 text-[#161B91] rounded-2xl flex items-center justify-center mb-8">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 00-2 2z"></path></svg>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tighter">الإنتاج السينمائي</h3>
+                <p class="text-gray-500 leading-relaxed">إخراج وتصوير فيديوهات إعلانية وقصيرة تروي قصة علامتك التجارية.</p>
+            </div>
+
+            <div class="service-card bg-white p-12 rounded-[3.5rem] border border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box w-16 h-16 bg-blue-50 text-[#161B91] rounded-2xl flex items-center justify-center mb-8">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 tracking-tighter">المونتاج وتصحيح الألوان</h3>
+                <p class="text-gray-500 leading-relaxed">تحويل الخام البصري إلى تحفة فنية من خلال معالجة الألوان الاحترافية.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+</body>
+</html>
