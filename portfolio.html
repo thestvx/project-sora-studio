@@ -9,31 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
-    
     <style>
         :root { --brand: #161B91; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #fafafa; }
         .hero-gradient { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Portfolio Motion */
-        .work-card { 
-            position: relative; overflow: hidden; border-radius: 2.5rem; 
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .work-card img { transition: transform 1.2s ease; width: 100%; height: 100%; object-fit: cover; }
+        .work-card { position: relative; overflow: hidden; border-radius: 2.5rem; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; }
+        .work-card img { transition: transform 1.2s ease; }
         .work-card:hover img { transform: scale(1.1); }
-        .work-overlay { 
-            background: linear-gradient(0deg, rgba(22,27,145,0.9) 0%, transparent 100%);
-            opacity: 0; transition: 0.5s;
-        }
+        .work-overlay { background: linear-gradient(0deg, rgba(22,27,145,0.9) 0%, transparent 100%); opacity: 0; transition: 0.5s; }
         .work-card:hover .work-overlay { opacity: 1; }
-
         .filter-btn { transition: 0.4s; color: #aaa; border: 1px solid #eee; }
-        .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 15px 30px -10px rgba(22,27,145,0.4); }
+        .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 10px 20px -5px rgba(22,27,145,0.3); }
     </style>
 </head>
 <body class="overflow-x-hidden">
-
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
         <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
             <a href="index.html" class="flex items-center gap-3 group">
@@ -50,60 +39,40 @@
         </div>
     </nav>
 
-    <header class="pt-56 pb-16 px-8 max-w-7xl mx-auto text-right">
+    <header class="pt-56 pb-12 px-8 max-w-7xl mx-auto text-right">
         <h1 class="text-7xl md:text-[110px] font-black hero-gradient tracking-tighter leading-[0.9] mb-12" data-aos="fade-up">الأرشيف <br> الفني.</h1>
         <div class="flex flex-wrap gap-4 justify-start flex-row-reverse" data-aos="fade-up" data-aos-delay="200">
             <button class="filter-btn active px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">All Work</button>
             <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Portraits</button>
             <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Commercial</button>
+            <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Cinematic</button>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-40">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="work-card aspect-[4/5] shadow-2xl" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800">
-                <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
-                    <span class="text-white/60 text-[10px] font-black uppercase tracking-widest">Studio Portrait</span>
-                    <h3 class="text-white text-3xl font-black">Shadow Art</h3>
-                </div>
+    <main class="max-w-7xl mx-auto px-8 pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="work-card aspect-[4/5] shadow-xl" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
+            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
+                <h3 class="text-white text-3xl font-black">Shadow Art</h3>
             </div>
-
-            <div class="work-card aspect-[3/4] shadow-2xl lg:translate-y-20" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800">
-                <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
-                    <span class="text-white/60 text-[10px] font-black uppercase tracking-widest">Fashion</span>
-                    <h3 class="text-white text-3xl font-black">Vogue Mood</h3>
-                </div>
+        </div>
+        <div class="work-card aspect-[3/4] shadow-xl lg:translate-y-20" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
+            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
+                <h3 class="text-white text-3xl font-black">Vogue Mood</h3>
             </div>
-
-            <div class="work-card aspect-[4/5] shadow-2xl" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800">
-                <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
-                    <span class="text-white/60 text-[10px] font-black uppercase tracking-widest">Cinematic</span>
-                    <h3 class="text-white text-3xl font-black">Deep Motion</h3>
-                </div>
+        </div>
+        <div class="work-card aspect-[4/5] shadow-xl" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
+            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
+                <h3 class="text-white text-3xl font-black">Deep Motion</h3>
             </div>
-
-            <div class="work-card aspect-[16/9] md:col-span-2 shadow-2xl" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200">
-                <div class="work-overlay absolute inset-0 flex flex-col justify-end p-12 text-right">
-                    <span class="text-white/60 text-[10px] font-black uppercase tracking-widest">Landscape</span>
-                    <h3 class="text-white text-4xl font-black">Sahara Echoes</h3>
-                </div>
-            </div>
-
         </div>
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('nav');
-            nav.style.transform = window.scrollY > 50 ? 'translateY(-10px)' : 'translateY(0)';
-        });
     </script>
 </body>
 </html>
