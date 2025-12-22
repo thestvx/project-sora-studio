@@ -1,220 +1,120 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SORA STUDIO — Visual Stories That Last</title>
-  <meta name="description" content="SORA STUDIO — Photography & visual production studio. Premium portraits, events, fashion, product, and cinematic visuals. Book a session." />
-  <meta name="theme-color" content="#FFFFFF" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <style>
-    :root{
-      --bg:#FFFFFF;
-      --fg:#1F2937; 
-      --muted:#6B7280;
-      --muted2:#9CA3AF;
-      --line:rgba(22,27,145,.14);
-      --brand:#161B91; 
-    }
-
-    html{scroll-behavior:smooth;}
-    body{
-      background:var(--bg);
-      color:var(--fg);
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.65;
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    .font-ar{font-family:"Noto Sans Arabic", Inter, system-ui, sans-serif;}
-
-    .grain::before{display:none !important; content:none !important;}
-    .spotlight{background:#FFFFFF !important;}
-
-    .nav-logo{height:36px; width:auto; max-width:160px; object-fit:contain; image-rendering:auto;}
-    @media (min-width: 640px){
-      .nav-logo{height:38px; max-width:180px;}
-    }
-
-    .reveal{
-      opacity:0;
-      transform:translateY(20px);
-      transition: opacity 1.05s ease-out, transform 1.05s ease-out;
-    }
-    .reveal.is-in{opacity:1; transform:none;}
-
-    ::-webkit-scrollbar{width:10px;}
-    ::-webkit-scrollbar-track{background:transparent;}
-    ::-webkit-scrollbar-thumb{background:rgba(22,27,145,.18); border-radius:999px; border:2px solid transparent; background-clip:content-box;}
-    ::-webkit-scrollbar-thumb:hover{background:rgba(22,27,145,.26); background-clip:content-box;}
-
-    .masonry{column-count:1; column-gap:16px;}
-    @media (min-width: 640px){.masonry{column-count:2; column-gap:18px;}}
-    @media (min-width: 1024px){.masonry{column-count:3; column-gap:20px;}}
-    .m-item{break-inside:avoid; margin:0 0 16px 0; transition: all 0.4s ease-in-out;}
-
-    .focus-ring:focus{outline:none; box-shadow:0 0 0 3px rgba(22,27,145,.22);}
-    .soft-shadow{box-shadow:0 8px 24px rgba(17,24,39,.06) !important;}
-
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto;}
-      .reveal{opacity:1 !important; transform:none !important;}
-      *{transition:none !important; animation:none !important;}
-    }
-  </style>
-</head>
-
-<body class="grain">
-  <a class="sr-only focus:not-sr-only focus-ring fixed left-4 top-4 z-[100] rounded-full border border-[rgba(22,27,145,.25)] bg-white px-4 py-2 text-sm" style="color:var(--brand)" href="#home">Skip to content</a>
-
-  <header class="fixed inset-x-0 top-0 z-[60]">
-    <div class="mx-auto max-w-7xl px-5 sm:px-8">
-      <nav class="mt-4 soft-shadow flex items-center justify-between rounded-2xl border" style="border-color:var(--line); background:rgba(255,255,255,.92); backdrop-filter: blur(10px);">
-        <div class="flex items-center gap-3 px-4 py-3">
-          <button id="menuBtn" class="focus-ring group inline-flex items-center justify-center rounded-xl border bg-white p-2 sm:hidden" style="border-color:rgba(22,27,145,.25); color:var(--brand);" aria-label="Open menu">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
-          </button>
-          <a href="#home" class="group inline-flex items-center gap-3">
-            <img src="images/logo-sora.png" alt="SORA STUDIO" class="nav-logo" loading="eager" />
-          </a>
-        </div>
-
-        <div class="hidden items-center gap-7 px-4 py-3 text-sm sm:flex" style="color:rgba(31,41,55,.8)">
-          <a class="hover:text-[#161B91] transition-colors" href="#home">Home</a>
-          <a class="hover:text-[#161B91] transition-colors" href="#about">About</a>
-          <a class="hover:text-[#161B91] transition-colors" href="#portfolio">Portfolio</a>
-          <a class="hover:text-[#161B91] transition-colors" href="#services">Services</a>
-        </div>
-
-        <div class="hidden items-center gap-3 px-4 py-3 sm:flex">
-          <button class="focus-ring rounded-xl border bg-white px-3 py-2 text-xs tracking-wider" style="border-color:rgba(22,27,145,.25); color:var(--brand);">AR / EN</button>
-          <a href="#contact" class="focus-ring rounded-xl border bg-white px-4 py-2 text-sm font-semibold" style="border-color:rgba(22,27,145,.55); color:var(--brand); transition: all .25s;" onmouseover="this.style.background='var(--brand)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--brand)';">Book</a>
-        </div>
-      </nav>
-
-      <div id="mobileMenu" class="hidden sm:hidden">
-        <div class="soft-shadow mt-3 rounded-2xl border bg-white p-4" style="border-color:var(--line)">
-          <div class="grid gap-2 text-sm">
-            <a class="px-3 py-2 hover:text-[#161B91]" href="#home">Home</a>
-            <a class="px-3 py-2 hover:text-[#161B91]" href="#about">About</a>
-            <a class="px-3 py-2 hover:text-[#161B91]" href="#portfolio">Portfolio</a>
-            <a class="px-3 py-2 hover:text-[#161B91]" href="#services">Services</a>
-            <a class="px-3 py-2 font-bold text-[#161B91]" href="#contact">Book Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main id="home" class="spotlight">
-    <section class="relative min-h-[100svh] overflow-hidden">
-      <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1520975682038-bc2d0f8c2cc4?auto=format&fit=crop&w=2400&q=80" alt="Studio" class="h-full w-full object-cover" style="opacity:.96" />
-        <div class="absolute inset-0" style="background: rgba(255,255,255,.82);"></div>
-      </div>
-
-      <div class="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-14 pt-32 sm:px-8 sm:pb-20">
-        <div class="max-w-3xl">
-          <p class="reveal text-xs uppercase tracking-[0.38em]" style="color:rgba(31,41,55,.75)">Photography & Visual Production</p>
-          <h1 class="reveal mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl" style="color:var(--brand)">SORA STUDIO</h1>
-          <p class="reveal mt-5 max-w-xl text-base leading-relaxed sm:text-lg text-gray-600">Visual Stories That Last — crafted with restraint, light, and intention.</p>
-          
-          <div class="reveal mt-9 flex flex-wrap gap-3">
-            <a href="#portfolio" class="bg-[#161B91] text-white px-6 py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition">View Portfolio</a>
-            <a href="#contact" class="border border-[#161B91] text-[#161B91] px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-50 transition">Book a Session</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="portfolio" class="py-24 px-5 sm:px-8 bg-white">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="reveal text-3xl font-bold text-[#161B91] mb-10">Selected Work</h2>
-        <div id="portfolioGrid" class="masonry">
-            </div>
-      </div>
-    </section>
-
-    <section id="contact" class="py-24 px-5 sm:px-8 bg-gray-50">
-      <div class="mx-auto max-w-3xl">
-        <div class="reveal mb-12 text-center">
-            <h2 class="text-3xl font-bold text-[#161B91]">Book a Session</h2>
-            <p class="mt-4 text-gray-500">Let's build a visual world together.</p>
-        </div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SORA STUDIO — Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --brand: #161B91; --soft-bg: #f8f9ff; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; }
         
-        <form id="bookingForm" class="reveal rounded-3xl border bg-white p-6 sm:p-8 shadow-sm" style="border-color:var(--line)">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-400" for="name">Name</label>
-              <input id="name" required class="focus-ring mt-2 w-full rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm" placeholder="Your name" />
-            </div>
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-400" for="email">Email</label>
-              <input id="email" type="email" required class="focus-ring mt-2 w-full rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm" placeholder="email@example.com" />
-            </div>
-          </div>
-          <div class="mt-4">
-            <label class="text-xs uppercase tracking-widest text-gray-400" for="message">Message</label>
-            <textarea id="message" rows="4" class="focus-ring mt-2 w-full rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm" placeholder="Tell us about your project..."></textarea>
-          </div>
-          <button type="submit" class="mt-6 w-full bg-[#161B91] text-white py-4 rounded-xl font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-900/10">
-            Send Request
-          </button>
-        </form>
-      </div>
-    </section>
-  </main>
+        /* Smooth Scroll Smoothness */
+        html.lenis { height: auto; }
+        .lenis-smooth { scroll-behavior: auto !important; }
 
-  <script>
-    // 1. نظام التحميل والظهور (Reveal Effect)
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
+        .hero-gradient-text {
+            background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-      });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        .custom-button {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3);
+        }
+        .custom-button:hover { transform: translateY(-5px); scale: 1.02; }
 
-    // 2. القائمة الجوالة (Mobile Menu)
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+        /* Floating Animation */
+        .float-anim {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
 
-    // 3. معرض الصور الديناميكي (Portfolio Grid)
-    const portfolioItems = [
-      { category: 'portrait', url: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80' },
-      { category: 'fashion', url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80' },
-      { category: 'cinematic', url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80' },
-      { category: 'product', url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80' },
-      { category: 'portrait', url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80' },
-      { category: 'fashion', url: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=800&q=80' }
-    ];
+    <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2rem] shadow-sm">
+            <a href="index.html" class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</a>
+            <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest text-gray-500">
+                <a href="index.html" class="text-[#161B91]">Home</a>
+                <a href="about.html" class="hover:text-[#161B91] transition">About</a>
+                <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
+            </div>
+            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Book Now</a>
+        </div>
+    </nav>
 
-    const grid = document.getElementById('portfolioGrid');
-    portfolioItems.forEach(item => {
-      const div = document.createElement('div');
-      div.className = `m-item reveal`;
-      div.innerHTML = `<img src="${item.url}" class="rounded-2xl w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" loading="lazy" />`;
-      grid.appendChild(div);
-      observer.observe(div);
-    });
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8 w-full grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div data-aos="fade-right" data-aos-duration="1200">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-10 h-[2px] bg-[#161B91]"></span>
+                    <span class="text-xs font-black uppercase tracking-[0.4em] text-[#161B91]">Visual Arts Studio</span>
+                </div>
+                <h1 class="text-7xl md:text-[110px] leading-[0.85] font-black mb-8 hero-gradient-text tracking-tighter">
+                    CRAFTING <br> EMOTION.
+                </h1>
+                <p class="text-lg text-gray-500 max-w-md leading-relaxed mb-10">
+                    نحن نحول اللحظات العابرة إلى أعمال فنية خالدة. تصوير فوتوغرافي وسينمائي بمعايير عالمية في قلب الجزائر.
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="portfolio.html" class="bg-[#161B91] text-white px-10 py-5 rounded-2xl font-bold custom-button">Explore Gallery</a>
+                    <a href="about.html" class="group flex items-center gap-2 font-bold text-gray-800 hover:text-[#161B91] transition">
+                        Our Story
+                        <svg class="w-5 h-5 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round"/></svg>
+                    </a>
+                </div>
+            </div>
 
-    // 4. معالجة نموذج الحجز
-    document.getElementById('bookingForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you! We have received your request.');
-    });
-  </script>
+            <div class="relative" data-aos="zoom-in-left" data-aos-duration="1500">
+                <div class="absolute -inset-10 bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
+                <div class="relative rounded-[4rem] overflow-hidden rotate-2 shadow-2xl float-anim border-[12px] border-white">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1200" class="w-full aspect-[4/5] object-cover">
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl z-20" data-aos="fade-up" data-aos-delay="500">
+                    <p class="text-3xl font-black text-[#161B91]">200+</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Projects Done</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script>
+        AOS.init({ once: false });
+
+        // Initialize Lenis for Smooth Scroll
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if(window.scrollY > 50) {
+                nav.style.transform = 'translateY(-10px)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
 </body>
 </html>
