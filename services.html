@@ -14,87 +14,88 @@
         :root { --brand: #161B91; --text-main: #1a1a1a; --gray-light: #f4f4f4; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; color: var(--text-main); overflow-x: hidden; }
 
-        /* تدرج لوني للنصوص */
-        .text-gradient {
-            background: linear-gradient(135deg, var(--brand), #4338ca);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* تصميم بطاقات الخدمات الجديد - أفقي وأنيق */
-        .service-row {
-            display: grid;
-            grid-template-columns: 80px 1fr 1fr 50px;
-            align-items: center;
-            padding: 3rem 0;
-            border-bottom: 1px solid #e5e5e5;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        @media (max-width: 768px) {
-            .service-row { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0; }
-        }
-
-        .service-row:hover {
-            border-color: var(--brand);
-            transform: translateX(-10px); /* حركة بسيطة لليسار */
-        }
-
-        /* أيقونة السهم */
-        .arrow-action {
-            width: 40px; height: 40px;
-            border-radius: 50%;
+        /* تخصيص البطاقات لتناسب باقي الموقع */
+        .service-card {
+            background: white;
             border: 1px solid #e5e5e5;
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.4s;
-            color: #ccc;
+            border-radius: 2rem; /* نفس انحناء النافبار */
+            padding: 3rem 2rem;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            cursor: pointer;
+            overflow: hidden;
         }
-        .service-row:hover .arrow-action {
+
+        .service-card:hover {
+            border-color: var(--brand);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(22, 27, 145, 0.1);
+        }
+
+        /* تنسيق الأيقونة داخل البطاقة */
+        .icon-box {
+            width: 60px; height: 60px;
+            background: #f4f5fa;
+            color: var(--brand);
+            border-radius: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+        }
+        
+        .service-card:hover .icon-box {
+            background: var(--brand);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* زر السهم الصغير داخل البطاقة */
+        .card-arrow {
+            align-self: flex-end;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            border: 1px solid #eee;
+            display: flex; align-items: center; justify-content: center;
+            color: #ccc;
+            transition: 0.3s;
+            margin-top: 2rem;
+        }
+        
+        .service-card:hover .card-arrow {
             background: var(--brand);
             border-color: var(--brand);
             color: white;
-            transform: rotate(-45deg);
         }
 
-        /* نافذة الطلب المنبثقة (Modal) */
+        /* المودال (نفس السابق لأنه ممتاز) */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; w-full; h-full;
-            width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             z-index: 9999;
-            display: none; /* مخفية افتراضياً */
-            align-items: center; justify-content: center;
+            display: none; align-items: center; justify-content: center;
             opacity: 0; transition: opacity 0.3s ease;
         }
         .modal-overlay.active { display: flex; opacity: 1; }
         
         .modal-content {
-            background: white;
-            width: 90%; max-width: 600px;
-            padding: 3rem;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-            border: 1px solid #eee;
-            transform: scale(0.9); transition: transform 0.3s ease;
+            background: white; width: 90%; max-width: 600px; padding: 3rem;
+            border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee; transform: scale(0.9); transition: transform 0.3s ease;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        /* حقول الإدخال */
         .input-clean {
-            width: 100%;
-            padding: 1rem 0;
-            border-bottom: 2px solid #eee;
-            outline: none;
-            transition: 0.3s;
-            background: transparent;
-            font-weight: 500;
+            width: 100%; padding: 1rem 0; border-bottom: 2px solid #eee;
+            outline: none; transition: 0.3s; background: transparent; font-weight: 500;
         }
         .input-clean:focus { border-color: var(--brand); }
 
-        /* Social Icons */
         .social-link { transition: 0.3s; color: #d1d5db; }
         .social-link:hover { color: var(--brand); transform: translateY(-3px); }
     </style>
@@ -117,64 +118,72 @@
         </div>
     </nav>
 
-    <header class="pt-48 pb-20 px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end gap-10 border-b border-gray-100 pb-16">
-            <div data-aos="fade-right">
-                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Our Services</p>
-                <h1 class="text-6xl md:text-8xl font-black text-[#161B91] tracking-tighter leading-none">
-                    الإبداع <br> <span class="text-black/10">بلا حدود.</span>
-                </h1>
+    <header class="pt-48 pb-16 px-8 max-w-7xl mx-auto">
+        <div class="text-center md:text-right" data-aos="fade-up">
+            <div class="inline-block bg-[#161B91]/5 px-4 py-2 rounded-full mb-6 border border-[#161B91]/10">
+                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-[#161B91]">Our Expertise</span>
             </div>
-            <p class="max-w-md text-gray-500 font-medium leading-relaxed mb-2" data-aos="fade-left">
-                نقدم حلولاً بصرية متكاملة تجمع بين الفن والتكنولوجيا، مصممة خصيصاً لرفع قيمة علامتك التجارية.
+            <h1 class="text-5xl md:text-7xl font-black text-[#161B91] tracking-tighter mb-6 leading-tight">
+                رؤية فنية <br> <span class="text-gray-900">بمعايير عالمية.</span>
+            </h1>
+            <p class="max-w-2xl text-gray-400 font-medium text-lg leading-relaxed md:mr-0 mx-auto">
+                نقدم مجموعة متكاملة من الخدمات الإنتاجية المصممة بعناية لتلبية احتياجات العلامات التجارية الطموحة.
             </p>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-8 pb-32">
-        
-        <div class="service-row group" onclick="openModal()" data-aos="fade-up">
-            <span class="text-xl font-black text-gray-200 group-hover:text-[#161B91] transition-colors">01</span>
-            <div>
-                <h3 class="text-3xl font-black text-[#161B91] mb-2">التصوير الفوتوغرافي</h3>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Photography</span>
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <div class="service-card group" onclick="openModal()" data-aos="fade-up" data-aos-delay="0">
+                <div>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <span class="text-xs font-black text-gray-300 uppercase tracking-widest mb-2 block">01</span>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">التصوير الفوتوغرافي</h3>
+                    <p class="text-gray-500 text-sm leading-7">
+                        جلسات تصوير احترافية للمنتجات والأزياء، نركز على الإضاءة والتكوين لإبراز جماليات علامتك.
+                    </p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
             </div>
-            <p class="text-gray-500 text-sm font-medium leading-relaxed pl-10 md:pl-0">
-                نلتقط أدق التفاصيل لمنتجاتك ومناسباتك. صور تجارية، بورتريه، وأزياء بجودة طباعة عالية ولمسة فنية.
-            </p>
-            <div class="arrow-action">
-                <i class="fa-solid fa-arrow-left"></i>
-            </div>
-        </div>
 
-        <div class="service-row group" onclick="openModal()" data-aos="fade-up" data-aos-delay="100">
-            <span class="text-xl font-black text-gray-200 group-hover:text-[#161B91] transition-colors">02</span>
-            <div>
-                <h3 class="text-3xl font-black text-[#161B91] mb-2">الإنتاج السينمائي</h3>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Cinematography</span>
+            <div class="service-card group" onclick="openModal()" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <span class="text-xs font-black text-gray-300 uppercase tracking-widest mb-2 block">02</span>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">الإنتاج السينمائي</h3>
+                    <p class="text-gray-500 text-sm leading-7">
+                        صناعة أفلام إعلانية وتوثيقية باستخدام أحدث الكاميرات السينمائية وسرد قصصي مبتكر.
+                    </p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
             </div>
-            <p class="text-gray-500 text-sm font-medium leading-relaxed pl-10 md:pl-0">
-                سرد قصصي مرئي يأسر الجمهور. إعلانات، وثائقيات، وتغطيات جوية باستخدام أحدث تقنيات التصوير.
-            </p>
-            <div class="arrow-action">
-                <i class="fa-solid fa-arrow-left"></i>
-            </div>
-        </div>
 
-        <div class="service-row group" onclick="openModal()" data-aos="fade-up" data-aos-delay="200">
-            <span class="text-xl font-black text-gray-200 group-hover:text-[#161B91] transition-colors">03</span>
-            <div>
-                <h3 class="text-3xl font-black text-[#161B91] mb-2">المونتاج والتلوين</h3>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Post-Production</span>
+            <div class="service-card group" onclick="openModal()" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <span class="text-xs font-black text-gray-300 uppercase tracking-widest mb-2 block">03</span>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">المونتاج والتلوين</h3>
+                    <p class="text-gray-500 text-sm leading-7">
+                        خدمات ما بعد الإنتاج، تشمل المونتاج، تصحيح الألوان (Color Grading)، والمؤثرات البصرية.
+                    </p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
             </div>
-            <p class="text-gray-500 text-sm font-medium leading-relaxed pl-10 md:pl-0">
-                اللمسة السحرية النهائية. تحرير احترافي، معالجة ألوان سينمائية (Color Grading)، وتصميم صوتي غامر.
-            </p>
-            <div class="arrow-action">
-                <i class="fa-solid fa-arrow-left"></i>
-            </div>
-        </div>
 
+        </div>
     </main>
 
     <div id="bookingModal" class="modal-overlay">
@@ -182,19 +191,13 @@
             <button onclick="closeModal()" class="absolute top-6 left-6 text-gray-400 hover:text-red-500 transition text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-black text-[#161B91] mb-2">ابدأ مشروعك</h2>
                 <p class="text-gray-400 text-sm">أدخل تفاصيلك وسنتواصل معك فوراً</p>
             </div>
-
             <form class="space-y-6">
-                <div>
-                    <input type="text" placeholder="الاسم الكامل" class="input-clean text-right">
-                </div>
-                <div>
-                    <input type="tel" placeholder="رقم الهاتف" class="input-clean text-right">
-                </div>
+                <div><input type="text" placeholder="الاسم الكامل" class="input-clean text-right"></div>
+                <div><input type="tel" placeholder="رقم الهاتف" class="input-clean text-right"></div>
                 <div>
                     <select class="input-clean text-gray-500 text-right cursor-pointer bg-transparent">
                         <option value="" disabled selected>نوع الخدمة المطلوبة</option>
@@ -203,9 +206,7 @@
                         <option value="edit">مونتاج وتلوين</option>
                     </select>
                 </div>
-                <div>
-                    <textarea rows="2" placeholder="تفاصيل إضافية..." class="input-clean resize-none text-right"></textarea>
-                </div>
+                <div><textarea rows="2" placeholder="تفاصيل إضافية..." class="input-clean resize-none text-right"></textarea></div>
                 <button type="button" class="w-full bg-[#161B91] text-white py-4 rounded-xl font-black uppercase tracking-widest text-xs hover:shadow-xl transition mt-4">
                     إرسال الطلب
                 </button>
@@ -222,7 +223,6 @@
                         استوديو إبداعي يهدف إلى تغيير منظور الإنتاج المرئي من خلال الجودة والابتكار.
                     </p>
                 </div>
-                
                 <div class="flex flex-col justify-center items-end">
                     <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 mb-6">Social Media</h3>
                     <div class="flex gap-6 text-2xl">
@@ -232,7 +232,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em]">© 2025 SORA STUDIO. All Rights Reserved.</p>
                 <div class="flex gap-6 text-[9px] font-black text-gray-400 uppercase tracking-widest">
@@ -247,36 +246,25 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             if (window.scrollY > 20) {
-                nav.classList.add('py-4');
-                nav.classList.remove('py-6');
+                nav.classList.add('py-4'); nav.classList.remove('py-6');
             } else {
-                nav.classList.add('py-6');
-                nav.classList.remove('py-4');
+                nav.classList.add('py-6'); nav.classList.remove('py-4');
             }
         });
 
-        // Modal Logic
         function openModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // منع السكرول للصفحة
+            document.getElementById('bookingModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // إعادة السكرول
+            document.getElementById('bookingModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-
-        // إغلاق المودال عند الضغط في الخارج
         document.getElementById('bookingModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('bookingModal')) {
-                closeModal();
-            }
+            if (e.target === document.getElementById('bookingModal')) closeModal();
         });
     </script>
 </body>
