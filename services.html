@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --brand: #161B91; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
+        :root { --brand: #161B91; --soft-bg: #f8f9fa; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; color: #1a1a1a; }
         
         .hero-gradient { 
             background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); 
@@ -20,62 +20,56 @@
             -webkit-text-fill-color: transparent; 
         }
 
-        /* تحسين بطاقات الخدمات */
+        /* تحسين بطاقات الخدمات بشكل عصري */
         .service-card { 
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-            background: white; 
-            border-radius: 4rem; 
-            border: 1px solid #f0f0f0; 
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #eee;
+            background: white;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
-        
-        .service-card::before {
+        .service-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--brand);
+            box-shadow: 0 40px 80px -20px rgba(22, 27, 145, 0.1);
+        }
+
+        /* تصميم الفورم */
+        .input-field {
+            width: 100%;
+            padding: 1.25rem;
+            border-radius: 1.5rem;
+            border: 1px solid #eee;
+            background: #fbfbfb;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: var(--brand);
+            background: white;
+            box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.1);
+        }
+
+        .social-icon { transition: all 0.4s; }
+        .social-icon:hover { color: var(--brand); transform: translateY(-3px); }
+
+        /* حركة النص في الفوتر */
+        .footer-link { position: relative; }
+        .footer-link::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            bottom: -2px; left: 0; width: 0; height: 1px;
             background: var(--brand);
-            transform: translateY(100%);
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            z-index: 0;
+            transition: 0.3s;
         }
-
-        .service-card:hover { transform: translateY(-20px); border-color: var(--brand); }
-        .service-card:hover::before { transform: translateY(0); }
-
-        /* جعل النص والايقونة فوق الخلفية الزرقاء عند الـ Hover */
-        .service-content { position: relative; z-index: 10; transition: all 0.5s; }
-        .service-card:hover .service-content { color: white; }
-        .service-card:hover .service-desc { color: rgba(255,255,255,0.7); }
-
-        .icon-box { 
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
-            background: #f4f7ff; 
-            color: var(--brand); 
-        }
-        .service-card:hover .icon-box { 
-            background: white; 
-            color: var(--brand); 
-            transform: scale(1.1) rotate(-10deg); 
-        }
-
-        /* خط زخرفي تحت العنوان */
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--brand);
-            margin: 20px auto;
-            border-radius: 2px;
-        }
+        .footer-link:hover::after { width: 100%; }
     </style>
 </head>
 <body>
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
         <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
             <a href="index.html" class="flex items-center gap-3 group">
-                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain transition-transform duration-1000 group-hover:rotate-[360deg]">
+                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto transition-transform duration-1000 group-hover:rotate-[360deg]">
                 <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
             </a>
             <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-400">
@@ -84,80 +78,122 @@
                 <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
                 <a href="services.html" class="text-[#161B91]">Services</a>
             </div>
-            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest">Start Project</a>
+            <a href="#order-form" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform">Book Now</a>
         </div>
     </nav>
 
-    <header class="pt-64 pb-20 px-8 text-center max-w-4xl mx-auto">
+    <header class="pt-64 pb-24 px-8 text-center max-w-5xl mx-auto">
         <div class="mb-6 inline-flex items-center gap-2 bg-[#161B91]/5 text-[#161B91] px-4 py-2 rounded-xl border border-[#161B91]/10" data-aos="fade-down">
-            <span class="text-[10px] font-black uppercase tracking-widest">Our Expertise</span>
+            <span class="text-[10px] font-black uppercase tracking-[0.3em]">Our Expertise</span>
         </div>
         <h1 class="text-7xl md:text-[110px] font-black hero-gradient tracking-tighter mb-8 leading-[0.9]" data-aos="fade-up">
-            خدماتنا <br> <span class="text-gray-900 text-6xl md:text-8xl">الإبداعية.</span>
+            نحول رؤيتكم <br> <span class="text-gray-900">إلى واقع.</span>
         </h1>
-        <p class="text-gray-400 text-xl leading-relaxed font-medium" data-aos="fade-up" data-aos-delay="100">
-            نحن لا نلتقط صوراً فقط، نحن نصمم تجارب بصرية تترك أثراً طويلاً في ذاكرة جمهورك.
+        <p class="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto font-medium" data-aos="fade-up" data-aos-delay="100">
+            خدمات متكاملة في عالم البصريات، من الفكرة الأولية إلى التسليم النهائي بأعلى المعايير العالمية.
         </p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-48 grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-right">
-        <div class="service-card p-12" data-aos="fade-up">
-            <div class="service-content">
-                <div class="icon-box w-20 h-20 rounded-[2rem] flex items-center justify-center mb-10 text-3xl shadow-sm">
-                    <i class="fa-solid fa-camera-retro"></i>
-                </div>
-                <h3 class="text-3xl font-black mb-6 tracking-tighter">التصوير الفوتوغرافي</h3>
-                <p class="service-desc text-gray-400 leading-relaxed text-lg font-medium mb-8">
-                    تصوير المنتجات، البورتريه، والأزياء بلمسة فنية تحاكي العالمية، مع التركيز على التفاصيل التي تظهر جودة علامتك.
-                </p>
-                <div class="h-[1px] w-12 bg-gray-100 mb-8 service-desc"></div>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em]">01 / Photography</span>
+    <main class="max-w-7xl mx-auto px-8 pb-32 grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+        <div class="service-card p-12 rounded-[4rem]" data-aos="fade-up">
+            <div class="w-16 h-16 bg-[#161B91]/5 text-[#161B91] rounded-3xl flex items-center justify-center text-2xl mb-10">
+                <i class="fa-solid fa-camera"></i>
             </div>
+            <h3 class="text-3xl font-black mb-6 tracking-tighter text-[#161B91]">الفوتوغرافيا</h3>
+            <ul class="space-y-4 text-gray-500 font-medium">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> تصوير المنتجات التجارية</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> جلسات البورتريه الاحترافية</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> تصوير الأزياء والمودل</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> التغطيات والمناسبات</li>
+            </ul>
         </div>
 
-        <div class="service-card p-12" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-content">
-                <div class="icon-box w-20 h-20 rounded-[2rem] flex items-center justify-center mb-10 text-3xl shadow-sm">
-                    <i class="fa-solid fa-clapperboard"></i>
-                </div>
-                <h3 class="text-3xl font-black mb-6 tracking-tighter">الإنتاج السينمائي</h3>
-                <p class="service-desc text-gray-400 leading-relaxed text-lg font-medium mb-8">
-                    إخراج وتصوير فيديوهات إعلانية، وثائقية، وقصيرة تروي قصة علامتك التجارية بأسلوب سينمائي يشد الانتباه.
-                </p>
-                <div class="h-[1px] w-12 bg-gray-100 mb-8 service-desc"></div>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em]">02 / Cinematography</span>
+        <div class="service-card p-12 rounded-[4rem]" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 bg-[#161B91]/5 text-[#161B91] rounded-3xl flex items-center justify-center text-2xl mb-10">
+                <i class="fa-solid fa-video"></i>
             </div>
+            <h3 class="text-3xl font-black mb-6 tracking-tighter text-[#161B91]">الإنتاج المرئي</h3>
+            <ul class="space-y-4 text-gray-500 font-medium">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> الإعلانات التلفزيونية</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> فيديوهات السوشيال ميديا</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> الأفلام الوثائقية القصيرة</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> التصوير الجوي (Drone)</li>
+            </ul>
         </div>
 
-        <div class="service-card p-12" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-content">
-                <div class="icon-box w-20 h-20 rounded-[2rem] flex items-center justify-center mb-10 text-3xl shadow-sm">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-                <h3 class="text-3xl font-black mb-6 tracking-tighter">المونتاج الاحترافي</h3>
-                <p class="service-desc text-gray-400 leading-relaxed text-lg font-medium mb-8">
-                    تحويل الخام البصري إلى تحفة فنية من خلال معالجة الألوان الاحترافية (Color Grading) وتصميم الصوت المذهل.
-                </p>
-                <div class="h-[1px] w-12 bg-gray-100 mb-8 service-desc"></div>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em]">03 / Visual Editing</span>
+        <div class="service-card p-12 rounded-[4rem]" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 bg-[#161B91]/5 text-[#161B91] rounded-3xl flex items-center justify-center text-2xl mb-10">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
             </div>
+            <h3 class="text-3xl font-black mb-6 tracking-tighter text-[#161B91]">ما بعد الإنتاج</h3>
+            <ul class="space-y-4 text-gray-500 font-medium">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> مونتاج سينمائي احترافي</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> تصحيح وتلوين الألوان</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> هندسة صوتية ومؤثرات</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> موشن جرافيك (Motion)</li>
+            </ul>
         </div>
     </main>
 
-    <section class="bg-gray-50 py-32 px-8 mb-20 rounded-[5rem] max-w-7xl mx-auto text-center overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-100/50 rounded-full blur-3xl -mr-32 -mt-32"></div>
-        <div class="relative z-10" data-aos="zoom-in">
-            <h2 class="text-5xl md:text-6xl font-black text-[#161B91] mb-8 tracking-tighter">هل لديك فكرة مشروع؟</h2>
-            <p class="text-gray-400 text-xl mb-12 max-w-2xl mx-auto">نحن هنا لنحول أفكارك إلى واقع بصري مذهل. دعنا نتحدث عن مشروعك القادم.</p>
-            <a href="contact.html" class="inline-block bg-[#161B91] text-white px-12 py-5 rounded-full text-xs font-black uppercase tracking-[0.3em] hover:scale-110 transition-transform">
-                ابدأ رحلتك معنا الآن
-            </a>
+    <section id="order-form" class="py-32 bg-gray-50 rounded-[5rem] mx-6 mb-32 overflow-hidden relative">
+        <div class="max-w-4xl mx-auto px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black text-[#161B91] mb-6 tracking-tighter">اطلب خدمتك الآن</h2>
+                <p class="text-gray-400 font-medium">املأ البيانات وسيتواصل معك فريقنا خلال 24 ساعة لمناقشة التفاصيل.</p>
+            </div>
+
+            <form class="grid md:grid-cols-2 gap-6 bg-white p-10 md:p-16 rounded-[4rem] shadow-xl border border-gray-100">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">الأسم الكامل</label>
+                    <input type="text" placeholder="HEDDAD BOUBAKER" class="input-field">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">رقم الهاتف</label>
+                    <input type="tel" placeholder="0XXXXXXXXX" class="input-field">
+                </div>
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">الخدمة المطلوبة</label>
+                    <select class="input-field appearance-none cursor-pointer">
+                        <option>تصوير فوتوغرافي</option>
+                        <option>إنتاج فيديو سينمائي</option>
+                        <option>مونتاج ومعالجة ألوان</option>
+                        <option>خدمة متكاملة (فيديو + صور)</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">وصف مختصر للمشروع</label>
+                    <textarea rows="4" placeholder="أخبرنا قليلاً عن فكرتك..." class="input-field resize-none"></textarea>
+                </div>
+                <div class="md:col-span-2 pt-6">
+                    <button class="w-full bg-[#161B91] text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[10px] hover:bg-blue-900 transition-all shadow-lg">
+                        إرسال الطلب الآن
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 
-    <footer class="bg-white py-10 border-t border-gray-50">
-        <div class="max-w-7xl mx-auto px-8 text-center">
-            <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
+    <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
+                <div class="text-center md:text-right">
+                    <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
+                </div>
+                <div class="flex gap-8 text-2xl text-gray-300">
+                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
+                <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                    <a href="portfolio.html" class="footer-link">Portfolio</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                </div>
+            </div>
         </div>
     </footer>
 
