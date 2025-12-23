@@ -14,12 +14,11 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
         
-        /* معالجة مشكلة قص العناوين وتوحيد اللون */
         .hero-title { 
             color: var(--brand);
             line-height: 1.4; 
             display: block;
-            padding: 15px 0; /* مساحة أمان للنقاط والحروف العلوية والسفلية */
+            padding: 15px 0;
         }
 
         @keyframes float {
@@ -66,34 +65,17 @@
         }
         .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
 
-        .input-group { position: relative; width: 100%; }
-        .input-group i { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: #d1d5db; transition: 0.3s; }
         .input-clean {
             width: 100%; padding: 1.2rem 2rem 1.2rem 0; border-bottom: 2px solid #f3f4f6;
             outline: none; transition: 0.3s; background: transparent; font-weight: 700; color: var(--brand);
         }
-        .input-clean:focus { border-color: var(--brand); }
-        .input-group:focus-within i { color: var(--brand); }
-
-        .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
 
         .wide-image-container {
-            width: 100%;
-            height: 450px;
-            border-radius: 4rem;
-            overflow: hidden;
-            margin-top: 5rem;
-            position: relative;
+            width: 100%; height: 450px; border-radius: 4rem; overflow: hidden;
+            margin-top: 5rem; position: relative;
         }
-        .wide-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.8);
-            transition: 1.5s;
-        }
-        .wide-image-container:hover img { transform: scale(1.05); filter: brightness(1); }
+        .wide-image-container img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 1.5s; }
+        .wide-image-container:hover img { transform: scale(1.05); filter: brightness(0.9); }
     </style>
 </head>
 <body>
@@ -145,7 +127,7 @@
                 </div>
                 <div class="absolute -inset-4 bg-gradient-to-tr from-[#161B91]/10 to-transparent rounded-[5rem] blur-2xl"></div>
                 <div class="floating-img relative rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(22,27,145,0.15)] bg-gray-100 border border-gray-50">
-                    <img src="https://images.unsplash.com/photo-1492691523567-61723c275df4?q=80&w=1200&auto=format&fit=crop" 
+                    <img src="https://images.unsplash.com/photo-1533310266094-8898a03807dd?q=80&w=1200&auto=format&fit=crop" 
                          class="w-full h-[500px] object-cover transition-all duration-1000"
                          alt="Sora Studio Equipment">
                 </div>
@@ -228,7 +210,7 @@
         </div>
 
         <div class="wide-image-container" data-aos="zoom-out">
-            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop" alt="Production Scene">
+            <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2000&auto=format&fit=crop" alt="Production Scene">
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="text-center">
                     <h3 class="text-white text-3xl md:text-5xl font-black tracking-widest uppercase">Behind the lens</h3>
@@ -248,12 +230,12 @@
                 <p class="text-gray-400 font-medium">أخبرنا عن فكرتك، وسنتولى تحويلها إلى واقع.</p>
             </div>
             <form class="space-y-8">
-                <div class="input-group">
-                    <i class="fa-solid fa-user-tag text-sm"></i>
+                <div class="input-group relative">
+                    <i class="fa-solid fa-user-tag absolute right-0 top-1/2 -translate-y-1/2 text-gray-300"></i>
                     <input type="text" placeholder="ما هو اسمك؟" class="input-clean text-right">
                 </div>
-                <div class="input-group">
-                    <i class="fa-solid fa-phone-volume text-sm"></i>
+                <div class="input-group relative">
+                    <i class="fa-solid fa-phone-volume absolute right-0 top-1/2 -translate-y-1/2 text-gray-300"></i>
                     <input type="tel" placeholder="رقم الهاتف للتواصل" class="input-clean text-right">
                 </div>
                 <button type="button" class="w-full bg-[#161B91] text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.2em] text-[10px] hover:shadow-2xl hover:shadow-[#161B91]/40 transition-all duration-500 mt-10">
