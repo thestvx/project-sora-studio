@@ -50,7 +50,6 @@
         }
         .service-card:hover .action-arrow { background: var(--brand); border-color: var(--brand); color: white; }
 
-        /* Modal Enhancements */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 12, 50, 0.4); backdrop-filter: blur(20px);
@@ -98,14 +97,13 @@
 
     <header class="pt-64 pb-20 px-8 max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
-            
             <div data-aos="fade-left" class="text-right">
                 <div class="mb-6 inline-flex items-center gap-2 bg-[#161B91]/5 text-[#161B91] px-4 py-2 rounded-xl border border-[#161B91]/10">
                     <span class="relative flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#161B91] opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-[#161B91]"></span>
                     </span>
-                    <span class="text-[10px] font-black uppercase tracking-widest">Our Creative Solutions</span>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Premium Creative Solutions</span>
                 </div>
                 
                 <h1 class="text-6xl md:text-[90px] lg:text-[105px] font-black hero-gradient leading-[0.9] tracking-tighter mb-10 max-w-4xl">
@@ -121,12 +119,10 @@
                     <i class="fa-solid fa-clapperboard text-3xl text-[#161B91] mb-2"></i>
                     <span class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Cinema Quality</span>
                 </div>
-
                 <div class="stat-badge absolute -bottom-8 -left-8 z-20 bg-white shadow-2xl p-6 rounded-3xl border border-gray-50 flex flex-col items-center min-w-[120px]" style="animation-delay: 1s;">
                     <i class="fa-solid fa-bolt text-3xl text-[#161B91] mb-2"></i>
                     <span class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Fast Delivery</span>
                 </div>
-
                 <div class="absolute -inset-4 bg-gradient-to-tr from-[#161B91]/10 to-transparent rounded-[5rem] blur-2xl"></div>
                 <div class="floating-img relative rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(22,27,145,0.15)] p-4 bg-white border border-gray-50">
                     <img src="https://images.unsplash.com/photo-1492691523567-61723c275df4?q=80&w=1200&auto=format&fit=crop" 
@@ -139,40 +135,73 @@
 
     <section class="py-20 px-8 max-w-7xl mx-auto">
         <div class="text-center mb-24" data-aos="fade-up">
-            <span class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-300 block mb-4">Core Services</span>
+            <span class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-300 block mb-4">What We Do</span>
             <h2 class="text-6xl font-black text-[#161B91] tracking-tighter">بماذا نتميز؟</h2>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal()" data-aos="fade-up">
+            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('photo')" data-aos="fade-up">
                 <div>
                     <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
                         <i class="fa-solid fa-camera"></i>
                     </div>
                     <h3 class="text-2xl font-black text-[#161B91] mb-4">التصوير الفوتوغرافي</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">جلسات تصوير احترافية للمنتجات والأزياء بجودة عالمية.</p>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">جلسات تصوير احترافية للمنتجات، الأزياء، والأطعمة بجودة طباعة عالية.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
 
-            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal()" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('video')" data-aos="fade-up" data-aos-delay="100">
                 <div>
                     <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                        <i class="fa-solid fa-video"></i>
+                        <i class="fa-solid fa-film"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-[#161B91] mb-4">الإنتاج المرئي</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">صناعة أفلام إعلانية وقصص بصرية تلهم الجمهور.</p>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">الإنتاج السينمائي</h3>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">إعلانات تجارية وتغطيات وثائقية باستخدام أحدث الكاميرات السينمائية.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
 
-            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal()" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('editing')" data-aos="fade-up" data-aos-delay="200">
                 <div>
                     <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                        <i class="fa-solid fa-pen-nib"></i>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-[#161B91] mb-4">صناعة الهوية</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">تصميم الهويات البصرية التي تعكس جوهر علامتك.</p>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">المونتاج والتلوين</h3>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">تحرير احترافي وتصحيح ألوان (Color Grading) لإضفاء الطابع السينمائي.</p>
+                </div>
+                <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+            </div>
+
+            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('drone')" data-aos="fade-up" data-aos-delay="300">
+                <div>
+                    <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">التصوير الجوي</h3>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">لقطات درون (Drone) عالية الدقة للمشاريع العقارية والمساحات الكبيرة.</p>
+                </div>
+                <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+            </div>
+
+            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('social')" data-aos="fade-up" data-aos-delay="400">
+                <div>
+                    <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
+                        <i class="fa-solid fa-hashtag"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">إدارة المحتوى</h3>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">صناعة محتوى إبداعي (Reels/TikToks) يناسب خوارزميات المنصات.</p>
+                </div>
+                <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+            </div>
+
+            <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('branding')" data-aos="fade-up" data-aos-delay="500">
+                <div>
+                    <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#161B91] mb-4">الهوية التجارية</h3>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">تصميم الهوية البصرية وتوجيه العلامة التجارية لضمان التناسق.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
@@ -201,11 +230,14 @@
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-layer-group text-sm"></i>
-                    <select class="input-clean text-gray-400 text-right cursor-pointer bg-transparent appearance-none">
+                    <select id="serviceSelect" class="input-clean text-gray-400 text-right cursor-pointer bg-transparent appearance-none">
                         <option value="" disabled selected>اختر نوع الخدمة</option>
                         <option value="photo">التصوير الفوتوغرافي</option>
                         <option value="video">الإنتاج السينمائي</option>
-                        <option value="branding">تصميم الهوية</option>
+                        <option value="editing">المونتاج والتلوين</option>
+                        <option value="drone">التصوير الجوي</option>
+                        <option value="social">إدارة المحتوى</option>
+                        <option value="branding">الهوية التجارية</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -249,14 +281,29 @@
             else { nav.style.transform = 'translateY(0)'; }
         });
 
-        function openModal() {
-            document.getElementById('bookingModal').classList.add('active');
+        // Function to open modal and auto-select service
+        function openModal(serviceValue = "") {
+            const modal = document.getElementById('bookingModal');
+            const select = document.getElementById('serviceSelect');
+            
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            if (serviceValue) {
+                select.value = serviceValue;
+                select.classList.remove('text-gray-400');
+                select.classList.add('text-[#161B91]');
+            } else {
+                select.value = "";
+                select.classList.add('text-gray-400');
+            }
         }
+
         function closeModal() {
             document.getElementById('bookingModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+
         document.getElementById('bookingModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('bookingModal')) closeModal();
         });
