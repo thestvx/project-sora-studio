@@ -11,66 +11,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --brand: #161B91; --soft-bg: #f8f9fa; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; color: #1a1a1a; }
+        :root { --brand: #161B91; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; color: #1a1a1a; overflow-x: hidden; }
         
-        .hero-gradient { 
-            background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-
-        /* تحسين بطاقات الخدمات بشكل عصري */
-        .service-card { 
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid #eee;
-            background: white;
+        /* تأثير الشرائح للخدمات */
+        .service-row {
+            border-bottom: 1px solid #eee;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             position: relative;
-            z-index: 1;
+            cursor: pointer;
         }
-        .service-card:hover {
-            transform: translateY(-12px);
-            border-color: var(--brand);
-            box-shadow: 0 40px 80px -20px rgba(22, 27, 145, 0.1);
-        }
+        .service-row:hover { background: #fcfcfc; padding-right: 40px; }
+        .service-row .service-list { max-height: 0; overflow: hidden; transition: all 0.5s ease; opacity: 0; }
+        .service-row:hover .service-list { max-height: 200px; opacity: 1; margin-top: 20px; }
+        
+        .arrow-icon { transition: transform 0.5s; color: #ddd; }
+        .service-row:hover .arrow-icon { transform: rotate(-45deg); color: var(--brand); }
 
-        /* تصميم الفورم */
-        .input-field {
+        /* ستايل المودال (النافذة المنبثقة للطلب) */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+
+        .input-minimal {
+            border-bottom: 2px solid #eee;
+            padding: 15px 0;
             width: 100%;
-            padding: 1.25rem;
-            border-radius: 1.5rem;
-            border: 1px solid #eee;
-            background: #fbfbfb;
-            transition: all 0.3s;
             outline: none;
-        }
-        .input-field:focus {
-            border-color: var(--brand);
-            background: white;
-            box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.1);
-        }
-
-        .social-icon { transition: all 0.4s; }
-        .social-icon:hover { color: var(--brand); transform: translateY(-3px); }
-
-        /* حركة النص في الفوتر */
-        .footer-link { position: relative; }
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 0; width: 0; height: 1px;
-            background: var(--brand);
             transition: 0.3s;
+            background: transparent;
         }
-        .footer-link:hover::after { width: 100%; }
+        .input-minimal:focus { border-color: var(--brand); }
+
+        .social-link { transition: 0.4s; color: #ccc; }
+        .social-link:hover { color: var(--brand); transform: translateY(-3px); }
     </style>
 </head>
 <body>
-    <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto transition-transform duration-1000 group-hover:rotate-[360deg]">
-                <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
+    <nav class="fixed w-full z-[100] px-6 py-6 transition-all" id="nav" dir="ltr">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-[2rem] shadow-sm">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo-sora.png" alt="SORA" class="h-8 w-auto">
+                <span class="text-xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
             </a>
             <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-400">
                 <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
@@ -78,121 +66,110 @@
                 <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
                 <a href="services.html" class="text-[#161B91]">Services</a>
             </div>
-            <a href="#order-form" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform">Book Now</a>
+            <button onclick="toggleModal()" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest">Book Now</button>
         </div>
     </nav>
 
-    <header class="pt-64 pb-24 px-8 text-center max-w-5xl mx-auto">
-        <div class="mb-6 inline-flex items-center gap-2 bg-[#161B91]/5 text-[#161B91] px-4 py-2 rounded-xl border border-[#161B91]/10" data-aos="fade-down">
-            <span class="text-[10px] font-black uppercase tracking-[0.3em]">Our Expertise</span>
+    <header class="pt-64 pb-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-6xl md:text-[120px] font-black tracking-[ -0.05em] leading-[0.85]" data-aos="fade-up">
+                الخدمات <br> <span class="text-gray-200 uppercase italic font-light tracking-normal">EXPERTISE</span>
+            </h1>
         </div>
-        <h1 class="text-7xl md:text-[110px] font-black hero-gradient tracking-tighter mb-8 leading-[0.9]" data-aos="fade-up">
-            نحول رؤيتكم <br> <span class="text-gray-900">إلى واقع.</span>
-        </h1>
-        <p class="text-gray-400 text-xl leading-relaxed max-w-2xl mx-auto font-medium" data-aos="fade-up" data-aos-delay="100">
-            خدمات متكاملة في عالم البصريات، من الفكرة الأولية إلى التسليم النهائي بأعلى المعايير العالمية.
-        </p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-32 grid lg:grid-cols-3 md:grid-cols-2 gap-10">
-        <div class="service-card p-12 rounded-[4rem]" data-aos="fade-up">
-            <div class="w-16 h-16 bg-[#161B91]/5 text-[#161B91] rounded-3xl flex items-center justify-center text-2xl mb-10">
-                <i class="fa-solid fa-camera"></i>
+    <section class="max-w-7xl mx-auto px-8 pb-48">
+        <div class="service-row py-16 group" data-aos="fade-up">
+            <div class="flex justify-between items-center">
+                <div class="flex items-baseline gap-8">
+                    <span class="text-sm font-black text-gray-300">01</span>
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">التصوير الفوتوغرافي</h2>
+                </div>
+                <i class="fa-solid fa-arrow-left text-4xl arrow-icon"></i>
             </div>
-            <h3 class="text-3xl font-black mb-6 tracking-tighter text-[#161B91]">الفوتوغرافيا</h3>
-            <ul class="space-y-4 text-gray-500 font-medium">
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> تصوير المنتجات التجارية</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> جلسات البورتريه الاحترافية</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> تصوير الأزياء والمودل</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> التغطيات والمناسبات</li>
-            </ul>
+            <div class="service-list flex flex-wrap gap-x-12 gap-y-4 pr-16 text-gray-400 font-bold text-sm uppercase tracking-widest">
+                <span>• Commercial</span>
+                <span>• Portraits</span>
+                <span>• Fashion</span>
+                <span>• Events</span>
+            </div>
         </div>
 
-        <div class="service-card p-12 rounded-[4rem]" data-aos="fade-up" data-aos-delay="100">
-            <div class="w-16 h-16 bg-[#161B91]/5 text-[#161B91] rounded-3xl flex items-center justify-center text-2xl mb-10">
-                <i class="fa-solid fa-video"></i>
+        <div class="service-row py-16 group" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex justify-between items-center">
+                <div class="flex items-baseline gap-8">
+                    <span class="text-sm font-black text-gray-300">02</span>
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">الإنتاج المرئي</h2>
+                </div>
+                <i class="fa-solid fa-arrow-left text-4xl arrow-icon"></i>
             </div>
-            <h3 class="text-3xl font-black mb-6 tracking-tighter text-[#161B91]">الإنتاج المرئي</h3>
-            <ul class="space-y-4 text-gray-500 font-medium">
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> الإعلانات التلفزيونية</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> فيديوهات السوشيال ميديا</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> الأفلام الوثائقية القصيرة</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> التصوير الجوي (Drone)</li>
-            </ul>
+            <div class="service-list flex flex-wrap gap-x-12 gap-y-4 pr-16 text-gray-400 font-bold text-sm uppercase tracking-widest">
+                <span>• TV Commercials</span>
+                <span>• Social Content</span>
+                <span>• Documentary</span>
+                <span>• Drone Filming</span>
+            </div>
         </div>
 
-        <div class="service-card p-12 rounded-[4rem]" data-aos="fade-up" data-aos-delay="200">
-            <div class="w-16 h-16 bg-[#161B91]/5 text-[#161B91] rounded-3xl flex items-center justify-center text-2xl mb-10">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <div class="service-row py-16 group" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex justify-between items-center">
+                <div class="flex items-baseline gap-8">
+                    <span class="text-sm font-black text-gray-300">03</span>
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">ما بعد الإنتاج</h2>
+                </div>
+                <i class="fa-solid fa-arrow-left text-4xl arrow-icon"></i>
             </div>
-            <h3 class="text-3xl font-black mb-6 tracking-tighter text-[#161B91]">ما بعد الإنتاج</h3>
-            <ul class="space-y-4 text-gray-500 font-medium">
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> مونتاج سينمائي احترافي</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> تصحيح وتلوين الألوان</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> هندسة صوتية ومؤثرات</li>
-                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[10px] text-blue-500"></i> موشن جرافيك (Motion)</li>
-            </ul>
-        </div>
-    </main>
-
-    <section id="order-form" class="py-32 bg-gray-50 rounded-[5rem] mx-6 mb-32 overflow-hidden relative">
-        <div class="max-w-4xl mx-auto px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black text-[#161B91] mb-6 tracking-tighter">اطلب خدمتك الآن</h2>
-                <p class="text-gray-400 font-medium">املأ البيانات وسيتواصل معك فريقنا خلال 24 ساعة لمناقشة التفاصيل.</p>
+            <div class="service-list flex flex-wrap gap-x-12 gap-y-4 pr-16 text-gray-400 font-bold text-sm uppercase tracking-widest">
+                <span>• Color Grading</span>
+                <span>• Video Editing</span>
+                <span>• Sound Design</span>
+                <span>• Motion Graphics</span>
             </div>
-
-            <form class="grid md:grid-cols-2 gap-6 bg-white p-10 md:p-16 rounded-[4rem] shadow-xl border border-gray-100">
-                <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">الأسم الكامل</label>
-                    <input type="text" placeholder="HEDDAD BOUBAKER" class="input-field">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">رقم الهاتف</label>
-                    <input type="tel" placeholder="0XXXXXXXXX" class="input-field">
-                </div>
-                <div class="md:col-span-2 space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">الخدمة المطلوبة</label>
-                    <select class="input-field appearance-none cursor-pointer">
-                        <option>تصوير فوتوغرافي</option>
-                        <option>إنتاج فيديو سينمائي</option>
-                        <option>مونتاج ومعالجة ألوان</option>
-                        <option>خدمة متكاملة (فيديو + صور)</option>
-                    </select>
-                </div>
-                <div class="md:col-span-2 space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 mr-4">وصف مختصر للمشروع</label>
-                    <textarea rows="4" placeholder="أخبرنا قليلاً عن فكرتك..." class="input-field resize-none"></textarea>
-                </div>
-                <div class="md:col-span-2 pt-6">
-                    <button class="w-full bg-[#161B91] text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[10px] hover:bg-blue-900 transition-all shadow-lg">
-                        إرسال الطلب الآن
-                    </button>
-                </div>
-            </form>
         </div>
     </section>
 
-    <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
-                <div class="text-center md:text-right">
-                    <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
+    <div id="orderModal" class="modal px-8">
+        <div class="max-w-2xl w-full">
+            <button onclick="toggleModal()" class="absolute top-10 right-10 text-2xl hover:rotate-90 transition-transform">✕</button>
+            <h2 class="text-5xl font-black mb-12 tracking-tighter">ابدأ مشروعك مع سورا.</h2>
+            <form class="space-y-10">
+                <input type="text" placeholder="ما هو اسمك؟" class="input-minimal">
+                <input type="email" placeholder="بريدك الإلكتروني أو رقم هاتفك" class="input-minimal">
+                <select class="input-minimal">
+                    <option>اختر نوع الخدمة</option>
+                    <option>تصوير فوتوغرافي</option>
+                    <option>إنتاج فيديو</option>
+                    <option>مونتاج وتلوين</option>
+                </select>
+                <textarea placeholder="أخبرنا قليلاً عن الفكرة..." class="input-minimal h-32"></textarea>
+                <button class="bg-[#161B91] text-white px-12 py-5 rounded-full text-[10px] font-black uppercase tracking-[0.3em]">إرسال الطلب</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-[#fcfcfc] pt-32 pb-16 px-8 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20 mb-20">
+                <div>
+                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-300 mb-8">Let's Connect</h3>
+                    <div class="flex gap-8">
+                        <a href="https://www.instagram.com/sora_studioo/" class="social-link text-3xl"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://web.facebook.com/SoraStudio.39" class="social-link text-3xl"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link text-3xl"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
                 </div>
-                <div class="flex gap-8 text-2xl text-gray-300">
-                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
+                <div class="text-right">
+                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-300 mb-8">Navigation</h3>
+                    <div class="flex flex-col gap-4 font-black uppercase text-[10px] tracking-widest">
+                        <a href="portfolio.html" class="hover:text-[#161B91]">Portfolio</a>
+                        <a href="about.html" class="hover:text-[#161B91]">About Studio</a>
+                        <a href="contact.html" class="hover:text-[#161B91]">Contact</a>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
-                <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
-                    <a href="portfolio.html" class="footer-link">Portfolio</a>
-                    <a href="about.html" class="footer-link">About Us</a>
-                </div>
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-100 pt-10 gap-6">
+                <p class="text-[10px] font-black text-gray-400 tracking-[0.5em] uppercase">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
+                <p class="text-[10px] font-black text-gray-300 tracking-[0.2em] uppercase">ALGERIA / OUARGLA</p>
             </div>
         </div>
     </footer>
@@ -201,13 +178,15 @@
     <script>
         AOS.init({ duration: 1000, once: true });
         
+        function toggleModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.toggle('active');
+            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            if (window.scrollY > 50) {
-                nav.style.transform = 'translateY(-10px)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
+            window.scrollY > 50 ? nav.style.opacity = '0.9' : nav.style.opacity = '1';
         });
     </script>
 </body>
