@@ -14,16 +14,12 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
         
-        /* معالجة مشكلة القص مع الحفاظ على الألوان المطلوبة */
-        .hero-gradient { 
-            background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            padding-left: 15px; /* مساحة أمان لمنع قص الحروف من اليسار في RTL */
-            padding-right: 5px;
-            line-height: 1.1;
+        /* معالجة مشكلة قص العناوين وتوحيد اللون */
+        .hero-title { 
+            color: var(--brand);
+            line-height: 1.4; 
+            display: block;
+            padding: 15px 0; /* مساحة أمان للنقاط والحروف العلوية والسفلية */
         }
 
         @keyframes float {
@@ -82,7 +78,6 @@
         .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
 
-        /* ستايل مخصص للصورة الجديدة */
         .wide-image-container {
             width: 100%;
             height: 450px;
@@ -130,9 +125,8 @@
                     <span class="text-[10px] font-black uppercase tracking-widest">Premium Creative Solutions</span>
                 </div>
                 
-                <h1 class="text-6xl md:text-[85px] lg:text-[100px] font-black leading-tight tracking-tighter mb-10 max-w-4xl">
-                    <span class="hero-gradient">رؤية تتجاوز</span> <br> 
-                    <span class="text-gray-900">كل الحدود.</span>
+                <h1 class="hero-title text-6xl md:text-[85px] lg:text-[100px] font-black tracking-tighter mb-10">
+                    رؤية تتجاوز <br> كل الحدود.
                 </h1>
                 
                 <p class="text-xl text-gray-400 leading-relaxed max-w-xl mr-0 font-medium">
@@ -143,16 +137,16 @@
             <div class="relative" data-aos="zoom-in" data-aos-duration="1500">
                 <div class="stat-badge absolute -top-8 -right-8 z-20 bg-white shadow-2xl p-6 rounded-3xl border border-gray-50 flex flex-col items-center min-w-[120px]">
                     <i class="fa-solid fa-clapperboard text-3xl text-[#161B91] mb-2"></i>
-                    <span class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Cinema Quality</span>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Cinema Quality</span>
                 </div>
                 <div class="stat-badge absolute -bottom-8 -left-8 z-20 bg-white shadow-2xl p-6 rounded-3xl border border-gray-50 flex flex-col items-center min-w-[120px]" style="animation-delay: 1s;">
                     <i class="fa-solid fa-bolt text-3xl text-[#161B91] mb-2"></i>
-                    <span class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Fast Delivery</span>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Fast Delivery</span>
                 </div>
                 <div class="absolute -inset-4 bg-gradient-to-tr from-[#161B91]/10 to-transparent rounded-[5rem] blur-2xl"></div>
-                <div class="floating-img relative rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(22,27,145,0.15)] p-4 bg-white border border-gray-50">
+                <div class="floating-img relative rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(22,27,145,0.15)] bg-gray-100 border border-gray-50">
                     <img src="https://images.unsplash.com/photo-1492691523567-61723c275df4?q=80&w=1200&auto=format&fit=crop" 
-                         class="w-full h-[500px] object-cover rounded-[3.5rem] grayscale hover:grayscale-0 transition-all duration-1000"
+                         class="w-full h-[500px] object-cover transition-all duration-1000"
                          alt="Sora Studio Equipment">
                 </div>
             </div>
@@ -176,7 +170,7 @@
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
-
+            
             <div class="service-card p-12 rounded-[3.5rem] text-center group" onclick="openModal('video')" data-aos="fade-up" data-aos-delay="100">
                 <div>
                     <div class="icon-circle w-20 h-20 mx-auto mb-8 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
@@ -262,22 +256,6 @@
                     <i class="fa-solid fa-phone-volume text-sm"></i>
                     <input type="tel" placeholder="رقم الهاتف للتواصل" class="input-clean text-right">
                 </div>
-                <div class="input-group">
-                    <i class="fa-solid fa-layer-group text-sm"></i>
-                    <select id="serviceSelect" class="input-clean text-gray-400 text-right cursor-pointer bg-transparent appearance-none">
-                        <option value="" disabled selected>اختر نوع الخدمة</option>
-                        <option value="photo">التصوير الفوتوغرافي</option>
-                        <option value="video">الإنتاج السينمائي</option>
-                        <option value="editing">المونتاج والتلوين</option>
-                        <option value="drone">التصوير الجوي</option>
-                        <option value="social">إدارة المحتوى</option>
-                        <option value="branding">الهوية التجارية</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <i class="fa-solid fa-comment-dots text-sm"></i>
-                    <textarea rows="1" placeholder="نبذة مختصرة عن المشروع..." class="input-clean resize-none text-right"></textarea>
-                </div>
                 <button type="button" class="w-full bg-[#161B91] text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.2em] text-[10px] hover:shadow-2xl hover:shadow-[#161B91]/40 transition-all duration-500 mt-10">
                     إرسال الطلب الآن
                 </button>
@@ -290,16 +268,12 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
                 <div class="text-center md:text-right">
                     <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
                 </div>
                 <div class="flex gap-8 text-2xl text-gray-300">
                     <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
-            </div>
-            <div class="border-t border-gray-50 pt-10 text-center">
-                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -310,14 +284,8 @@
         
         function openModal(serviceValue = "") {
             const modal = document.getElementById('bookingModal');
-            const select = document.getElementById('serviceSelect');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            if (serviceValue) {
-                select.value = serviceValue;
-                select.classList.remove('text-gray-400');
-                select.classList.add('text-[#161B91]');
-            }
         }
         function closeModal() {
             document.getElementById('bookingModal').classList.remove('active');
