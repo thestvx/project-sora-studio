@@ -9,22 +9,71 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --brand: #161B91; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #fafafa; }
-        .hero-gradient { background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .work-card { position: relative; overflow: hidden; border-radius: 2.5rem; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; }
-        .work-card img { transition: transform 1.2s ease; }
-        .work-card:hover img { transform: scale(1.1); }
-        .work-overlay { background: linear-gradient(0deg, rgba(22,27,145,0.9) 0%, transparent 100%); opacity: 0; transition: 0.5s; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
+        
+        /* تدرج احترافي للعناوين */
+        .hero-title { 
+            color: var(--brand);
+            line-height: 1.1; 
+            padding: 20px 0;
+        }
+
+        /* تنسيق بطاقة العمل */
+        .work-card { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 3rem; 
+            background: #f8f8f8;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .work-card img { 
+            transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1); 
+            filter: grayscale(20%);
+        }
+        .work-card:hover img { 
+            transform: scale(1.1); 
+            filter: grayscale(0%);
+        }
+
+        /* الطبقة العلوية عند التمرير */
+        .work-overlay { 
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.95) 0%, rgba(22, 27, 145, 0.4) 50%, transparent 100%); 
+            opacity: 0; 
+            transition: all 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+        }
         .work-card:hover .work-overlay { opacity: 1; }
-        .filter-btn { transition: 0.4s; color: #aaa; border: 1px solid #eee; }
-        .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 10px 20px -5px rgba(22,27,145,0.3); }
+
+        /* أزرار الفلترة */
+        .filter-btn { 
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
+            color: #999; 
+            border: 1px solid #eee;
+            background: white;
+        }
+        .filter-btn.active { 
+            background: var(--brand); 
+            color: white; 
+            border-color: var(--brand); 
+            box-shadow: 0 15px 30px -10px rgba(22, 27, 145, 0.3); 
+            transform: translateY(-3px);
+        }
+        .filter-btn:hover:not(.active) { border-color: var(--brand); color: var(--brand); }
+
+        .social-icon { transition: all 0.5s ease; }
+        .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
+
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
             <a href="index.html" class="flex items-center gap-3 group">
                 <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain transition-transform duration-1000 group-hover:rotate-[360deg]">
                 <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
@@ -33,46 +82,106 @@
                 <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
                 <a href="about.html" class="hover:text-[#161B91] transition">About</a>
                 <a href="portfolio.html" class="text-[#161B91]">Portfolio</a>
-                <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
+                <a href="services.html" class="hover:text-[#161B91] transition">Services</a> 
             </div>
-            <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest">Book Now</a>
+            <button class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#101470] transition shadow-lg shadow-[#161B91]/20">Book Now</button>
         </div>
     </nav>
 
-    <header class="pt-56 pb-12 px-8 max-w-7xl mx-auto text-right">
-        <h1 class="text-7xl md:text-[110px] font-black hero-gradient tracking-tighter leading-[0.9] mb-12" data-aos="fade-up">الأرشيف <br> الفني.</h1>
-        <div class="flex flex-wrap gap-4 justify-start flex-row-reverse" data-aos="fade-up" data-aos-delay="200">
+    <header class="pt-64 pb-20 px-8 max-w-7xl mx-auto text-right">
+        <div data-aos="fade-left">
+            <span class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-300 block mb-6">Visual Journey</span>
+            <h1 class="hero-title text-7xl md:text-[100px] lg:text-[120px] font-black tracking-tighter mb-12">
+                الأرشيف <br> الفني.
+            </h1>
+        </div>
+
+        <div class="flex flex-wrap gap-4 justify-start flex-row-reverse mt-10" data-aos="fade-up" data-aos-delay="200">
             <button class="filter-btn active px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">All Work</button>
             <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Portraits</button>
             <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Commercial</button>
             <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Cinematic</button>
+            <button class="filter-btn px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest">Drone</button>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="work-card aspect-[4/5] shadow-xl" data-aos="fade-up">
-            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
-            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
-                <h3 class="text-white text-3xl font-black">Shadow Art</h3>
+    <main class="max-w-7xl mx-auto px-8 pb-40">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <div class="work-card aspect-[4/5] shadow-2xl group" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1000" class="w-full h-full object-cover" alt="Shadow Art">
+                <div class="work-overlay absolute inset-0 text-right">
+                    <span class="text-[#fff]/60 text-[10px] font-bold uppercase tracking-widest mb-2 block">Photography</span>
+                    <h3 class="text-white text-4xl font-black mb-4">Shadow Art</h3>
+                    <div class="w-12 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></div>
+                </div>
             </div>
-        </div>
-        <div class="work-card aspect-[3/4] shadow-xl lg:translate-y-20" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
-            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
-                <h3 class="text-white text-3xl font-black">Vogue Mood</h3>
+
+            <div class="work-card aspect-[3/4] shadow-2xl lg:translate-y-24 group" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000" class="w-full h-full object-cover" alt="Vogue Mood">
+                <div class="work-overlay absolute inset-0 text-right">
+                    <span class="text-[#fff]/60 text-[10px] font-bold uppercase tracking-widest mb-2 block">Fashion</span>
+                    <h3 class="text-white text-4xl font-black mb-4">Vogue Mood</h3>
+                    <div class="w-12 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></div>
+                </div>
             </div>
-        </div>
-        <div class="work-card aspect-[4/5] shadow-xl" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
-            <div class="work-overlay absolute inset-0 flex flex-col justify-end p-10 text-right">
-                <h3 class="text-white text-3xl font-black">Deep Motion</h3>
+
+            <div class="work-card aspect-[4/5] shadow-2xl group" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000" class="w-full h-full object-cover" alt="Deep Motion">
+                <div class="work-overlay absolute inset-0 text-right">
+                    <span class="text-[#fff]/60 text-[10px] font-bold uppercase tracking-widest mb-2 block">Cinematic</span>
+                    <h3 class="text-white text-4xl font-black mb-4">Deep Motion</h3>
+                    <div class="w-12 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></div>
+                </div>
+            </div>
+
+            <div class="work-card aspect-[16/9] md:col-span-2 shadow-2xl group" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1500641315365-c6b8024da29c?auto=format&fit=crop&w=1500" class="w-full h-full object-cover" alt="Urban Life">
+                <div class="work-overlay absolute inset-0 text-right">
+                    <span class="text-[#fff]/60 text-[10px] font-bold uppercase tracking-widest mb-2 block">Documentary</span>
+                    <h3 class="text-white text-4xl font-black mb-4">Urban Narrative</h3>
+                    <div class="w-12 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></div>
+                </div>
+            </div>
+
+            <div class="work-card aspect-[4/5] shadow-2xl lg:-translate-y-24 group" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1508921234172-b68ed335b3e6?auto=format&fit=crop&w=1000" class="w-full h-full object-cover" alt="Minimalism">
+                <div class="work-overlay absolute inset-0 text-right">
+                    <span class="text-[#fff]/60 text-[10px] font-bold uppercase tracking-widest mb-2 block">Branding</span>
+                    <h3 class="text-white text-4xl font-black mb-4">Minimal Soul</h3>
+                    <div class="w-12 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></div>
+                </div>
             </div>
         </div>
     </main>
 
+    <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
+                <div class="text-center md:text-right">
+                    <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
+                </div>
+                <div class="flex gap-8 text-2xl text-gray-300">
+                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // تفاعل أزرار الفلترة
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
