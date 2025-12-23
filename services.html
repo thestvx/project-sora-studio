@@ -8,54 +8,101 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --brand: #161B91; }
-        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; color: #1a1a1a; overflow-x: hidden; }
-        
-        /* تأثير الشرائح للخدمات */
+        :root { --brand: #161B91; --text-main: #1a1a1a; --gray-light: #f4f4f4; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; color: var(--text-main); overflow-x: hidden; }
+
+        /* تدرج لوني للنصوص */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--brand), #4338ca);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* تصميم بطاقات الخدمات الجديد - أفقي وأنيق */
         .service-row {
-            border-bottom: 1px solid #eee;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            position: relative;
+            display: grid;
+            grid-template-columns: 80px 1fr 1fr 50px;
+            align-items: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid #e5e5e5;
+            transition: all 0.4s ease;
             cursor: pointer;
+            position: relative;
         }
-        .service-row:hover { background: #fcfcfc; padding-right: 40px; }
-        .service-row .service-list { max-height: 0; overflow: hidden; transition: all 0.5s ease; opacity: 0; }
-        .service-row:hover .service-list { max-height: 200px; opacity: 1; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            .service-row { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0; }
+        }
+
+        .service-row:hover {
+            border-color: var(--brand);
+            transform: translateX(-10px); /* حركة بسيطة لليسار */
+        }
+
+        /* أيقونة السهم */
+        .arrow-action {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 1px solid #e5e5e5;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.4s;
+            color: #ccc;
+        }
+        .service-row:hover .arrow-action {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: white;
+            transform: rotate(-45deg);
+        }
+
+        /* نافذة الطلب المنبثقة (Modal) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; w-full; h-full;
+            width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            display: none; /* مخفية افتراضياً */
+            align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
         
-        .arrow-icon { transition: transform 0.5s; color: #ddd; }
-        .service-row:hover .arrow-icon { transform: rotate(-45deg); color: var(--brand); }
-
-        /* ستايل المودال (النافذة المنبثقة للطلب) */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(255,255,255,0.95);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+        .modal-content {
+            background: white;
+            width: 90%; max-width: 600px;
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+            transform: scale(0.9); transition: transform 0.3s ease;
         }
-        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
 
-        .input-minimal {
-            border-bottom: 2px solid #eee;
-            padding: 15px 0;
+        /* حقول الإدخال */
+        .input-clean {
             width: 100%;
+            padding: 1rem 0;
+            border-bottom: 2px solid #eee;
             outline: none;
             transition: 0.3s;
             background: transparent;
+            font-weight: 500;
         }
-        .input-minimal:focus { border-color: var(--brand); }
+        .input-clean:focus { border-color: var(--brand); }
 
-        .social-link { transition: 0.4s; color: #ccc; }
+        /* Social Icons */
+        .social-link { transition: 0.3s; color: #d1d5db; }
         .social-link:hover { color: var(--brand); transform: translateY(-3px); }
     </style>
 </head>
 <body>
+
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all" id="nav" dir="ltr">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-[2rem] shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/90 backdrop-blur-xl border border-gray-100 px-8 py-4 rounded-[2rem] shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
             <a href="index.html" class="flex items-center gap-3">
                 <img src="images/logo-sora.png" alt="SORA" class="h-8 w-auto">
                 <span class="text-xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
@@ -66,127 +113,170 @@
                 <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
                 <a href="services.html" class="text-[#161B91]">Services</a>
             </div>
-            <button onclick="toggleModal()" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest">Book Now</button>
+            <button onclick="openModal()" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-blue-900 transition">Book Now</button>
         </div>
     </nav>
 
-    <header class="pt-64 pb-32 px-8">
-        <div class="max-w-7xl mx-auto">
-            <h1 class="text-6xl md:text-[120px] font-black tracking-[ -0.05em] leading-[0.85]" data-aos="fade-up">
-                الخدمات <br> <span class="text-gray-200 uppercase italic font-light tracking-normal">EXPERTISE</span>
-            </h1>
+    <header class="pt-48 pb-20 px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-10 border-b border-gray-100 pb-16">
+            <div data-aos="fade-right">
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Our Services</p>
+                <h1 class="text-6xl md:text-8xl font-black text-[#161B91] tracking-tighter leading-none">
+                    الإبداع <br> <span class="text-black/10">بلا حدود.</span>
+                </h1>
+            </div>
+            <p class="max-w-md text-gray-500 font-medium leading-relaxed mb-2" data-aos="fade-left">
+                نقدم حلولاً بصرية متكاملة تجمع بين الفن والتكنولوجيا، مصممة خصيصاً لرفع قيمة علامتك التجارية.
+            </p>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-8 pb-48">
-        <div class="service-row py-16 group" data-aos="fade-up">
-            <div class="flex justify-between items-center">
-                <div class="flex items-baseline gap-8">
-                    <span class="text-sm font-black text-gray-300">01</span>
-                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">التصوير الفوتوغرافي</h2>
-                </div>
-                <i class="fa-solid fa-arrow-left text-4xl arrow-icon"></i>
+    <main class="max-w-7xl mx-auto px-8 pb-32">
+        
+        <div class="service-row group" onclick="openModal()" data-aos="fade-up">
+            <span class="text-xl font-black text-gray-200 group-hover:text-[#161B91] transition-colors">01</span>
+            <div>
+                <h3 class="text-3xl font-black text-[#161B91] mb-2">التصوير الفوتوغرافي</h3>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Photography</span>
             </div>
-            <div class="service-list flex flex-wrap gap-x-12 gap-y-4 pr-16 text-gray-400 font-bold text-sm uppercase tracking-widest">
-                <span>• Commercial</span>
-                <span>• Portraits</span>
-                <span>• Fashion</span>
-                <span>• Events</span>
-            </div>
-        </div>
-
-        <div class="service-row py-16 group" data-aos="fade-up" data-aos-delay="100">
-            <div class="flex justify-between items-center">
-                <div class="flex items-baseline gap-8">
-                    <span class="text-sm font-black text-gray-300">02</span>
-                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">الإنتاج المرئي</h2>
-                </div>
-                <i class="fa-solid fa-arrow-left text-4xl arrow-icon"></i>
-            </div>
-            <div class="service-list flex flex-wrap gap-x-12 gap-y-4 pr-16 text-gray-400 font-bold text-sm uppercase tracking-widest">
-                <span>• TV Commercials</span>
-                <span>• Social Content</span>
-                <span>• Documentary</span>
-                <span>• Drone Filming</span>
+            <p class="text-gray-500 text-sm font-medium leading-relaxed pl-10 md:pl-0">
+                نلتقط أدق التفاصيل لمنتجاتك ومناسباتك. صور تجارية، بورتريه، وأزياء بجودة طباعة عالية ولمسة فنية.
+            </p>
+            <div class="arrow-action">
+                <i class="fa-solid fa-arrow-left"></i>
             </div>
         </div>
 
-        <div class="service-row py-16 group" data-aos="fade-up" data-aos-delay="200">
-            <div class="flex justify-between items-center">
-                <div class="flex items-baseline gap-8">
-                    <span class="text-sm font-black text-gray-300">03</span>
-                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter">ما بعد الإنتاج</h2>
-                </div>
-                <i class="fa-solid fa-arrow-left text-4xl arrow-icon"></i>
+        <div class="service-row group" onclick="openModal()" data-aos="fade-up" data-aos-delay="100">
+            <span class="text-xl font-black text-gray-200 group-hover:text-[#161B91] transition-colors">02</span>
+            <div>
+                <h3 class="text-3xl font-black text-[#161B91] mb-2">الإنتاج السينمائي</h3>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Cinematography</span>
             </div>
-            <div class="service-list flex flex-wrap gap-x-12 gap-y-4 pr-16 text-gray-400 font-bold text-sm uppercase tracking-widest">
-                <span>• Color Grading</span>
-                <span>• Video Editing</span>
-                <span>• Sound Design</span>
-                <span>• Motion Graphics</span>
+            <p class="text-gray-500 text-sm font-medium leading-relaxed pl-10 md:pl-0">
+                سرد قصصي مرئي يأسر الجمهور. إعلانات، وثائقيات، وتغطيات جوية باستخدام أحدث تقنيات التصوير.
+            </p>
+            <div class="arrow-action">
+                <i class="fa-solid fa-arrow-left"></i>
             </div>
         </div>
-    </section>
 
-    <div id="orderModal" class="modal px-8">
-        <div class="max-w-2xl w-full">
-            <button onclick="toggleModal()" class="absolute top-10 right-10 text-2xl hover:rotate-90 transition-transform">✕</button>
-            <h2 class="text-5xl font-black mb-12 tracking-tighter">ابدأ مشروعك مع سورا.</h2>
-            <form class="space-y-10">
-                <input type="text" placeholder="ما هو اسمك؟" class="input-minimal">
-                <input type="email" placeholder="بريدك الإلكتروني أو رقم هاتفك" class="input-minimal">
-                <select class="input-minimal">
-                    <option>اختر نوع الخدمة</option>
-                    <option>تصوير فوتوغرافي</option>
-                    <option>إنتاج فيديو</option>
-                    <option>مونتاج وتلوين</option>
-                </select>
-                <textarea placeholder="أخبرنا قليلاً عن الفكرة..." class="input-minimal h-32"></textarea>
-                <button class="bg-[#161B91] text-white px-12 py-5 rounded-full text-[10px] font-black uppercase tracking-[0.3em]">إرسال الطلب</button>
+        <div class="service-row group" onclick="openModal()" data-aos="fade-up" data-aos-delay="200">
+            <span class="text-xl font-black text-gray-200 group-hover:text-[#161B91] transition-colors">03</span>
+            <div>
+                <h3 class="text-3xl font-black text-[#161B91] mb-2">المونتاج والتلوين</h3>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Post-Production</span>
+            </div>
+            <p class="text-gray-500 text-sm font-medium leading-relaxed pl-10 md:pl-0">
+                اللمسة السحرية النهائية. تحرير احترافي، معالجة ألوان سينمائية (Color Grading)، وتصميم صوتي غامر.
+            </p>
+            <div class="arrow-action">
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-content relative">
+            <button onclick="closeModal()" class="absolute top-6 left-6 text-gray-400 hover:text-red-500 transition text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-black text-[#161B91] mb-2">ابدأ مشروعك</h2>
+                <p class="text-gray-400 text-sm">أدخل تفاصيلك وسنتواصل معك فوراً</p>
+            </div>
+
+            <form class="space-y-6">
+                <div>
+                    <input type="text" placeholder="الاسم الكامل" class="input-clean text-right">
+                </div>
+                <div>
+                    <input type="tel" placeholder="رقم الهاتف" class="input-clean text-right">
+                </div>
+                <div>
+                    <select class="input-clean text-gray-500 text-right cursor-pointer bg-transparent">
+                        <option value="" disabled selected>نوع الخدمة المطلوبة</option>
+                        <option value="photo">تصوير فوتوغرافي</option>
+                        <option value="video">إنتاج فيديو</option>
+                        <option value="edit">مونتاج وتلوين</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea rows="2" placeholder="تفاصيل إضافية..." class="input-clean resize-none text-right"></textarea>
+                </div>
+                <button type="button" class="w-full bg-[#161B91] text-white py-4 rounded-xl font-black uppercase tracking-widest text-xs hover:shadow-xl transition mt-4">
+                    إرسال الطلب
+                </button>
             </form>
         </div>
     </div>
 
-    <footer class="bg-[#fcfcfc] pt-32 pb-16 px-8 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-20 mb-20">
-                <div>
-                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-300 mb-8">Let's Connect</h3>
-                    <div class="flex gap-8">
-                        <a href="https://www.instagram.com/sora_studioo/" class="social-link text-3xl"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://web.facebook.com/SoraStudio.39" class="social-link text-3xl"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-link text-3xl"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
+    <footer class="bg-[#f9fafb] pt-24 pb-10 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-12 mb-20">
                 <div class="text-right">
-                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-300 mb-8">Navigation</h3>
-                    <div class="flex flex-col gap-4 font-black uppercase text-[10px] tracking-widest">
-                        <a href="portfolio.html" class="hover:text-[#161B91]">Portfolio</a>
-                        <a href="about.html" class="hover:text-[#161B91]">About Studio</a>
-                        <a href="contact.html" class="hover:text-[#161B91]">Contact</a>
+                    <h2 class="text-3xl font-black text-[#161B91] tracking-tighter mb-4 uppercase">Sora Studio</h2>
+                    <p class="text-gray-400 font-medium max-w-sm ml-auto">
+                        استوديو إبداعي يهدف إلى تغيير منظور الإنتاج المرئي من خلال الجودة والابتكار.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col justify-center items-end">
+                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 mb-6">Social Media</h3>
+                    <div class="flex gap-6 text-2xl">
+                        <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link cursor-not-allowed opacity-50"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-100 pt-10 gap-6">
-                <p class="text-[10px] font-black text-gray-400 tracking-[0.5em] uppercase">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
-                <p class="text-[10px] font-black text-gray-300 tracking-[0.2em] uppercase">ALGERIA / OUARGLA</p>
+
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em]">© 2025 SORA STUDIO. All Rights Reserved.</p>
+                <div class="flex gap-6 text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                    <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                    <a href="about.html" class="hover:text-[#161B91] transition">About</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-        
-        function toggleModal() {
-            const modal = document.getElementById('orderModal');
-            modal.classList.toggle('active');
-            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
-        }
+        AOS.init({ duration: 800, once: true });
 
+        // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            window.scrollY > 50 ? nav.style.opacity = '0.9' : nav.style.opacity = '1';
+            if (window.scrollY > 20) {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.add('py-6');
+                nav.classList.remove('py-4');
+            }
+        });
+
+        // Modal Logic
+        function openModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // منع السكرول للصفحة
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // إعادة السكرول
+        }
+
+        // إغلاق المودال عند الضغط في الخارج
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('bookingModal')) {
+                closeModal();
+            }
         });
     </script>
 </body>
