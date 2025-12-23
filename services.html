@@ -14,15 +14,16 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
         
-        /* معالجة مشكلة قص العناوين */
+        /* معالجة مشكلة القص مع الحفاظ على الألوان المطلوبة */
         .hero-gradient { 
             background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: inline-block; /* يضمن احتواء النص بالكامل */
-            padding: 0.05em 0; /* مساحة أمان علوية وسفلية */
-            line-height: 1.2; /* تباعد مريح للخطوط العربية */
+            display: inline-block;
+            padding-left: 15px; /* مساحة أمان لمنع قص الحروف من اليسار في RTL */
+            padding-right: 5px;
+            line-height: 1.1;
         }
 
         @keyframes float {
@@ -80,6 +81,24 @@
 
         .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
+
+        /* ستايل مخصص للصورة الجديدة */
+        .wide-image-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 4rem;
+            overflow: hidden;
+            margin-top: 5rem;
+            position: relative;
+        }
+        .wide-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: 1.5s;
+        }
+        .wide-image-container:hover img { transform: scale(1.05); filter: brightness(1); }
     </style>
 </head>
 <body>
@@ -164,7 +183,7 @@
                         <i class="fa-solid fa-film"></i>
                     </div>
                     <h3 class="text-2xl font-black text-[#161B91] mb-4">الإنتاج السينمائي</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">إعلانات تجارية وتغطيات وثائقية سينمائية.</p>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">إعلانات تجارية وتغطيات وثائقية سينمائية بجودة 4K.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
@@ -175,7 +194,7 @@
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
                     <h3 class="text-2xl font-black text-[#161B91] mb-4">المونتاج والتلوين</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">تحرير احترافي وتصحيح ألوان سينمائي.</p>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">تحرير احترافي وتصحيح ألوان سينمائي متقدم.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
@@ -186,7 +205,7 @@
                         <i class="fa-solid fa-paper-plane"></i>
                     </div>
                     <h3 class="text-2xl font-black text-[#161B91] mb-4">التصوير الجوي</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">لقطات درون عالية الدقة للمساحات الكبيرة.</p>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">لقطات درون مذهلة للمشاريع العقارية والمواقع الضخمة.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
@@ -197,7 +216,7 @@
                         <i class="fa-solid fa-hashtag"></i>
                     </div>
                     <h3 class="text-2xl font-black text-[#161B91] mb-4">إدارة المحتوى</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">صناعة محتوى إبداعي للمنصات الاجتماعية.</p>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">صناعة محتوى إبداعي يواكب تريندات السوشيال ميديا.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </div>
@@ -208,9 +227,19 @@
                         <i class="fa-solid fa-bullhorn"></i>
                     </div>
                     <h3 class="text-2xl font-black text-[#161B91] mb-4">الهوية التجارية</h3>
-                    <p class="text-sm text-gray-400 leading-7 font-medium">تصميم الهوية البصرية المتكاملة لبراندك.</p>
+                    <p class="text-sm text-gray-400 leading-7 font-medium">تصميم الهوية البصرية لضمان تميز علامتك التجارية.</p>
                 </div>
                 <div class="action-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+            </div>
+        </div>
+
+        <div class="wide-image-container" data-aos="zoom-out">
+            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop" alt="Production Scene">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                    <h3 class="text-white text-3xl md:text-5xl font-black tracking-widest uppercase">Behind the lens</h3>
+                    <p class="text-white/60 text-xs font-bold mt-4 tracking-[0.5em] uppercase">Where magic happens</p>
+                </div>
             </div>
         </div>
     </section>
@@ -221,7 +250,7 @@
                 <i class="fa-solid fa-circle-xmark"></i>
             </button>
             <div class="text-right mb-12">
-                <h2 class="text-5xl font-black text-[#161B91] tracking-tighter mb-4 hero-gradient">ابدأ مشروعك</h2>
+                <h2 class="text-5xl font-black text-[#161B91] tracking-tighter mb-4">ابدأ مشروعك</h2>
                 <p class="text-gray-400 font-medium">أخبرنا عن فكرتك، وسنتولى تحويلها إلى واقع.</p>
             </div>
             <form class="space-y-8">
@@ -278,6 +307,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+        
         function openModal(serviceValue = "") {
             const modal = document.getElementById('bookingModal');
             const select = document.getElementById('serviceSelect');
