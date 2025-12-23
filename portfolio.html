@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --brand: #161B91; --soft-bg: #f8f9ff; }
+        :root { --brand: #161B91; --dark: #0a0d45; --soft-bg: #f8f9ff; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; color: #1a1a1a; }
         
         .hero-title { color: var(--brand); line-height: 1.2; letter-spacing: -0.02em; }
@@ -37,15 +37,15 @@
 
         .work-overlay { 
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(22, 27, 145, 0.92) 0%, rgba(22, 27, 145, 0.3) 50%, transparent 100%);
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.95) 0%, rgba(22, 27, 145, 0.3) 50%, transparent 100%);
             display: flex; flex-direction: column; justify-content: flex-end;
             padding: 2.5rem; opacity: 0;
             transform: translateY(15px);
             transition: all 0.5s ease;
         }
 
-        .work-card:hover { transform: translateY(-10px); shadow: 0 30px 60px -15px rgba(22, 27, 145, 0.3); }
-        .work-card:hover img { transform: scale(1.1); filter: contrast(1.1); }
+        .work-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -15px rgba(22, 27, 145, 0.3); }
+        .work-card:hover img { transform: scale(1.1); filter: contrast(1.05); }
         .work-card:hover .work-overlay { opacity: 1; transform: translateY(0); }
 
         /* أزرار الفلترة */
@@ -60,13 +60,23 @@
             transform: scale(1.05);
         }
 
-        /* زر المعاينة الصغير */
+        /* زر المعاينة الصغير داخل البطاقة */
         .preview-badge {
             width: 45px; height: 45px; background: rgba(255,255,255,0.2);
             backdrop-filter: blur(10px); border-radius: 1rem;
             display: flex; align-items: center; justify-content: center;
             color: white; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.3);
         }
+
+        /* تحسينات الفوتر الجديدة */
+        .site-footer { background: var(--dark); color: white; position: relative; overflow: hidden; }
+        .footer-logo { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.05em; color: white; }
+        .social-link {
+            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: rgba(255,255,255,0.6);
+        }
+        .social-link:hover { background: white; color: var(--brand); transform: translateY(-5px); border-color: white; }
 
         /* اخفاء العناصر المستبعدة من الفلترة */
         .work-item.hidden { display: none; }
@@ -165,21 +175,49 @@
         </div>
     </main>
 
-    <footer class="bg-[#fafafa] pt-32 pb-16 border-t border-gray-100">
+    <footer class="site-footer pt-32 pb-12">
         <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
-                <div class="text-center md:text-right">
-                    <h2 class="text-3xl font-black text-[#161B91] tracking-tighter uppercase mb-3">SORA STUDIO</h2>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Creative House & Visual Content</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start border-b border-white/10 pb-24">
+                <div class="text-right">
+                    <h2 class="footer-logo mb-6 uppercase">SORA STUDIO</h2>
+                    <p class="text-white/40 max-w-sm text-sm leading-relaxed mb-8">
+                        نحن لسنا مجرد ستوديو تصوير، نحن نصنع قصصاً بصرية تبقى للأبد. نجمع بين الفن والتقنية لنقدم لك جودة استثنائية.
+                    </p>
+                    <div class="flex gap-4 justify-start flex-row-reverse">
+                        <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-link"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-link"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-vimeo-v text-xl"></i></a>
+                    </div>
                 </div>
-                <div class="flex gap-10 text-3xl text-gray-200">
-                    <a href="#" class="hover:text-[#161B91] transition-all"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-[#161B91] transition-all"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-[#161B91] transition-all"><i class="fa-brands fa-vimeo-v"></i></a>
+                
+                <div class="grid grid-cols-2 gap-8 text-right md:justify-self-end">
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-widest text-white mb-6">Explore</h4>
+                        <ul class="space-y-4 text-white/50 text-xs font-bold uppercase tracking-widest">
+                            <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                            <li><a href="portfolio.html" class="hover:text-white transition">Portfolio</a></li>
+                            <li><a href="about.html" class="hover:text-white transition">About</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-widest text-white mb-6">Contact</h4>
+                        <ul class="space-y-4 text-white/50 text-xs font-bold uppercase tracking-widest">
+                            <li><a href="#" class="hover:text-white transition">WhatsApp</a></li>
+                            <li><a href="#" class="hover:text-white transition">Email Us</a></li>
+                            <li><a href="#" class="hover:text-white transition">Location</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="mt-20 pt-10 border-t border-gray-200/30 text-center">
-                <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">© 2025 Sora Studio Archive. Built for Excellence.</p>
+
+            <div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[9px] font-black text-white/30 uppercase tracking-[0.4em]">
+                    © 2025 SORA STUDIO. ALL RIGHTS RESERVED.
+                </p>
+                <div class="flex gap-8 text-[9px] font-black text-white/30 uppercase tracking-widest">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
