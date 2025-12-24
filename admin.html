@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SORA Admin — لوحة التحكم</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --brand: #161B91; --soft-bg: #f8fafc; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: var(--soft-bg); color: #1e293b; overflow-x: hidden; }
+        
+        /* تأثيرات الدخول للحاوية */
+        .admin-card {
+            animation: slideUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تنسيق حقل رفع الملفات */
+        .drop-zone {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px dashed #e2e8f0;
+        }
+        .drop-zone:hover, .drop-zone.drag-over {
+            border-color: var(--brand);
+            background: rgba(22, 27, 145, 0.02);
+            transform: scale(1.01);
+        }
+
+        /* تنسيق المدخلات */
+        input, select {
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+        input:focus, select:focus {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 4px rgba(22, 27, 145, 0.05);
+            background: white;
+        }
+
+        /* زر النشر السحري */
+        .publish-btn {
+            background: var(--brand);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .publish-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(22, 27, 145, 0.2);
+        }
+        .publish-btn:active { transform: scale(0.97); }
+        
+        /* شريط التحميل */
+        .progress-bar {
+            height: 4px; background: #e2e8f0; border-radius: 10px; overflow: hidden; display: none;
+        }
+        .progress-fill {
+            height: 100%; background: var(--brand); width: 0%; transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="admin-card max-w-lg w-full bg-white rounded-[3.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] p-10 md:p-14 relative overflow-hidden">
+        
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-[#161B91] to-purple-500"></div>
+
+        <div class="text-center mb-10">
+            <div class="inline-block p-4 bg-blue-50 rounded-3xl mb-4">
+                <i class="fa-solid fa-camera-retro text-[#161B91] text-2xl"></i>
+            </div>
+            <h1 class="text-3xl font-black text-[#161B91] tracking-tighter uppercase">SORA Admin</h1>
+            <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mt-2">إدارة معرض الأعمال</p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="group">
+                <label class="block text-right pr-4 mb-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">عنوان العمل</label>
+                <input type="text" id="title" placeholder="مثلاً: ليلة زفاف موناكو" 
+                    class="w-full p-5 bg-gray-50 rounded-2xl outline-none font-bold text-[#161B91] placeholder:text-gray-300">
+            </div>
+
+            <div>
+                <label class="block text-right pr-4 mb-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">تصنيف المشروع</label>
+                <select id="category" class="w-full p-5 bg-gray-50 rounded-2xl outline-none font-bold text-gray-600 appearance-none cursor-pointer">
+                    <option value="weddings">أعراس (Weddings)</option>
+                    <option value="events">مناسبات (Events)</option>
+                    <option value="food">طعام (Food)</option>
+                    <option value="branding">هوية بصرية (Branding)</option>
+                    <option value="cinema">سينما (Cinema)</option>
+                </select>
+            </div>
+
+            <div class="relative group">
+                <label class="block text-right pr-4 mb-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">صورة العمل</label>
+                <div id="dropZone" class="drop-zone relative rounded-3xl p-10 text-center cursor-pointer bg-gray-50/50">
+                    <input type="file" id="imageFile" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" accept="image/*">
+                    <div id="previewContainer" class="space-y-3">
+                        <i class="fa-solid fa-cloud-arrow-up text-4xl text-gray-200 group-hover:text-[#161B91] transition-colors"></i>
+                        <p class="text-gray-400 font-bold text-xs" id="fileName">اسحب الصورة هنا أو اضغط للرفع</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <button onclick="uploadToSora()" id="publishBtn" class="publish-btn w-full text-white py-6 rounded-[2rem] font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-blue-900/10 flex justify-center items-center gap-3">
+                <span>نشر العمل في المعرض</span>
+                <i class="fa-solid fa-paper-plane text-[10px]"></i>
+            </button>
+
+            <div class="text-center pt-4">
+                <a href="portfolio.html" class="text-gray-300 hover:text-[#161B91] text-[10px] font-bold uppercase tracking-widest transition">
+                    <i class="fa-solid fa-arrow-left ml-1"></i> العودة للموقع
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhaFmPrWIOFYXyJysEftqi_EQfwmPQveI",
+            authDomain: "sora-studio-c1022.firebaseapp.com",
+            projectId: "sora-studio-c1022",
+            storageBucket: "sora-studio-c1022.firebasestorage.app",
+            messagingSenderId: "131507794314",
+            appId: "1:131507794314:web:061eb09cb52a05a6e21873"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // تحديث اسم الملف عند الاختيار
+        const fileInput = document.getElementById('imageFile');
+        const fileNameDisplay = document.getElementById('fileName');
+        
+        fileInput.onchange = () => {
+            if(fileInput.files[0]) {
+                fileNameDisplay.innerText = "تم اختيار: " + fileInput.files[0].name;
+                fileNameDisplay.classList.add('text-[#161B91]');
+            }
+        };
+
+        window.uploadToSora = async () => {
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const file = fileInput.files[0];
+            const btn = document.getElementById('publishBtn');
+            const pBar = document.getElementById('progressBar');
+            const pFill = document.getElementById('progressFill');
+
+            if (!title || !file) {
+                alert("عذراً، يجب إدخال العنوان واختيار صورة!");
+                return;
+            }
+
+            // تعطيل الزر وبدء التحميل
+            btn.disabled = true;
+            btn.innerHTML = "<i class='fa-solid fa-circle-notch fa-spin'></i> جاري المعالجة...";
+            pBar.style.display = 'block';
+
+            try {
+                // 1. رفع الصورة مع مراقبة التقدم
+                const storageRef = ref(storage, `portfolio/${Date.now()}_${file.name}`);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        pFill.style.width = progress + '%';
+                    }, 
+                    (error) => { throw error; }, 
+                    async () => {
+                        // 2. الحصول على رابط الصورة بعد النجاح
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+                        // 3. حفظ البيانات في Firestore
+                        await addDoc(collection(db, "projects"), {
+                            title: title,
+                            category: category,
+                            imageUrl: downloadURL,
+                            createdAt: new Date()
+                        });
+
+                        // نجاح العملية
+                        btn.innerHTML = "<i class='fa-solid fa-check'></i> تم النشر بنجاح!";
+                        btn.style.background = "#10b981";
+                        
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    }
+                );
+
+            } catch (error) {
+                console.error(error);
+                alert("حدث خطأ تقني، حاول مرة أخرى.");
+                btn.disabled = false;
+                btn.innerHTML = "حاول مرة أخرى";
+            }
+        };
+
+        // تأثيرات السحب والإفلات الجمالية
+        const dropZone = document.getElementById('dropZone');
+        ['dragenter', 'dragover'].forEach(name => {
+            dropZone.addEventListener(name, () => dropZone.classList.add('drag-over'), false);
+        });
+        ['dragleave', 'drop'].forEach(name => {
+            dropZone.addEventListener(name, () => dropZone.classList.remove('drag-over'), false);
+        });
+    </script>
+
+</body>
+</html>
