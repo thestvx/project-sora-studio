@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --brand: #161B91; }
+        :root { --brand: #161B91; --soft-bg: #f8f9ff; }
         body { 
             font-family: 'Inter', 'Noto Sans Arabic', sans-serif; 
             background: #ffffff; 
@@ -20,27 +20,26 @@
             color: #1a1a1a; 
         }
         
-        /* Hero Section */
-        .hero-title { color: var(--brand); line-height: 1.2; letter-spacing: -0.02em; }
+        /* Hero Section Styling - matching About page */
+        .hero-title { color: var(--brand); line-height: 1.1; letter-spacing: -0.04em; }
 
-        /* Work Card Style (Consistent White Border) */
+        /* Work Card Style - The "SORA" Signature Look */
         .work-card { 
             position: relative; 
             background: #ffffff; 
-            padding: 12px; 
-            border-radius: 3rem; 
+            padding: 15px; /* Spacing for the white frame */
+            border-radius: 3.5rem; 
             border: 1px solid #f0f0f0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
-            height: 100%;
         }
 
         .img-container {
             position: relative;
             width: 100%;
             overflow: hidden;
-            border-radius: 2.5rem; 
+            border-radius: 2.8rem; 
             aspect-ratio: 4/5;
         }
 
@@ -48,53 +47,58 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover;
-            transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+            transition: all 1.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .work-overlay { 
             position: absolute; 
             inset: 0;
-            background: linear-gradient(to top, rgba(22, 27, 145, 0.85) 0%, transparent 100%);
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.9) 0%, transparent 100%);
             display: flex; 
             flex-direction: column; 
             justify-content: flex-end;
-            padding: 2.5rem; 
+            padding: 3rem; 
             opacity: 0;
-            transition: all 0.5s ease;
+            transform: translateY(10px);
+            transition: all 0.6s ease;
         }
 
-        /* Hover States */
+        /* Hover Interactions */
         .work-card:hover { 
-            transform: translateY(-15px); 
-            box-shadow: 0 40px 80px -20px rgba(22, 27, 145, 0.15);
-            border-color: var(--brand);
+            transform: translateY(-20px); 
+            box-shadow: 0 45px 90px -20px rgba(22, 27, 145, 0.12);
+            border-color: #e0e4ff;
         }
         .work-card:hover img { transform: scale(1.1); }
-        .work-card:hover .work-overlay { opacity: 1; }
+        .work-card:hover .work-overlay { opacity: 1; transform: translateY(0); }
 
-        /* Filter Buttons */
+        /* Modern Filter Buttons */
         .filter-btn { 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            color: #888; 
-            border: 1px solid #eee; 
-            background: white;
-            font-size: 10px; 
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); 
+            color: #999; 
+            border: 1px solid #f0f0f0; 
+            background: #fcfcff;
+            font-size: 11px; 
             font-weight: 900; 
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
         }
         .filter-btn.active { 
             background: var(--brand); 
             color: white; 
             border-color: var(--brand);
-            box-shadow: 0 15px 30px rgba(22, 27, 145, 0.2);
-            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(22, 27, 145, 0.25);
+            transform: translateY(-2px);
+        }
+        .filter-btn:hover:not(.active) {
+            border-color: var(--brand);
+            color: var(--brand);
+            background: white;
         }
 
-        /* Logic classes */
-        .work-item { transition: opacity 0.4s ease, transform 0.4s ease; }
+        /* Animation Classes */
+        .work-item { transition: opacity 0.5s ease, transform 0.5s ease; }
         .work-item.hidden { display: none; }
 
-        /* Footer Icons */
         .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
     </style>
@@ -119,21 +123,21 @@
 
     <header class="pt-64 pb-20 px-8 max-w-7xl mx-auto text-center">
         <div data-aos="fade-up">
-            <span class="text-[11px] font-black uppercase tracking-[0.8em] text-blue-400 block mb-6">Archive 2024-2025</span>
-            <h1 class="hero-title text-7xl md:text-9xl font-black tracking-tighter mb-16">معرض <br class="md:hidden"> الأعمال.</h1>
+            <span class="text-[11px] font-black uppercase tracking-[0.8em] text-blue-400 block mb-8">Archive 2024-2025</span>
+            <h1 class="hero-title text-7xl md:text-[10rem] font-black tracking-tighter mb-16">معرض <br class="md:hidden"> الأعمال.</h1>
             
-            <div class="flex flex-wrap gap-4 justify-center mt-10" id="filter-container">
-                <button class="filter-btn active px-10 py-4 rounded-2xl" data-filter="all">ALL WORK</button>
-                <button class="filter-btn px-10 py-4 rounded-2xl" data-filter="portraits">PORTRAITS</button>
-                <button class="filter-btn px-10 py-4 rounded-2xl" data-filter="commercial">COMMERCIAL</button>
-                <button class="filter-btn px-10 py-4 rounded-2xl" data-filter="cinema">CINEMA</button>
-                <button class="filter-btn px-10 py-4 rounded-2xl" data-filter="drone">DRONE</button>
+            <div class="flex flex-wrap gap-4 justify-center mt-12" id="filter-container">
+                <button class="filter-btn active px-12 py-5 rounded-2xl shadow-sm" data-filter="all">ALL WORK</button>
+                <button class="filter-btn px-12 py-5 rounded-2xl shadow-sm" data-filter="portraits">PORTRAITS</button>
+                <button class="filter-btn px-12 py-5 rounded-2xl shadow-sm" data-filter="commercial">COMMERCIAL</button>
+                <button class="filter-btn px-12 py-5 rounded-2xl shadow-sm" data-filter="cinema">CINEMA</button>
+                <button class="filter-btn px-12 py-5 rounded-2xl shadow-sm" data-filter="drone">DRONE</button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-48">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" id="portfolio-items">
+    <main class="max-w-7xl mx-auto px-8 pb-64">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16" id="portfolio-items">
             
             <div class="work-item work-card group" data-category="portraits" data-aos="fade-up">
                 <div class="img-container">
@@ -224,43 +228,39 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1200, once: true });
 
-        // Filter Logic
+        // Smooth Filter Logic
         const filterBtns = document.querySelectorAll('.filter-btn');
         const items = document.querySelectorAll('.work-item');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Update button state
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const filterValue = btn.getAttribute('data-filter');
 
                 items.forEach(item => {
-                    // Start fade out animation
                     item.style.opacity = '0';
-                    item.style.transform = 'scale(0.95)';
+                    item.style.transform = 'scale(0.9) translateY(20px)';
                     
                     setTimeout(() => {
                         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                             item.classList.remove('hidden');
-                            // Start fade in animation
                             setTimeout(() => {
                                 item.style.opacity = '1';
-                                item.style.transform = 'scale(1)';
+                                item.style.transform = 'scale(1) translateY(0)';
                             }, 50);
                         } else {
                             item.classList.add('hidden');
                         }
-                    }, 400); // Wait for fade out to finish
+                    }, 400);
                 });
             });
         });
 
-        // Navbar Scroll Effect
+        // Navbar Sync
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             if (window.scrollY > 50) {
