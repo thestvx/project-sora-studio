@@ -8,140 +8,169 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --brand: #161B91; }
+        :root { --brand: #161B91; --brand-light: #4149c4; }
+        
         body { 
             font-family: 'Inter', 'Noto Sans Arabic', sans-serif; 
-            background: #050720; 
+            /* خلفية بتدرج عميق لامتصاص حركة الصور */
+            background: radial-gradient(circle at center, #0a0d2e 0%, #050720 100%);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: screen;
+            min-height: 100vh;
         }
 
-        /* خلفية الصور المتحركة */
+        /* شبكة الصور المتحركة - تقليل السطوع لزيادة التركيز على المحتوى */
         .bg-grid {
             position: fixed;
             top: 0; left: 0; width: 140%; height: 140%;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
+            gap: 30px;
             z-index: -1;
-            transform: rotate(-15deg) translate(-10%, -10%);
-            filter: brightness(0.4) grayscale(0.5);
-            animation: moveGrid 60s linear infinite;
+            transform: rotate(-12deg) translate(-5%, -5%);
+            filter: brightness(0.3) saturate(0.8) blur(1px);
+            animation: moveGrid 80s linear infinite;
         }
+        
         .bg-grid img {
-            width: 100%; height: 300px; object-fit: cover; border-radius: 2rem;
+            width: 100%; height: 350px; object-fit: cover; 
+            border-radius: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         @keyframes moveGrid {
-            0% { transform: rotate(-15deg) translateY(0); }
-            100% { transform: rotate(-15deg) translateY(-50%); }
+            0% { transform: rotate(-12deg) translateY(0); }
+            100% { transform: rotate(-12deg) translateY(-50%); }
         }
 
-        /* البطاقة الزجاجية */
+        /* نافذة تسجيل الدخول - تصميم زجاجي فاخر */
         .auth-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
-            animation: cardShow 1s cubic-bezier(0.23, 1, 0.32, 1);
+            background: rgba(255, 255, 255, 0.08); /* شفافية عالية */
+            backdrop-filter: blur(40px) saturate(150%);
+            -webkit-backdrop-filter: blur(40px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4rem;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        @keyframes cardShow {
-            from { opacity: 0; transform: scale(0.9) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        /* لمسة الإضاءة العلوية للمربع */
+        .auth-card::before {
+            content: '';
+            position: absolute; inset: 0; border-radius: 4rem;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent, rgba(22, 27, 145, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
         input {
-            transition: all 0.3s ease;
-            border: 2px solid #f1f5f9;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            transition: all 0.4s ease;
         }
+        
+        input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
         input:focus {
-            border-color: var(--brand);
-            background: white;
-            box-shadow: 0 10px 20px -5px rgba(22, 27, 145, 0.1);
-            outline: none;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: var(--brand-light) !important;
+            box-shadow: 0 0 20px rgba(65, 73, 196, 0.2);
+            transform: translateY(-2px);
         }
 
         .btn-brand {
-            background: var(--brand);
+            background: linear-gradient(135deg, var(--brand) 0%, #2a31b4 100%);
+            box-shadow: 0 10px 30px rgba(22, 27, 145, 0.4);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        
         .btn-brand:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(22, 27, 145, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(22, 27, 145, 0.5);
         }
+
+        .google-btn {
+            background: rgba(255, 255, 255, 1);
+            transition: all 0.3s ease;
+        }
+        .google-btn:hover {
+            transform: translateY(-2px);
+            background: #f8fafc;
+        }
+
+        /* إخفاء السكرول بار */
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="p-6">
+<body class="p-4 md:p-8">
 
     <div class="bg-grid">
-        <img src="https://images.unsplash.com/photo-1492691523567-611252173534?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1533310266094-8898a03807dd?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1492691523567-611252173534?q=80&w=500&auto=format&fit=crop">
-        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=500&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1492691523567-611252173534?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1533310266094-8898a03807dd?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1492691523567-611252173534?q=80&w=500">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=500">
     </div>
 
-    <div class="auth-card max-w-md w-full rounded-[4rem] p-10 md:p-14 text-center">
-        <div class="mb-10">
-            <a href="index.html" class="inline-block hover:opacity-70 transition">
-                <h1 class="text-3xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</h1>
+    <div class="auth-card max-w-[440px] w-full relative p-10 md:p-12 text-center overflow-hidden">
+        
+        <div class="mb-10 relative z-10">
+            <a href="index.html" class="inline-block group transition-transform duration-500 hover:scale-105">
+                <h1 class="text-3xl font-black text-white tracking-tighter uppercase mb-1">SORA STUDIO</h1>
+                <div class="h-1 w-12 bg-blue-600 mx-auto rounded-full group-hover:w-20 transition-all duration-500"></div>
             </a>
-            <p id="auth-tagline" class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mt-3">انضم إلى مجتمعنا الإبداعي</p>
+            <p id="auth-tagline" class="text-white/40 text-[10px] font-bold uppercase tracking-[0.4em] mt-5">مجتمع المبدعين الرقمي</p>
         </div>
 
-        <button onclick="loginWithGoogle()" class="w-full py-4 rounded-2xl flex items-center justify-center gap-3 mb-8 font-bold text-gray-600 border border-gray-100 hover:bg-gray-50 transition-all duration-300">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5">
-            <span class="text-sm">المتابعة باستخدام جوجل</span>
-        </button>
-
-        <div class="relative mb-8">
-            <hr class="border-gray-100">
-            <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-[9px] text-gray-300 font-bold uppercase">أو البريد الإلكتروني</span>
-        </div>
-
-        <div id="login-section" class="space-y-4">
-            <div class="text-right">
-                <label class="text-[10px] font-bold text-gray-400 uppercase mr-4">البريد الإلكتروني</label>
-                <input type="email" id="email" placeholder="example@sora.com" class="w-full mt-1 p-5 bg-gray-50 rounded-2xl font-bold text-[#161B91]">
-            </div>
-            <div class="text-right">
-                <label class="text-[10px] font-bold text-gray-400 uppercase mr-4">كلمة المرور</label>
-                <input type="password" id="pass" placeholder="••••••••" class="w-full mt-1 p-5 bg-gray-50 rounded-2xl font-bold">
-            </div>
-            <button onclick="handleAuth('login')" class="btn-brand w-full text-white py-5 rounded-3xl font-black text-[11px] uppercase tracking-widest mt-4">
-                تسجيل الدخول
+        <div class="relative z-10 space-y-6">
+            <button onclick="loginWithGoogle()" class="google-btn w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-bold text-gray-900 text-sm shadow-xl">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5">
+                المتابعة عبر حساب جوجل
             </button>
-            <p class="text-[11px] text-gray-400 font-bold pt-4">
-                عضو جديد؟ <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">أنشئ حسابك الآن</span>
-            </p>
-        </div>
 
-        <div id="signup-section" class="space-y-4 hidden">
-            <div class="text-right">
-                <label class="text-[10px] font-bold text-gray-400 uppercase mr-4">البريد الإلكتروني الجديد</label>
-                <input type="email" id="s-email" placeholder="new@sora.com" class="w-full mt-1 p-5 bg-gray-50 rounded-2xl font-bold text-[#161B91]">
+            <div class="flex items-center gap-4 py-2">
+                <div class="h-[1px] flex-1 bg-white/10"></div>
+                <span class="text-[9px] text-white/20 font-black uppercase tracking-widest">أو يدوياً</span>
+                <div class="h-[1px] flex-1 bg-white/10"></div>
             </div>
-            <div class="text-right">
-                <label class="text-[10px] font-bold text-gray-400 uppercase mr-4">كلمة المرور</label>
-                <input type="password" id="s-pass" placeholder="كلمة مرور قوية" class="w-full mt-1 p-5 bg-gray-50 rounded-2xl font-bold">
+
+            <div id="login-section" class="space-y-5">
+                <div class="space-y-2">
+                    <input type="email" id="email" placeholder="البريد الإلكتروني" class="w-full p-5 rounded-2xl font-medium outline-none text-right">
+                    <input type="password" id="pass" placeholder="كلمة المرور" class="w-full p-5 rounded-2xl font-medium outline-none text-right">
+                </div>
+                <button onclick="handleAuth('login')" class="btn-brand w-full text-white py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest">
+                    دخول المنصة
+                </button>
+                <p class="text-[11px] text-white/40 font-bold mt-6">
+                    ليس لديك حساب؟ <span onclick="toggleMode()" class="text-white cursor-pointer underline hover:text-blue-400 transition">سجل الآن مجاناً</span>
+                </p>
             </div>
-            <button onclick="handleAuth('signup')" class="w-full bg-black text-white py-5 rounded-3xl font-black text-[11px] uppercase tracking-widest mt-4 hover:bg-gray-900 transition-all">
-                إنشاء حساب مجاني
-            </button>
-            <p class="text-[11px] text-gray-400 font-bold pt-4">
-                لديك حساب بالفعل؟ <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">سجل دخولك</span>
-            </p>
+
+            <div id="signup-section" class="space-y-5 hidden">
+                <div class="space-y-2">
+                    <input type="email" id="s-email" placeholder="بريد إلكتروني جديد" class="w-full p-5 rounded-2xl font-medium outline-none text-right">
+                    <input type="password" id="s-pass" placeholder="كلمة مرور قوية" class="w-full p-5 rounded-2xl font-medium outline-none text-right">
+                </div>
+                <button onclick="handleAuth('signup')" class="w-full bg-white text-gray-900 py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-gray-100 transition-all">
+                    إنشاء حساب جديد
+                </button>
+                <p class="text-[11px] text-white/40 font-bold mt-6">
+                    تمتلك حساباً؟ <span onclick="toggleMode()" class="text-white cursor-pointer underline hover:text-blue-400 transition">تسجيل الدخول</span>
+                </p>
+            </div>
         </div>
     </div>
 
@@ -149,6 +178,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+        // إعدادات Firebase (نفس إعداداتك الأصلية)
         const firebaseConfig = {
             apiKey: "AIzaSyBhaFmPrWIOFYXyJysEftqi_EQfwmPQveI",
             authDomain: "sora-studio-c1022.firebaseapp.com",
@@ -165,7 +195,7 @@
         window.loginWithGoogle = async () => {
             try {
                 await signInWithPopup(auth, provider);
-                window.location.href = "index.html"; // تم التغيير من صفحة الأدمن إلى الرئيسية
+                window.location.href = "index.html";
             } catch (err) { alert("خطأ: " + err.message); }
         };
 
@@ -178,7 +208,7 @@
             try {
                 if(mode === 'login') await signInWithEmailAndPassword(auth, email, pass);
                 else await createUserWithEmailAndPassword(auth, email, pass);
-                window.location.href = "index.html"; // تم التغيير من صفحة الأدمن إلى الرئيسية
+                window.location.href = "index.html";
             } catch (err) { alert("حدث خطأ: " + err.message); }
         };
 
@@ -190,7 +220,7 @@
             loginSec.classList.toggle('hidden');
             signupSec.classList.toggle('hidden');
             
-            tagline.innerText = loginSec.classList.contains('hidden') ? "ابدأ رحلتك معنا اليوم" : "انضم إلى مجتمعنا الإبداعي";
+            tagline.innerText = loginSec.classList.contains('hidden') ? "أهلاً بك في رحلتك الجديدة" : "مجتمع المبدعين الرقمي";
         };
     </script>
 </body>
