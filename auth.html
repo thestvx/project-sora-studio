@@ -9,7 +9,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --brand: #161B91; }
+        :root { --brand: #161B91; --error: #ef4444; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .bg-grid { position: fixed; top: 0; left: 0; width: 150%; height: 150%; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; z-index: -1; transform: rotate(-10deg) translate(-10%, -10%); filter: opacity(0.12) grayscale(0.4); animation: moveGrid 90s linear infinite; }
         .bg-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 2.5rem; }
@@ -22,6 +22,7 @@
         .custom-button { background: var(--brand); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .custom-button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px -5px rgba(22, 27, 145, 0.4); }
         .custom-button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .error-msg { color: var(--error); font-size: 10px; font-weight: 800; text-transform: uppercase; margin-top: 5px; display: none; text-align: center; }
         #terms-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
         .modal-content { background: white; border-radius: 2rem; max-width: 500px; width: 100%; padding: 2rem; }
     </style>
@@ -45,6 +46,8 @@
             <h1 class="text-2xl font-black text-[#161B91] uppercase mb-2">SORA STUDIO</h1>
             <p id="auth-tagline" class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-300">Welcome Member</p>
         </div>
+
+        <p id="main-error" class="error-msg mb-4"></p>
 
         <div id="login-section" class="space-y-4">
             <button onclick="loginWithGoogle()" class="w-full py-4 rounded-2xl flex items-center justify-center gap-3 mb-4 font-bold text-gray-400 border border-gray-100 hover:bg-gray-50 text-[10px] uppercase tracking-widest">
@@ -111,7 +114,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBhaFmPrWIOFYXyJysEftqi_EQfwmPQveI",
@@ -131,6 +134,13 @@
         let generatedOTP;
         let tempUser = {};
 
+        function showError(msg) {
+            const errEl = document.getElementById('main-error');
+            errEl.innerText = msg;
+            errEl.style.display = 'block';
+            setTimeout(() => { errEl.style.display = 'none'; }, 5000);
+        }
+
         window.toggleMode = () => {
             document.getElementById('login-section').classList.toggle('hidden');
             document.getElementById('signup-section').classList.toggle('hidden');
@@ -145,19 +155,34 @@
             const confirm = document.getElementById('s-pass-confirm').value;
             const terms = document.getElementById('terms-check').checked;
 
-            if(!email || !email.includes('@')) return alert("يرجى إدخال بريد إلكتروني صحيح");
-            if(pass.length < 6) return alert("كلمة المرور يجب أن لا تقل عن 6 أحرف");
-            if(pass !== confirm) return alert("كلمات المرور غير متطابقة");
-            if(!terms) return alert("يجب الموافقة على الشروط");
+            // 1. التحقق من المدخلات الأساسية
+            if(!email || !email.includes('@')) return showError("البريد الإلكتروني غير صالح");
+            if(pass.length < 6) return showError("كلمة المرور قصيرة جداً (6 أحرف كحد أدنى)");
+            
+            // 2. التحقق من تطابق كلمات المرور
+            if(pass !== confirm) return showError("كلمات المرور غير متطابقة!");
+            
+            if(!terms) return showError("يجب الموافقة على الشروط");
 
             const btn = document.getElementById('send-otp-btn');
-            btn.innerText = "جاري الإرسال...";
+            btn.innerText = "جاري التحقق...";
             btn.disabled = true;
 
-            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            tempUser = { email, pass };
-
             try {
+                // 3. التحقق هل الإيميل مستخدم في Firebase قبل الإرسال
+                const methods = await fetchSignInMethodsForEmail(auth, email);
+                if (methods.length > 0) {
+                    showError("هذا البريد مسجل مسبقاً، جرب تسجيل الدخول");
+                    btn.innerText = "إرسال كود التحقق";
+                    btn.disabled = false;
+                    return;
+                }
+
+                // 4. إذا كان كل شيء سليم، أرسل الكود
+                btn.innerText = "جاري إرسال الكود...";
+                generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+                tempUser = { email, pass };
+
                 await emailjs.send("service_n56bq4p", "template_2b7sxpy", {
                     to_email: email,
                     otp_code: generatedOTP
@@ -167,8 +192,8 @@
                 document.getElementById('signup-inputs').classList.add('hidden');
                 document.getElementById('otp-section').classList.remove('hidden');
             } catch (err) {
-                console.error("EmailJS Error:", err);
-                alert("فشل الإرسال: " + (err.text || "تأكد من حفظ التعديلات في EmailJS"));
+                console.error(err);
+                showError("حدث خطأ أثناء التحقق من البيانات");
                 btn.innerText = "إعادة المحاولة";
                 btn.disabled = false;
             }
@@ -176,30 +201,25 @@
 
         window.verifyAndSignUp = async () => {
             const inputCode = document.getElementById('otp-input').value.trim();
-            if(inputCode !== generatedOTP) return alert("الكود غير صحيح!");
+            if(inputCode !== generatedOTP) return showError("كود التحقق خاطئ!");
 
             try {
-                // إنشاء الحساب في Firebase
                 await createUserWithEmailAndPassword(auth, tempUser.email, tempUser.pass);
-                
-                // إظهار رسالة النجاح
-                alert("🎉 تم إنشاء حسابك بنجاح! جاري توجيهك للموقع...");
-                
-                // التوجه لصفحة index.html
+                alert("🎉 تم إنشاء حسابك بنجاح!");
                 window.location.href = "index.html";
             } catch (err) {
-                alert("خطأ Firebase: " + err.message);
+                showError(err.message);
             }
         };
 
         window.handleAuth = async (mode) => {
             const email = document.getElementById('email').value.trim();
             const pass = document.getElementById('pass').value;
-            if(!email || !pass) return alert("يرجى إكمال الحقول");
+            if(!email || !pass) return showError("يرجى إكمال جميع الحقول");
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
                 window.location.href = "index.html";
-            } catch (err) { alert("خطأ في الدخول: " + err.message); }
+            } catch (err) { showError("البريد أو كلمة المرور غير صحيحة"); }
         };
 
         window.loginWithGoogle = async () => {
