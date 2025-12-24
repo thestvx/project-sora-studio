@@ -126,7 +126,6 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // إعداد EmailJS بالمفاتيح الخاصة بك
         emailjs.init("18DggF6PaVHMgFPyO");
 
         let generatedOTP;
@@ -155,12 +154,10 @@
             btn.innerText = "جاري الإرسال...";
             btn.disabled = true;
 
-            // توليد كود وتجهيز البيانات
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
             tempUser = { email, pass };
 
             try {
-                // إرسال البيانات لـ EmailJS (المتغيرات تطابق صورتك)
                 await emailjs.send("service_n56bq4p", "template_2b7sxpy", {
                     to_email: email,
                     otp_code: generatedOTP
@@ -182,7 +179,13 @@
             if(inputCode !== generatedOTP) return alert("الكود غير صحيح!");
 
             try {
+                // إنشاء الحساب في Firebase
                 await createUserWithEmailAndPassword(auth, tempUser.email, tempUser.pass);
+                
+                // إظهار رسالة النجاح
+                alert("🎉 تم إنشاء حسابك بنجاح! جاري توجيهك للموقع...");
+                
+                // التوجه لصفحة index.html
                 window.location.href = "index.html";
             } catch (err) {
                 alert("خطأ Firebase: " + err.message);
