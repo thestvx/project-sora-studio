@@ -14,7 +14,6 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
         
-        /* إصلاح العنوان المقصوص */
         .hero-title { 
             background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); 
             -webkit-background-clip: text; 
@@ -24,7 +23,6 @@
             display: inline-block;
         }
 
-        /* تنسيق بطاقات الفريق */
         .team-card { 
             position: relative;
             background: #ffffff;
@@ -52,24 +50,48 @@
         .team-card:hover .discover-btn span { color: white; }
         .team-card:hover .discover-btn i { background: white; transform: translateX(-5px); }
 
-        /* تنسيق النافذة المنبثقة (Modal) */
+        /* --- تحسين النافذة المنبثقة (Modal) --- */
         #workModal {
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 1000;
+            z-index: 2000;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             overflow-y: auto;
-            padding: 40px 20px;
+            padding: 5vh 5vw;
+            animation: fadeIn 0.4s ease-out;
         }
-        .modal-content { max-width: 1000px; margin: 0 auto; }
-        .close-modal { position: fixed; top: 30px; left: 30px; font-size: 24px; cursor: pointer; color: var(--brand); z-index: 1001; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+
+        .modal-container { max-width: 1200px; margin: 0 auto; position: relative; }
         
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .work-item { border-radius: 20px; overflow: hidden; height: 300px; position: relative; }
-        .work-item img, .work-item video { width: 100%; height: 100%; object-cover: cover; }
-        
+        .close-modal { 
+            position: fixed; top: 40px; left: 40px; width: 50px; height: 50px;
+            background: var(--brand); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 20px; transition: 0.3s; z-index: 2001;
+        }
+        .close-modal:hover { transform: rotate(90deg) scale(1.1); }
+
+        /* شبكة الأعمال المتناسقة */
+        .work-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 25px; 
+            margin-top: 50px;
+        }
+        .work-item { 
+            border-radius: 25px; 
+            overflow: hidden; 
+            background: #f8f8f8;
+            height: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.5s;
+        }
+        .work-item:hover { transform: scale(1.02); }
+        .work-item img, .work-item video { width: 100%; height: 100%; object-fit: cover; }
+
         .name-ltr { direction: ltr !important; display: inline-block; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         .floating-img { animation: float 6s ease-in-out infinite; }
@@ -78,14 +100,14 @@
 <body>
 
     <div id="workModal">
-        <div class="close-modal" onclick="closeWorks()"><i class="fa-solid fa-xmark"></i> إغلاق</div>
-        <div class="modal-content">
-            <div class="text-center mb-16">
-                <h2 id="modalName" class="text-4xl font-black text-[#161B91] uppercase mb-2">اسم العضو</h2>
-                <p id="modalRole" class="text-sm font-bold text-gray-400 uppercase tracking-widest">التخصص</p>
+        <div class="close-modal" onclick="closeWorks()"><i class="fa-solid fa-xmark"></i></div>
+        <div class="modal-container text-right">
+            <div class="mb-12 border-r-4 border-[#161B91] pr-6" data-aos="fade-right">
+                <h2 id="modalMemberName" class="text-5xl font-black text-[#161B91] mb-2">اسم العضو</h2>
+                <p id="modalMemberRole" class="text-xs font-bold text-gray-400 uppercase tracking-[0.3em]">PROJECT MANAGER</p>
             </div>
             
-            <div class="portfolio-grid" id="portfolioGrid">
+            <div class="work-grid" id="workGrid">
                 </div>
         </div>
     </div>
@@ -136,41 +158,47 @@
 
         <div class="flex flex-wrap justify-center gap-8">
             <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up">
-                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                    <i class="fa-solid fa-camera"></i>
-                </div>
+                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]"><i class="fa-solid fa-camera"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">HEDDAD BOUBAKER</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Founder / Photographer</p>
-                
                 <div class="discover-btn" onclick="openWorks('HEDDAD BOUBAKER', 'Founder / Photographer')">
-                    <span>أكتشف أعماله</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>أكتشف أعماله</span><i class="fa-solid fa-arrow-left"></i>
                 </div>
             </div>
 
             <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                    <i class="fa-solid fa-video"></i>
-                </div>
+                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]"><i class="fa-solid fa-video"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">CHAMI ABDENNOUR</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Cinematographer</p>
-                
                 <div class="discover-btn" onclick="openWorks('CHAMI ABDENNOUR', 'Cinematographer')">
-                    <span>أكتشف أعماله</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>أكتشف أعماله</span><i class="fa-solid fa-arrow-left"></i>
                 </div>
             </div>
 
             <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
+                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">CHAMI TAHAR</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Visual Editor</p>
-                
                 <div class="discover-btn" onclick="openWorks('CHAMI TAHAR', 'Visual Editor')">
-                    <span>أكتشف أعماله</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>أكتشف أعماله</span><i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]"><i class="fa-solid fa-clapperboard"></i></div>
+                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">BENNI MEHDI</h3>
+                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Creative Director</p>
+                <div class="discover-btn" onclick="openWorks('BENNI MEHDI', 'Creative Director')">
+                    <span>أكتشف أعماله</span><i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">KIR FAROUK</h3>
+                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Project Manager</p>
+                <div class="discover-btn" onclick="openWorks('KIR FAROUK', 'Project Manager')">
+                    <span>أكتشف أعماله</span><i class="fa-solid fa-arrow-left"></i>
                 </div>
             </div>
         </div>
@@ -187,11 +215,11 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // مصفوفة أعمال عشوائية (صور وفيديوهات)
-        const randomWorks = [
-            { type: 'image', url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800' },
+        // بيانات وهمية (صور وفيديوهات) ليتم استبدالها يدوياً
+        const worksData = [
+            { type: 'image', url: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800' },
             { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
-            { type: 'image', url: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800' },
+            { type: 'image', url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800' },
             { type: 'image', url: 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=800' },
             { type: 'video', url: 'https://www.w3schools.com/html/movie.mp4' },
             { type: 'image', url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800' }
@@ -199,32 +227,36 @@
 
         function openWorks(name, role) {
             const modal = document.getElementById('workModal');
-            const grid = document.getElementById('portfolioGrid');
-            document.getElementById('modalName').innerText = name;
-            document.getElementById('modalRole').innerText = role;
+            const grid = document.getElementById('workGrid');
+            document.getElementById('modalMemberName').innerText = name;
+            document.getElementById('modalMemberRole').innerText = role;
             
-            // تفريغ المحتوى السابق
-            grid.innerHTML = '';
+            grid.innerHTML = ''; // تنظيف الشبكة
 
-            // إضافة الأعمال العشوائية
-            randomWorks.forEach(work => {
-                const item = document.createElement('div');
-                item.className = 'work-item';
-                if(work.type === 'image') {
-                    item.innerHTML = `<img src="${work.url}" alt="Work" loading="lazy">`;
+            worksData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'work-item';
+                if(item.type === 'image') {
+                    div.innerHTML = `<img src="${item.url}" alt="work">`;
                 } else {
-                    item.innerHTML = `<video src="${work.url}" autoplay muted loop></video>`;
+                    div.innerHTML = `<video src="${item.url}" autoplay muted loop playsinline></video>`;
                 }
-                grid.appendChild(item);
+                grid.appendChild(div);
             });
 
             modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // منع سكرول الصفحة الخلفية
+            document.body.style.overflow = 'hidden'; // منع سكرول الصفحة الأصلية
         }
 
         function closeWorks() {
             document.getElementById('workModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+
+        // إغلاق النافذة عند الضغط خارج المحتوى
+        window.onclick = function(event) {
+            const modal = document.getElementById('workModal');
+            if (event.target == modal) { closeWorks(); }
         }
     </script>
 </body>
