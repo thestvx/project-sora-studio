@@ -19,11 +19,12 @@
             background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            line-height: 1.4; /* زيادة لضمان عدم القص */
+            line-height: 1.4; 
             padding-bottom: 10px;
             display: inline-block;
         }
 
+        /* تنسيق بطاقات الفريق */
         .team-card { 
             position: relative;
             background: #ffffff;
@@ -33,7 +34,6 @@
         }
         .team-card:hover { transform: translateY(-10px); border-color: var(--brand); box-shadow: 0 20px 40px rgba(22, 27, 145, 0.05); }
         
-        /* تصميم زر "اكتشف أعماله" */
         .discover-btn {
             margin-top: 25px;
             padding: 12px 24px;
@@ -43,51 +43,53 @@
             align-items: center;
             gap: 12px;
             transition: all 0.4s ease;
-            text-decoration: none;
+            cursor: pointer;
         }
-        .discover-btn span {
-            font-size: 11px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #999;
-            transition: all 0.4s ease;
-        }
-        .discover-btn i {
-            width: 30px;
-            height: 30px;
-            background: #f8f8f8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--brand);
-            transition: all 0.4s ease;
-        }
+        .discover-btn span { font-size: 11px; font-weight: 900; color: #999; transition: 0.4s; }
+        .discover-btn i { width: 30px; height: 30px; background: #f8f8f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--brand); transition: 0.4s; }
 
-        /* حركات التمرير (Hover) */
-        .team-card:hover .discover-btn {
-            background: var(--brand);
-            border-color: var(--brand);
-        }
-        .team-card:hover .discover-btn span {
-            color: white;
-        }
-        .team-card:hover .discover-btn i {
-            background: white;
-            transform: translateX(-5px); /* تحريك السهم لليسار لأن الاتجاه RTL */
-        }
+        .team-card:hover .discover-btn { background: var(--brand); border-color: var(--brand); }
+        .team-card:hover .discover-btn span { color: white; }
+        .team-card:hover .discover-btn i { background: white; transform: translateX(-5px); }
 
-        .name-ltr { direction: ltr !important; display: inline-block; }
+        /* تنسيق النافذة المنبثقة (Modal) */
+        #workModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+        .modal-content { max-width: 1000px; margin: 0 auto; }
+        .close-modal { position: fixed; top: 30px; left: 30px; font-size: 24px; cursor: pointer; color: var(--brand); z-index: 1001; }
         
-        /* حركات الصور والإحصائيات */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .work-item { border-radius: 20px; overflow: hidden; height: 300px; position: relative; }
+        .work-item img, .work-item video { width: 100%; height: 100%; object-cover: cover; }
+        
+        .name-ltr { direction: ltr !important; display: inline-block; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         .floating-img { animation: float 6s ease-in-out infinite; }
-        .stat-badge { animation: float 4s ease-in-out infinite; }
     </style>
 </head>
 <body>
+
+    <div id="workModal">
+        <div class="close-modal" onclick="closeWorks()"><i class="fa-solid fa-xmark"></i> إغلاق</div>
+        <div class="modal-content">
+            <div class="text-center mb-16">
+                <h2 id="modalName" class="text-4xl font-black text-[#161B91] uppercase mb-2">اسم العضو</h2>
+                <p id="modalRole" class="text-sm font-bold text-gray-400 uppercase tracking-widest">التخصص</p>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                </div>
+        </div>
+    </div>
+
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
         <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
             <a href="index.html" class="flex items-center gap-3 group">
@@ -140,10 +142,10 @@
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">HEDDAD BOUBAKER</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Founder / Photographer</p>
                 
-                <a href="portfolio.html?member=heddad" class="discover-btn">
+                <div class="discover-btn" onclick="openWorks('HEDDAD BOUBAKER', 'Founder / Photographer')">
                     <span>أكتشف أعماله</span>
                     <i class="fa-solid fa-arrow-left"></i>
-                </a>
+                </div>
             </div>
 
             <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="100">
@@ -153,10 +155,10 @@
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">CHAMI ABDENNOUR</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Cinematographer</p>
                 
-                <a href="portfolio.html?member=chami-a" class="discover-btn">
+                <div class="discover-btn" onclick="openWorks('CHAMI ABDENNOUR', 'Cinematographer')">
                     <span>أكتشف أعماله</span>
                     <i class="fa-solid fa-arrow-left"></i>
-                </a>
+                </div>
             </div>
 
             <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="200">
@@ -166,36 +168,10 @@
                 <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">CHAMI TAHAR</h3>
                 <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Visual Editor</p>
                 
-                <a href="portfolio.html?member=chami-t" class="discover-btn">
+                <div class="discover-btn" onclick="openWorks('CHAMI TAHAR', 'Visual Editor')">
                     <span>أكتشف أعماله</span>
                     <i class="fa-solid fa-arrow-left"></i>
-                </a>
-            </div>
-
-            <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                    <i class="fa-solid fa-clapperboard"></i>
                 </div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">BENNI MEHDI</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Creative Director</p>
-                
-                <a href="portfolio.html?member=benni" class="discover-btn">
-                    <span>أكتشف أعماله</span>
-                    <i class="fa-solid fa-arrow-left"></i>
-                </a>
-            </div>
-
-            <div class="team-card p-10 rounded-[3.5rem] w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-20 h-20 mb-6 bg-gray-50 rounded-3xl flex items-center justify-center text-3xl text-[#161B91]">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <h3 class="text-xl font-black text-[#161B91] name-ltr uppercase tracking-tighter">KIR FAROUK</h3>
-                <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-[0.2em]">Project Manager</p>
-                
-                <a href="portfolio.html?member=kir" class="discover-btn">
-                    <span>أكتشف أعماله</span>
-                    <i class="fa-solid fa-arrow-left"></i>
-                </a>
             </div>
         </div>
     </section>
@@ -208,6 +184,48 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // مصفوفة أعمال عشوائية (صور وفيديوهات)
+        const randomWorks = [
+            { type: 'image', url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800' },
+            { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+            { type: 'image', url: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800' },
+            { type: 'image', url: 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=800' },
+            { type: 'video', url: 'https://www.w3schools.com/html/movie.mp4' },
+            { type: 'image', url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800' }
+        ];
+
+        function openWorks(name, role) {
+            const modal = document.getElementById('workModal');
+            const grid = document.getElementById('portfolioGrid');
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalRole').innerText = role;
+            
+            // تفريغ المحتوى السابق
+            grid.innerHTML = '';
+
+            // إضافة الأعمال العشوائية
+            randomWorks.forEach(work => {
+                const item = document.createElement('div');
+                item.className = 'work-item';
+                if(work.type === 'image') {
+                    item.innerHTML = `<img src="${work.url}" alt="Work" loading="lazy">`;
+                } else {
+                    item.innerHTML = `<video src="${work.url}" autoplay muted loop></video>`;
+                }
+                grid.appendChild(item);
+            });
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // منع سكرول الصفحة الخلفية
+        }
+
+        function closeWorks() {
+            document.getElementById('workModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
 </html>
