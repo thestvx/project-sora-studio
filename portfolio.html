@@ -43,12 +43,8 @@
         
         .img-wrapper { 
             width: 100%; overflow: hidden; border-radius: 2.5rem;
-            position: relative; background: #f9fafb;
+            position: relative; background: #f9fafb; aspect-ratio: 3/4;
         }
-        
-        /* Different heights for more visual interest (Masonry feel) */
-        .h-portrait { aspect-ratio: 3/4; }
-        .h-square { aspect-ratio: 1/1; }
 
         .work-card img { 
             width: 100%; height: 100%; object-fit: cover; 
@@ -68,11 +64,7 @@
 
         /* Animations */
         .work-item { transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .work-item.hidden { opacity: 0; transform: scale(0.9); pointer-events: none; position: absolute; }
-
-        /* Footer & Modals - Matching Services */
-        .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
+        .work-item.hidden { opacity: 0; transform: scale(0.9); pointer-events: none; display: none; }
 
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -98,7 +90,6 @@
             </a>
             <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-400">
                 <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
-                <a href="about.html" class="hover:text-[#161B91] transition">About</a>
                 <a href="portfolio.html" class="text-[#161B91]">Portfolio</a>
                 <a href="services.html" class="hover:text-[#161B91] transition">Services</a> 
             </div>
@@ -124,79 +115,7 @@
 
     <main class="max-w-7xl mx-auto px-8 pb-32">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-items">
-            
-            <div class="work-item" data-category="weddings" data-aos="fade-up">
-                <div class="work-card">
-                    <div class="img-wrapper h-portrait">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000" alt="Wedding">
-                    </div>
-                    <div class="card-overlay text-right text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">Weddings</span>
-                        <h3 class="text-2xl font-black">ليلة العمر</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="work-item" data-category="food" data-aos="fade-up" data-aos-delay="100">
-                <div class="work-card">
-                    <div class="img-wrapper h-square">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000" alt="Food">
-                    </div>
-                    <div class="card-overlay text-right text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">Food Photography</span>
-                        <h3 class="text-2xl font-black">فن الطهي</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="work-item" data-category="branding" data-aos="fade-up" data-aos-delay="200">
-                <div class="work-card">
-                    <div class="img-wrapper h-portrait">
-                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000" alt="Branding">
-                    </div>
-                    <div class="card-overlay text-right text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">Branding</span>
-                        <h3 class="text-2xl font-black">هوية بصرية</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="work-item" data-category="events" data-aos="fade-up">
-                <div class="work-card">
-                    <div class="img-wrapper h-square">
-                        <img src="https://images.unsplash.com/photo-1514525253361-bee8a48790c3?q=80&w=1000" alt="Events">
-                    </div>
-                    <div class="card-overlay text-right text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">Events</span>
-                        <h3 class="text-2xl font-black">تغطية فعاليات</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="work-item" data-category="cinema" data-aos="fade-up" data-aos-delay="100">
-                <div class="work-card">
-                    <div class="img-wrapper h-portrait">
-                        <img src="https://images.unsplash.com/photo-1492691523567-61723c275df4?q=80&w=1000" alt="Cinema">
-                    </div>
-                    <div class="card-overlay text-right text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">Cinema</span>
-                        <h3 class="text-2xl font-black">إنتاج وثائقي</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="work-item" data-category="branding" data-aos="fade-up" data-aos-delay="200">
-                <div class="work-card">
-                    <div class="img-wrapper h-square">
-                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1000" alt="Commercial">
-                    </div>
-                    <div class="card-overlay text-right text-white">
-                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">Commercial</span>
-                        <h3 class="text-2xl font-black">إعلانات تجارية</h3>
-                    </div>
-                </div>
-            </div>
-
+            <div class="col-span-full text-center py-20 text-gray-300 font-bold animate-pulse">جاري تحميل الأعمال...</div>
         </div>
     </main>
 
@@ -215,62 +134,77 @@
         </div>
     </div>
 
-    <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
-                <div class="text-center md:text-right">
-                    <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
-                </div>
-                <div class="flex gap-8 text-2xl text-gray-300">
-                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
-                <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
-                    <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
-                    <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // Enhanced Filter Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const items = document.querySelectorAll('.work-item');
+        // إعدادات Firebase الخاصة بك
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhaFmPrWIOFYXyJysEftqi_EQfwmPQveI",
+            authDomain: "sora-studio-c1022.firebaseapp.com",
+            projectId: "sora-studio-c1022",
+            storageBucket: "sora-studio-c1022.firebasestorage.app",
+            messagingSenderId: "131507794314",
+            appId: "1:131507794314:web:061eb09cb52a05a6e21873"
+        };
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filterValue = btn.getAttribute('data-filter');
-                
-                items.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.classList.remove('hidden');
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, 10);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.9)';
-                        setTimeout(() => item.classList.add('hidden'), 500);
-                    }
-                });
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // جلب الصور من الفايربيس
+        const portfolioContainer = document.getElementById('portfolio-items');
+        const q = query(collection(db, "projects"), orderBy("createdAt", "desc"));
+
+        onSnapshot(q, (snapshot) => {
+            portfolioContainer.innerHTML = '';
+            snapshot.forEach((doc) => {
+                const project = doc.data();
+                const projectHtml = `
+                    <div class="work-item" data-category="${project.category}" data-aos="fade-up">
+                        <div class="work-card">
+                            <div class="img-wrapper">
+                                <img src="${project.imageUrl}" alt="${project.title}">
+                            </div>
+                            <div class="card-overlay text-right text-white">
+                                <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">${project.category}</span>
+                                <h3 class="text-2xl font-black">${project.title}</h3>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                portfolioContainer.innerHTML += projectHtml;
             });
+            // تحديث AOS بعد إضافة العناصر الجديدة
+            AOS.init();
+            initFilters(); // تفعيل الفلترة بعد تحميل العناصر
         });
 
-        // Modal Logic
+        // منطق الفلترة (Filter Logic)
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.work-item');
+
+            filterBtns.forEach(btn => {
+                btn.onclick = () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    items.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                };
+            });
+        }
+    </script>
+
+    <script>
+        // Modal & Nav Scroll Logic
         function openModal() {
             document.getElementById('bookingModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -285,5 +219,6 @@
             window.scrollY > 50 ? nav.style.transform = 'translateY(-10px)' : nav.style.transform = 'translateY(0)';
         });
     </script>
+
 </body>
 </html>
