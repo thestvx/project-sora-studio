@@ -12,6 +12,7 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         
+        /* الخلفية المتحركة */
         .bg-grid { position: fixed; top: 0; left: 0; width: 150%; height: 150%; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; z-index: -1; transform: rotate(-10deg) translate(-10%, -10%); filter: opacity(0.12) grayscale(0.4); animation: moveGrid 90s linear infinite; }
         .bg-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 2.5rem; }
         @keyframes moveGrid { 0% { transform: rotate(-10deg) translateY(0); } 100% { transform: rotate(-10deg) translateY(-50%); } }
@@ -20,9 +21,10 @@
         .input-group { position: relative; width: 100%; }
         .input-group i { position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.8rem; }
         input { border: 2px solid #f8fafc !important; background: #f8fafc !important; transition: all 0.3s ease; padding-right: 3rem !important; }
-        input:focus { background: white !important; border-color: var(--brand) !important; outline: none; }
+        input:focus { background: white !important; border-color: var(--brand) !important; outline: none; box-shadow: 0 10px 15px -3px rgba(22, 27, 145, 0.05); }
         .custom-button { background: var(--brand); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .custom-button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px -5px rgba(22, 27, 145, 0.4); }
+        .custom-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         
         #terms-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
         .modal-content { background: white; border-radius: 2rem; max-width: 500px; width: 100%; padding: 2rem; }
@@ -35,59 +37,80 @@
         <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1533310266094-8898a03807dd?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=500">
+        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=500">
     </div>
 
     <div class="auth-card max-w-md w-full p-10 md:p-14 text-center">
         <a href="index.html" class="absolute top-8 left-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-300 hover:text-[#161B91] transition-all group">
-            <i class="fa-solid fa-arrow-left"></i> Back
+            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1 text-[8px]"></i> Back
         </a>
 
         <div class="mb-8 mt-4">
-            <img src="images/logo-sora.png" alt="SORA" class="h-14 w-auto mx-auto mb-6">
-            <h1 class="text-2xl font-black text-[#161B91] uppercase mb-2">SORA STUDIO</h1>
+            <img src="images/logo-sora.png" alt="SORA" class="h-14 w-auto mx-auto mb-6 object-contain">
+            <h1 class="text-2xl font-black text-[#161B91] tracking-tighter uppercase mb-2">SORA STUDIO</h1>
             <p id="auth-tagline" class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-300">Welcome Member</p>
         </div>
 
         <div id="login-section" class="space-y-4">
-            <button onclick="loginWithGoogle()" class="w-full py-4 rounded-2xl flex items-center justify-center gap-3 mb-4 font-bold text-gray-400 border border-gray-100 hover:bg-gray-50 text-[10px] uppercase">
+            <button onclick="loginWithGoogle()" class="w-full py-4 rounded-2xl flex items-center justify-center gap-3 mb-6 font-bold text-gray-400 border border-gray-100 hover:bg-gray-50 transition-all text-[10px] uppercase tracking-widest">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-4 h-4"> Google Login
             </button>
-            <div class="input-group"><i class="fa-regular fa-envelope"></i><input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm"></div>
-            <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm"></div>
-            <button onclick="handleAuth('login')" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] custom-button">Sign In</button>
-            <p class="text-[10px] font-black text-gray-300 uppercase pt-4">New Member? <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">Create Account</span></p>
+            <div class="input-group">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+            </div>
+            <button onclick="handleAuth('login')" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] custom-button mt-4">Sign In</button>
+            <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-4">
+                New Member? <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">Create Account</span>
+            </p>
         </div>
 
         <div id="signup-section" class="hidden space-y-4 text-right">
             <div id="signup-inputs" class="space-y-4">
-                <div class="input-group"><i class="fa-regular fa-envelope"></i><input type="email" id="s-email" placeholder="New Email" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm"></div>
-                <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="s-pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm"></div>
-                <div class="input-group"><i class="fa-solid fa-shield-check"></i><input type="password" id="s-pass-confirm" placeholder="Confirm Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm"></div>
+                <div class="input-group">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="s-email" placeholder="New Email" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="s-pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <input type="password" id="s-pass-confirm" placeholder="Confirm Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+                </div>
                 <div class="flex items-center gap-2 px-2">
                     <input type="checkbox" id="terms-check" class="w-4 h-4 accent-[#161B91]">
-                    <label class="text-[10px] font-bold text-gray-400">أوافق على <span onclick="toggleModal(true)" class="underline cursor-pointer">الشروط</span></label>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase">أوافق على <span onclick="toggleModal(true)" class="text-[#161B91] underline cursor-pointer">الشروط</span></label>
                 </div>
-                <button onclick="sendOTP()" id="send-otp-btn" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase custom-button">إرسال كود التحقق</button>
+                <button onclick="sendOTP()" id="send-otp-btn" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] custom-button mt-4">إرسال كود التحقق</button>
             </div>
 
-            <div id="otp-section" class="hidden space-y-4 text-center">
-                <p class="text-[10px] font-bold text-[#161B91]">أدخل الكود المكون من 6 أرقام:</p>
-                <input type="text" id="otp-input" maxlength="6" class="w-full text-center p-4 rounded-2xl font-black text-[#161B91] text-2xl border-2 border-[#161B91]">
-                <button onclick="verifyAndSignUp()" class="w-full py-5 rounded-2xl text-white font-black text-[10px] bg-green-600">تأكيد الحساب</button>
+            <div id="otp-section" class="hidden space-y-4">
+                <p class="text-[10px] font-bold text-center text-[#161B91]">أدخل كود التحقق (6 أرقام) من بريدك:</p>
+                <input type="text" id="otp-input" maxlength="6" class="w-full text-center p-4 rounded-2xl font-black text-[#161B91] text-2xl border-2 border-[#161B91] outline-none" placeholder="000000">
+                <button onclick="verifyAndSignUp()" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] bg-green-600 hover:bg-green-700 transition shadow-lg">تأكيد وإنشاء الحساب</button>
             </div>
-            <p class="text-center text-[10px] font-black text-gray-300 uppercase pt-4">Already Member? <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">Login</span></p>
+
+            <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-4 text-center">
+                Already Member? <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">Login</span>
+            </p>
         </div>
     </div>
 
     <div id="terms-modal">
         <div class="modal-content text-right">
             <h2 class="text-xl font-black text-[#161B91] mb-4">قوانين SORA STUDIO</h2>
-            <div class="text-[11px] text-gray-500 space-y-2 font-bold">
-                <p>1. نلتزم بخصوصية بياناتك تماماً.</p>
-                <p>2. يمنع استخدام الحساب لأغراض غير قانونية.</p>
-                <p>3. التأكيد عبر البريد إلزامي لمنع الحسابات الوهمية.</p>
+            <div class="text-[11px] text-gray-500 space-y-3 font-bold">
+                <p>1. نلتزم بخصوصية بياناتك وصورك الشخصية تماماً.</p>
+                <p>2. يمنع استخدام الحساب لأي غرض يسيء للاستوديو.</p>
+                <p>3. تأكيد الحساب بالبريد ضروري لضمان جودة المجتمع.</p>
             </div>
-            <button onclick="toggleModal(false)" class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-black text-[10px] text-gray-400">إغلاق</button>
+            <button onclick="toggleModal(false)" class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-black text-[10px] text-gray-400 uppercase tracking-widest">إغلاق</button>
         </div>
     </div>
 
@@ -110,7 +133,8 @@
 
         emailjs.init("18DggF6PaVHMgFPyO");
 
-        let generatedOTP, tempUser = {};
+        let generatedOTP;
+        let tempUser = {};
 
         window.toggleMode = () => {
             document.getElementById('login-section').classList.toggle('hidden');
@@ -126,42 +150,64 @@
             const confirm = document.getElementById('s-pass-confirm').value;
             const terms = document.getElementById('terms-check').checked;
 
-            if(!email || !email.includes('@') || pass.length < 6 || pass !== confirm || !terms) return alert("يرجى التأكد من البيانات والموافقة على الشروط");
+            if(!email || !email.includes('@')) return alert("يرجى إدخال بريد إلكتروني صحيح");
+            if(pass.length < 6) return alert("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+            if(pass !== confirm) return alert("كلمات المرور غير متطابقة");
+            if(!terms) return alert("يجب الموافقة على الشروط");
 
             const btn = document.getElementById('send-otp-btn');
-            btn.innerText = "جاري الإرسال..."; btn.disabled = true;
+            btn.innerText = "جاري الإرسال...";
+            btn.disabled = true;
 
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
             tempUser = { email, pass };
 
             try {
+                // إرسال البيانات - تأكد من وجود {{otp_code}} في قالب EmailJS
                 await emailjs.send("service_n56bq4p", "template_2b7sxpy", {
                     to_email: email,
-                    otp_code: generatedOTP // تأكد أن هذا الاسم مكتوب داخل {{ }} في موقع EmailJS
+                    otp_code: generatedOTP
                 });
-                alert("تم إرسال الكود لبريدك: " + email);
+                
+                alert("تم إرسال كود التحقق بنجاح لـ: " + email);
                 document.getElementById('signup-inputs').classList.add('hidden');
                 document.getElementById('otp-section').classList.remove('hidden');
             } catch (err) {
-                alert("فشل الإرسال: " + JSON.stringify(err));
-                btn.innerText = "إعادة المحاولة"; btn.disabled = false;
+                console.error("EmailJS Error:", err);
+                alert("فشل الإرسال: " + (err.text || "تأكد من إعدادات EmailJS"));
+                btn.innerText = "إعادة المحاولة";
+                btn.disabled = false;
             }
         };
 
         window.verifyAndSignUp = async () => {
-            if(document.getElementById('otp-input').value.trim() !== generatedOTP) return alert("الكود خطأ!");
+            const inputCode = document.getElementById('otp-input').value.trim();
+            if(inputCode !== generatedOTP) return alert("الكود الذي أدخلته غير صحيح!");
+
             try {
                 await createUserWithEmailAndPassword(auth, tempUser.email, tempUser.pass);
                 window.location.href = "index.html";
-            } catch (err) { alert(err.message); }
+            } catch (err) {
+                alert("خطأ في إنشاء الحساب: " + err.message);
+            }
         };
 
-        window.handleAuth = async (m) => {
-            const e = document.getElementById('email').value.trim(), p = document.getElementById('pass').value;
-            try { await signInWithEmailAndPassword(auth, e, p); window.location.href = "index.html"; } catch(err) { alert(err.message); }
+        window.handleAuth = async (mode) => {
+            const email = document.getElementById('email').value.trim();
+            const pass = document.getElementById('pass').value;
+            if(!email || !pass) return alert("يرجى ملء كافة الحقول");
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+                window.location.href = "index.html";
+            } catch (err) { alert("فشل الدخول: " + err.message); }
         };
 
-        window.loginWithGoogle = async () => { try { await signInWithPopup(auth, provider); window.location.href = "index.html"; } catch(e){} };
+        window.loginWithGoogle = async () => {
+            try { 
+                await signInWithPopup(auth, provider); 
+                window.location.href = "index.html"; 
+            } catch(e) { console.error(e); }
+        };
     </script>
 </body>
 </html>
