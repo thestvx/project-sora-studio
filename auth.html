@@ -3,82 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SORA STUDIO — Login</title>
+    <title>SORA STUDIO — Authentication</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-
+        
         /* الخلفية المتحركة */
         .bg-grid { position: fixed; top: 0; left: 0; width: 150%; height: 150%; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; z-index: -1; transform: rotate(-10deg) translate(-10%, -10%); filter: opacity(0.12) grayscale(0.4); animation: moveGrid 90s linear infinite; }
         .bg-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 2.5rem; }
         @keyframes moveGrid { 0% { transform: rotate(-10deg) translateY(0); } 100% { transform: rotate(-10deg) translateY(-50%); } }
 
-        /* نافذة تسجيل الدخول */
         .auth-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(22, 27, 145, 0.08); border-radius: 3.5rem; box-shadow: 0 40px 80px -20px rgba(22, 27, 145, 0.15); position: relative; max-height: 90vh; overflow-y: auto; }
-
-        /* الحقول مع الأيقونات */
         .input-group { position: relative; width: 100%; }
-        .input-group i { position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.9rem; }
+        .input-group i { position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.8rem; }
         input { border: 2px solid #f8fafc !important; background: #f8fafc !important; transition: all 0.3s ease; padding-right: 3rem !important; }
-        input:focus { background: white !important; border-color: var(--brand) !important; box-shadow: 0 10px 20px -5px rgba(22, 27, 145, 0.05); outline: none; }
-        input:focus + i { color: var(--brand); }
-
+        input:focus { background: white !important; border-color: var(--brand) !important; outline: none; }
         .custom-button { background: var(--brand); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .custom-button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px -5px rgba(22, 27, 145, 0.4); }
-        .custom-button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-        /* Modal Styles */
+        
         #terms-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
-        .modal-content { background: white; border-radius: 2rem; max-width: 500px; width: 100%; padding: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+        .modal-content { background: white; border-radius: 2rem; max-width: 500px; width: 100%; padding: 2rem; }
     </style>
 </head>
 <body class="p-6">
 
-    <div class="bg-grid">
+    <div class="bg-grid" id="bgGrid">
         <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1533310266094-8898a03807dd?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=500">
-        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=500">
+        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=500">
     </div>
 
     <div class="auth-card max-w-md w-full p-10 md:p-14 text-center">
         <a href="index.html" class="absolute top-8 left-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-300 hover:text-[#161B91] transition-all group">
-            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1 text-[8px]"></i> Back
+            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i> Back
         </a>
 
         <div class="mb-8 mt-4">
-            <div class="flex justify-center mb-6">
-                <img src="images/logo-sora.png" alt="SORA" class="h-14 w-auto object-contain">
-            </div>
-            <h1 class="text-2xl font-black text-[#161B91] tracking-tighter uppercase mb-4">SORA STUDIO</h1>
-            <div class="flex items-center gap-2 justify-center">
-                <span class="w-6 h-[1px] bg-gray-100"></span>
-                <p id="auth-tagline" class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-300">Welcome Member</p>
-                <span class="w-6 h-[1px] bg-gray-100"></span>
-            </div>
-        </div>
-
-        <button onclick="loginWithGoogle()" class="w-full py-4 rounded-2xl flex items-center justify-center gap-3 mb-6 font-bold text-gray-500 border border-gray-100 hover:bg-gray-50 transition-all text-[10px] uppercase tracking-widest">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-4 h-4"> Google Login
-        </button>
-
-        <div class="relative mb-6">
-            <hr class="border-gray-50">
-            <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-[8px] text-gray-200 font-black uppercase tracking-widest">Or Email</span>
+            <img src="images/logo-sora.png" alt="SORA" class="h-14 w-auto mx-auto mb-6 object-contain">
+            <h1 class="text-2xl font-black text-[#161B91] tracking-tighter uppercase mb-2">SORA STUDIO</h1>
+            <p id="auth-tagline" class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-300">Welcome Member</p>
         </div>
 
         <div id="login-section" class="space-y-4">
+            <button onclick="loginWithGoogle()" class="w-full py-4 rounded-2xl flex items-center justify-center gap-3 mb-6 font-bold text-gray-400 border border-gray-100 hover:bg-gray-50 transition-all text-[10px] uppercase tracking-widest">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-4 h-4"> Google Login
+            </button>
             <div class="input-group">
                 <i class="fa-regular fa-envelope"></i>
-                <input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm outline-none">
+                <input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
             </div>
             <div class="input-group">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" id="pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm outline-none">
+                <input type="password" id="pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
             </div>
             <button onclick="handleAuth('login')" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] custom-button mt-4">Sign In</button>
             <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-4">
@@ -86,44 +68,48 @@
             </p>
         </div>
 
-        <div id="signup-section" class="space-y-4 hidden">
-            <div class="input-group">
-                <i class="fa-regular fa-envelope"></i>
-                <input type="email" id="s-email" placeholder="New Email" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm outline-none">
-            </div>
-            <div class="input-group">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="s-pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm outline-none">
-            </div>
-            <div class="input-group">
-                <i class="fa-solid fa-shield-check"></i>
-                <input type="password" id="s-pass-confirm" placeholder="Confirm Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm outline-none">
-            </div>
-            
-            <div class="flex items-center gap-2 px-2 text-right">
-                <input type="checkbox" id="terms-check" class="w-4 h-4 accent-[#161B91] cursor-pointer">
-                <label for="terms-check" class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">
-                    أوافق على <span onclick="toggleModal(true)" class="text-[#161B91] cursor-pointer underline">قوانين وشروط الاستوديو</span>
-                </label>
+        <div id="signup-section" class="hidden space-y-4 text-right">
+            <div id="signup-inputs" class="space-y-4">
+                <div class="input-group">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="s-email" placeholder="New Email" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="s-pass" placeholder="Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <input type="password" id="s-pass-confirm" placeholder="Confirm Password" class="w-full p-4 rounded-2xl font-bold text-[#161B91] text-sm">
+                </div>
+                <div class="flex items-center gap-2 px-2">
+                    <input type="checkbox" id="terms-check" class="w-4 h-4 accent-[#161B91]">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase">أوافق على <span onclick="toggleModal(true)" class="text-[#161B91] underline cursor-pointer">الشروط</span></label>
+                </div>
+                <button onclick="sendOTP()" id="send-otp-btn" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] custom-button mt-4">إرسال كود التحقق</button>
             </div>
 
-            <button id="signup-btn" onclick="handleAuth('signup')" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] custom-button mt-4">Join Community</button>
-            <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-4">
+            <div id="otp-section" class="hidden space-y-4">
+                <p class="text-[10px] font-bold text-center text-[#161B91]">أدخل كود التحقق المكون من 6 أرقام:</p>
+                <input type="text" id="otp-input" maxlength="6" class="w-full text-center p-4 rounded-2xl font-black text-[#161B91] text-xl border-2 border-[#161B91] outline-none" placeholder="000000">
+                <button onclick="verifyAndSignUp()" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] bg-green-600 hover:bg-green-700 transition">تأكيد وإنشاء الحساب</button>
+            </div>
+
+            <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-4 text-center">
                 Already Member? <span onclick="toggleMode()" class="text-[#161B91] cursor-pointer underline">Login</span>
             </p>
         </div>
     </div>
 
     <div id="terms-modal">
-        <div class="modal-content text-right animate-fade-in">
+        <div class="modal-content text-right">
             <h2 class="text-xl font-black text-[#161B91] mb-4">قوانين SORA STUDIO</h2>
-            <div class="text-[11px] text-gray-500 space-y-3 leading-relaxed font-bold overflow-y-auto max-h-[300px] pl-2">
-                <p>1. <span class="text-[#161B91]">الخصوصية:</span> نلتزم بحماية كافة بياناتك وصورك الشخصية ولن يتم مشاركتها مع أي طرف ثالث دون إذن كتابي.</p>
-                <p>2. <span class="text-[#161B91]">الحقوق الفنية:</span> جميع الأعمال المنتجة هي ملكية فكرية للاستوديو وللعميل الحق في استخدامها للأغراض الشخصية فقط.</p>
-                <p>3. <span class="text-[#161B91]">الاستخدام الآمن:</span> يمنع استخدام حسابك لأي أغراض تسيء للذوق العام أو تنتهك حقوق الآخرين.</p>
-                <p>4. <span class="text-[#161B91]">التعديلات:</span> يحق للاستوديو تعديل الشروط بما يتناسب مع جودة الخدمة، وسيتم إخطار الأعضاء بذلك.</p>
+            <div class="text-[11px] text-gray-500 space-y-3 font-bold">
+                <p>1. نلتزم بخصوصية بياناتك وصورك الشخصية تماماً.</p>
+                <p>2. يمنع استخدام الحساب لأي غرض يسيء للاستوديو أو للأعضاء.</p>
+                <p>3. الصور المحملة هي مسؤولية صاحب الحساب قانونياً.</p>
             </div>
-            <button onclick="toggleModal(false)" class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-black text-[10px] text-gray-400 uppercase tracking-widest hover:bg-gray-200 transition">إغلاق</button>
+            <button onclick="toggleModal(false)" class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-black text-[10px] text-gray-400 uppercase tracking-widest">إغلاق</button>
         </div>
     </div>
 
@@ -144,43 +130,73 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // Modal Logic
-        window.toggleModal = (show) => {
-            document.getElementById('terms-modal').style.display = show ? 'flex' : 'none';
-        };
+        // EmailJS Init
+        emailjs.init("18DggF6PaVHMgFPyO");
 
-        window.loginWithGoogle = async () => {
-            try { await signInWithPopup(auth, provider); window.location.href = "index.html"; } 
-            catch (err) { alert("Error: " + err.message); }
-        };
-
-        window.handleAuth = async (mode) => {
-            if (mode === 'signup') {
-                const pass = document.getElementById('s-pass').value;
-                const confirm = document.getElementById('s-pass-confirm').value;
-                const terms = document.getElementById('terms-check').checked;
-                
-                if (pass !== confirm) return alert("Passwords do not match!");
-                if (!terms) return alert("Please accept the terms and conditions");
-            }
-
-            const email = mode === 'login' ? document.getElementById('email').value : document.getElementById('s-email').value;
-            const pass = mode === 'login' ? document.getElementById('pass').value : document.getElementById('s-pass').value;
-            
-            if(!email || !pass) return alert("Please fill all fields");
-            
-            try {
-                if(mode === 'login') await signInWithEmailAndPassword(auth, email, pass);
-                else await createUserWithEmailAndPassword(auth, email, pass);
-                window.location.href = "index.html";
-            } catch (err) { alert("Action Failed: " + err.message); }
-        };
+        let generatedOTP;
+        let tempUser = {};
 
         window.toggleMode = () => {
             document.getElementById('login-section').classList.toggle('hidden');
             document.getElementById('signup-section').classList.toggle('hidden');
-            document.getElementById('auth-tagline').innerText = 
-                document.getElementById('login-section').classList.contains('hidden') ? "Join Sora Studio" : "Welcome Member";
+            document.getElementById('auth-tagline').innerText = document.getElementById('login-section').classList.contains('hidden') ? "Join Sora Studio" : "Welcome Member";
+        };
+
+        window.toggleModal = (s) => document.getElementById('terms-modal').style.display = s ? 'flex' : 'none';
+
+        window.sendOTP = async () => {
+            const email = document.getElementById('s-email').value;
+            const pass = document.getElementById('s-pass').value;
+            const confirm = document.getElementById('s-pass-confirm').value;
+            const terms = document.getElementById('terms-check').checked;
+
+            if(!email || pass.length < 6) return alert("البريد مطلوب وكلمة المرور يجب أن لا تقل عن 6 أحرف");
+            if(pass !== confirm) return alert("كلمات المرور غير متطابقة");
+            if(!terms) return alert("يجب الموافقة على الشروط");
+
+            const btn = document.getElementById('send-otp-btn');
+            btn.innerText = "جاري الإرسال...";
+            btn.disabled = true;
+
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            tempUser = { email, pass };
+
+            try {
+                await emailjs.send("service_n56bq4p", "template_2b7sxpy", {
+                    to_email: email,
+                    otp_code: generatedOTP
+                });
+                alert("تم إرسال كود التحقق لبريدك الإلكتروني");
+                document.getElementById('signup-inputs').classList.add('hidden');
+                document.getElementById('otp-section').classList.remove('hidden');
+            } catch (err) {
+                alert("فشل الإرسال: " + JSON.stringify(err));
+                btn.innerText = "إعادة المحاولة";
+                btn.disabled = false;
+            }
+        };
+
+        window.verifyAndSignUp = async () => {
+            const input = document.getElementById('otp-input').value;
+            if(input !== generatedOTP) return alert("الكود غير صحيح!");
+
+            try {
+                await createUserWithEmailAndPassword(auth, tempUser.email, tempUser.pass);
+                window.location.href = "index.html";
+            } catch (err) { alert("خطأ في Firebase: " + err.message); }
+        };
+
+        window.handleAuth = async (mode) => {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('pass').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+                window.location.href = "index.html";
+            } catch (err) { alert("فشل الدخول: " + err.message); }
+        };
+
+        window.loginWithGoogle = async () => {
+            try { await signInWithPopup(auth, provider); window.location.href = "index.html"; } catch(e){}
         };
     </script>
 </body>
