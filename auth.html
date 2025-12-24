@@ -21,9 +21,10 @@
         .input-group { position: relative; width: 100%; }
         .input-group i { position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.8rem; }
         input { border: 2px solid #f8fafc !important; background: #f8fafc !important; transition: all 0.3s ease; padding-right: 3rem !important; }
-        input:focus { background: white !important; border-color: var(--brand) !important; outline: none; }
-        .custom-button { background: var(--brand); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        input:focus { background: white !important; border-color: var(--brand) !important; outline: none; box-shadow: 0 10px 15px -3px rgba(22, 27, 145, 0.05); }
+        .custom-button { background: var(--brand); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .custom-button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px -5px rgba(22, 27, 145, 0.4); }
+        .custom-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         
         #terms-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
         .modal-content { background: white; border-radius: 2rem; max-width: 500px; width: 100%; padding: 2rem; }
@@ -31,7 +32,7 @@
 </head>
 <body class="p-6">
 
-    <div class="bg-grid" id="bgGrid">
+    <div class="bg-grid">
         <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=500">
         <img src="https://images.unsplash.com/photo-1533310266094-8898a03807dd?auto=format&fit=crop&w=500">
@@ -41,7 +42,7 @@
 
     <div class="auth-card max-w-md w-full p-10 md:p-14 text-center">
         <a href="index.html" class="absolute top-8 left-10 flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-300 hover:text-[#161B91] transition-all group">
-            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i> Back
+            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1 text-[8px]"></i> Back
         </a>
 
         <div class="mb-8 mt-4">
@@ -90,9 +91,9 @@
             </div>
 
             <div id="otp-section" class="hidden space-y-4">
-                <p class="text-[10px] font-bold text-center text-[#161B91]">أدخل كود التحقق المكون من 6 أرقام:</p>
-                <input type="text" id="otp-input" maxlength="6" class="w-full text-center p-4 rounded-2xl font-black text-[#161B91] text-xl border-2 border-[#161B91] outline-none" placeholder="000000">
-                <button onclick="verifyAndSignUp()" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] bg-green-600 hover:bg-green-700 transition">تأكيد وإنشاء الحساب</button>
+                <p class="text-[10px] font-bold text-center text-[#161B91]">أدخل كود التحقق (6 أرقام) من بريدك:</p>
+                <input type="text" id="otp-input" maxlength="6" class="w-full text-center p-4 rounded-2xl font-black text-[#161B91] text-2xl border-2 border-[#161B91] outline-none" placeholder="000000">
+                <button onclick="verifyAndSignUp()" class="w-full py-5 rounded-2xl text-white font-black text-[10px] uppercase tracking-[0.2em] bg-green-600 hover:bg-green-700 transition shadow-lg">تأكيد وإنشاء الحساب</button>
             </div>
 
             <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-4 text-center">
@@ -106,8 +107,8 @@
             <h2 class="text-xl font-black text-[#161B91] mb-4">قوانين SORA STUDIO</h2>
             <div class="text-[11px] text-gray-500 space-y-3 font-bold">
                 <p>1. نلتزم بخصوصية بياناتك وصورك الشخصية تماماً.</p>
-                <p>2. يمنع استخدام الحساب لأي غرض يسيء للاستوديو أو للأعضاء.</p>
-                <p>3. الصور المحملة هي مسؤولية صاحب الحساب قانونياً.</p>
+                <p>2. يمنع استخدام الحساب لأي غرض يسيء للاستوديو.</p>
+                <p>3. تأكيد الحساب بالبريد ضروري لضمان جودة المجتمع.</p>
             </div>
             <button onclick="toggleModal(false)" class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-black text-[10px] text-gray-400 uppercase tracking-widest">إغلاق</button>
         </div>
@@ -130,7 +131,7 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // EmailJS Init
+        // EmailJS Setup
         emailjs.init("18DggF6PaVHMgFPyO");
 
         let generatedOTP;
@@ -145,12 +146,13 @@
         window.toggleModal = (s) => document.getElementById('terms-modal').style.display = s ? 'flex' : 'none';
 
         window.sendOTP = async () => {
-            const email = document.getElementById('s-email').value;
+            const email = document.getElementById('s-email').value.trim();
             const pass = document.getElementById('s-pass').value;
             const confirm = document.getElementById('s-pass-confirm').value;
             const terms = document.getElementById('terms-check').checked;
 
-            if(!email || pass.length < 6) return alert("البريد مطلوب وكلمة المرور يجب أن لا تقل عن 6 أحرف");
+            if(!email || !email.includes('@')) return alert("يرجى إدخال بريد إلكتروني صحيح");
+            if(pass.length < 6) return alert("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
             if(pass !== confirm) return alert("كلمات المرور غير متطابقة");
             if(!terms) return alert("يجب الموافقة على الشروط");
 
@@ -162,33 +164,39 @@
             tempUser = { email, pass };
 
             try {
+                // إرسال البيانات - تأكد أن to_email موجود في القالب بـ EmailJS
                 await emailjs.send("service_n56bq4p", "template_2b7sxpy", {
                     to_email: email,
                     otp_code: generatedOTP
                 });
-                alert("تم إرسال كود التحقق لبريدك الإلكتروني");
+                
+                alert("تم إرسال كود التحقق بنجاح لـ: " + email);
                 document.getElementById('signup-inputs').classList.add('hidden');
                 document.getElementById('otp-section').classList.remove('hidden');
             } catch (err) {
-                alert("فشل الإرسال: " + JSON.stringify(err));
+                console.error("EmailJS Error:", err);
+                alert("فشل الإرسال: " + (err.text || "تأكد من إعدادات EmailJS"));
                 btn.innerText = "إعادة المحاولة";
                 btn.disabled = false;
             }
         };
 
         window.verifyAndSignUp = async () => {
-            const input = document.getElementById('otp-input').value;
-            if(input !== generatedOTP) return alert("الكود غير صحيح!");
+            const inputCode = document.getElementById('otp-input').value.trim();
+            if(inputCode !== generatedOTP) return alert("الكود الذي أدخلته غير صحيح!");
 
             try {
                 await createUserWithEmailAndPassword(auth, tempUser.email, tempUser.pass);
                 window.location.href = "index.html";
-            } catch (err) { alert("خطأ في Firebase: " + err.message); }
+            } catch (err) {
+                alert("خطأ في إنشاء الحساب: " + err.message);
+            }
         };
 
         window.handleAuth = async (mode) => {
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim();
             const pass = document.getElementById('pass').value;
+            if(!email || !pass) return alert("يرجى ملء كافة الحقول");
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
                 window.location.href = "index.html";
@@ -196,7 +204,10 @@
         };
 
         window.loginWithGoogle = async () => {
-            try { await signInWithPopup(auth, provider); window.location.href = "index.html"; } catch(e){}
+            try { 
+                await signInWithPopup(auth, provider); 
+                window.location.href = "index.html"; 
+            } catch(e) { console.error(e); }
         };
     </script>
 </body>
