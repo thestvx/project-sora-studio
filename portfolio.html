@@ -31,27 +31,26 @@
             box-shadow: 0 10px 20px rgba(22, 27, 145, 0.15);
         }
 
-        /* Motion: Slide from Right to Left */
+        /* الموشن المطور عند الانتقال */
         .work-item { 
+            transition: opacity 0.5s ease;
             will-change: transform, opacity;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1), opacity 0.8s ease;
         }
         
         .work-item.filtering {
-            animation: slideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: elegantIn 0.8s cubic-bezier(0.2, 1, 0.2, 1) forwards;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(60px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes elegantIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
-        .work-item.hidden { display: none; }
+        .work-item.hidden { display: none !important; }
 
         .work-card { 
             position: relative; border-radius: 1.5rem; overflow: hidden;
-            background: #f3f4f6; /* Placeholder color */
-            transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+            background: #f9fafb; transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
         }
         
         .img-wrapper { 
@@ -60,22 +59,18 @@
 
         .work-card img { 
             width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.2, 1), opacity 0.5s ease;
-            opacity: 0; /* Hidden until loaded */
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.2, 1); 
         }
         
-        /* Class added via JS when image is ready */
-        .loaded { opacity: 1 !important; }
-
         .card-info {
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(22, 27, 145, 0.7), transparent);
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.8), transparent);
             display: flex; flex-direction: column; justify-content: flex-end;
             padding: 20px; opacity: 0; transition: all 0.4s ease;
         }
 
-        .work-card:hover { transform: translateY(-5px); }
-        .work-card:hover img { transform: scale(1.08); }
+        .work-card:hover { transform: scale(1.02); z-index: 10; }
+        .work-card:hover img { transform: scale(1.1); }
         .work-card:hover .card-info { opacity: 1; }
     </style>
 </head>
@@ -87,12 +82,14 @@
                 <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto">
                 <span class="text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
             </a>
+            
             <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-400">
                 <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
                 <a href="about.html" class="hover:text-[#161B91] transition">About</a>
                 <a href="portfolio.html" class="text-[#161B91]">Portfolio</a>
                 <a href="services.html" class="hover:text-[#161B91] transition">Services</a> 
             </div>
+            
             <div class="w-10"></div> 
         </div>
     </nav>
@@ -100,6 +97,7 @@
     <header class="pt-56 pb-12 px-8 max-w-7xl mx-auto text-center">
         <div data-aos="fade-up">
             <h1 class="hero-title text-6xl md:text-[80px] font-black tracking-tighter mb-8">معرض الأعمال</h1>
+            
             <div class="filter-container flex flex-wrap justify-center gap-2">
                 <button class="filter-btn active" data-filter="all">الكل</button>
                 <button class="filter-btn" data-filter="brand">العلامات التجارية</button>
@@ -114,11 +112,38 @@
 
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
-            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" alt="Wedding" loading="lazy" onload="this.classList.add('loaded')"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" alt="Wedding" loading="lazy" onload="this.classList.add('loaded')"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9458.jpg" alt="Wedding" loading="lazy" onload="this.classList.add('loaded')"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" alt="Brand" loading="lazy" onload="this.classList.add('loaded')"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
-            </div>
+            
+            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9458.jpg" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9459.jpg" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9460.jpg" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold">حفل زفاف</h3></div></div></div>
+
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2335.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2337.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2342.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2344.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2347.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2349.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2354.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2377.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2379.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+
+            <div class="work-item" data-category="shooting" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold">جلسة تصوير استوديو</h3></div></div></div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold">جلسة تصوير استوديو</h3></div></div></div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold">جلسة تصوير استوديو</h3></div></div></div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3538.jpg" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold">جلسة تصوير استوديو</h3></div></div></div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3594.jpg" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold">جلسة تصوير استوديو</h3></div></div></div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3637.jpg" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold">جلسة تصوير استوديو</h3></div></div></div>
+
+            <div class="work-item" data-category="birthday" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="birthday" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6024.jpg" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="birthday" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6043.jpg" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="birthday" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6049.jpg" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="birthday" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6051.jpg" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div></div></div>
+
+        </div>
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -137,10 +162,10 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const portfolioContainer = document.getElementById('portfolio-items');
 
-        // جلب البيانات من Firebase مع دعم الصور المتأخرة
+        const portfolioContainer = document.getElementById('portfolio-items');
         const q = query(collection(db, "projects"), orderBy("createdAt", "desc"));
+
         onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added") {
@@ -149,7 +174,7 @@
                         <div class="work-item" data-category="${project.category}">
                             <div class="work-card">
                                 <div class="img-wrapper">
-                                    <img src="${project.imageUrl}" alt="${project.title}" loading="lazy" onload="this.classList.add('loaded')">
+                                    <img src="${project.imageUrl}" alt="${project.title}">
                                 </div>
                                 <div class="card-info text-right">
                                     <h3 class="text-white font-bold">${project.title}</h3>
@@ -174,15 +199,18 @@
                     btn.classList.add('active');
                     const filterValue = btn.getAttribute('data-filter');
 
-                    items.forEach((item, index) => {
+                    let delay = 0;
+                    items.forEach((item) => {
                         item.classList.remove('filtering');
                         
                         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                             item.classList.remove('hidden');
-                            // إضافة Delay بسيط لكل عنصر لخلق تأثير سحب متتابع
+                            
+                            // موشن متتابع Elegant Stagger
                             setTimeout(() => {
                                 item.classList.add('filtering');
-                            }, index * 40); 
+                            }, delay);
+                            delay += 60; // فرق 60 جزء من الثانية بين كل صورة
                         } else {
                             item.classList.add('hidden');
                         }
@@ -193,18 +221,10 @@
     </script>
 
     <script>
-        // إعدادات AOS والناف بار
-        AOS.init({ duration: 800, once: true, offset: 50 });
-        
+        AOS.init({ duration: 1000, once: true });
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            if(window.scrollY > 50) {
-                nav.classList.add('py-4');
-                nav.firstElementChild.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('py-4');
-                nav.firstElementChild.classList.remove('shadow-lg');
-            }
+            window.scrollY > 50 ? nav.classList.add('py-4') : nav.classList.remove('py-4');
         });
     </script>
 </body>
