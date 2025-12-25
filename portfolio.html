@@ -17,7 +17,7 @@
         
         .hero-title { color: var(--brand); line-height: 1.2; }
         
-        /* --- تأثير اللوجو التفاعلي --- */
+        /* --- تأثير اللوجو الموحد (نفس About) --- */
         .logo-text {
             max-width: 0;
             opacity: 0;
@@ -35,6 +35,7 @@
         .logo-img { transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .logo-group:hover .logo-img { transform: rotate(360deg); }
 
+        /* أزرار الفلتر */
         .filter-btn { 
             transition: all 0.3s ease; 
             color: #6b7280; border: 1.5px solid #f3f4f6; 
@@ -44,7 +45,7 @@
         }
         .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
 
-        /* نظام الموشن */
+        /* نظام الموشن المحسن */
         .work-item { 
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
             will-change: transform, opacity;
@@ -85,33 +86,34 @@
         .work-card:hover img { transform: scale(1.05); }
         .work-card:hover .card-info { opacity: 1; }
 
-        /* استايل الفوتر */
         .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
+        
         .custom-button { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
+        .custom-button:hover { transform: translateY(-5px); scale: 1.02; }
     </style>
 </head>
 <body>
 
     <nav class="fixed w-full z-[100] px-6 py-6 transition-all duration-500" id="nav" dir="ltr">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/90 backdrop-blur-md border border-gray-100 px-8 py-4 rounded-[2.5rem] shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-[2.5rem] shadow-sm">
             <a href="index.html" class="flex items-center group logo-group">
-                <img src="images/logo-sora.png" alt="SORA" class="h-8 w-auto logo-img">
-                <span class="logo-text text-xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
+                <img src="images/logo-sora.png" alt="SORA" class="h-10 w-auto object-contain logo-img">
+                <span class="logo-text text-2xl font-black text-[#161B91] tracking-tighter uppercase">SORA STUDIO</span>
             </a>
-            <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-widest text-gray-400">
+            <div class="hidden md:flex gap-10 font-bold text-[10px] uppercase tracking-widest text-gray-400">
                 <a href="index.html" class="hover:text-[#161B91] transition">Home</a>
                 <a href="about.html" class="hover:text-[#161B91] transition">About</a>
                 <a href="portfolio.html" class="text-[#161B91]">Portfolio</a>
-                <a href="services.html" class="hover:text-[#161B91] transition">Services</a> 
+                <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
             </div>
             <div class="flex items-center">
-                <a href="contact.html" class="bg-[#161B91] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Book</a>
-            </div> 
+                <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Book Now</a>
+            </div>
         </div>
     </nav>
 
-    <header class="pt-48 pb-10 px-8 max-w-7xl mx-auto text-center">
+    <header class="pt-64 pb-10 px-8 max-w-7xl mx-auto text-center">
         <h1 class="hero-title text-5xl md:text-7xl font-black tracking-tighter mb-8" data-aos="fade-up">معرض الأعمال</h1>
         <div class="filter-container flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
             <button class="filter-btn active" data-filter="all">الكل</button>
@@ -161,24 +163,22 @@
     <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
-                <div class="text-center md:text-right" data-aos="fade-up">
+                <div class="text-center md:text-right">
                     <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Visual Excellence Since 2020</p>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
                 </div>
-
-                <div class="flex gap-8 text-2xl text-gray-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex gap-8 text-2xl text-gray-300">
                     <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
                     <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
-
             <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
-                <div class="flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
-                    <a href="#" class="hover:text-[#161B91] transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-[#161B91] transition">Terms of Service</a>
+                <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                    <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
+                    <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
                 </div>
             </div>
         </div>
@@ -256,9 +256,15 @@
 
     <script>
         AOS.init({ duration: 800, once: true, disable: 'mobile' });
+        
+        // موحد مع منطق About و Home
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            window.scrollY > 20 ? nav.style.transform = 'translateY(-5px)' : nav.style.transform = 'translateY(0)';
+            if (window.scrollY > 50) {
+                nav.style.transform = 'translateY(-10px)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
         });
     </script>
 </body>
