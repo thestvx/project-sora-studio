@@ -79,7 +79,6 @@
         }
         .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
 
-        /* Custom Button */
         .custom-button { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     </style>
 </head>
@@ -100,10 +99,6 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="auth.html" class="hidden sm:flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#161B91] transition px-4">
-                    <i class="fa-regular fa-user text-xs"></i>
-                    Login
-                </a>
                 <button onclick="openModal()" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button hover:bg-[#101470] transition shadow-lg shadow-[#161B91]/20">Book Now</button>
             </div>
         </div>
@@ -127,8 +122,58 @@
 
     <main class="max-w-7xl mx-auto px-8 pb-32">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-items">
-            <div class="col-span-full text-center py-20 text-gray-300 font-bold animate-pulse">جاري تحميل الأعمال...</div>
-        </div>
+            
+            <div class="work-item" data-category="events" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" alt="Birthday Celebration"></div>
+                    <div class="card-overlay text-right text-white">
+                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">events</span>
+                        <h3 class="text-2xl font-black">لحظات ميلاد مميزة</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="events" data-aos="fade-up" data-aos-delay="100">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6024.jpg" alt="Birthday Celebration"></div>
+                    <div class="card-overlay text-right text-white">
+                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">events</span>
+                        <h3 class="text-2xl font-black">تفاصيل السعادة</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="events" data-aos="fade-up" data-aos-delay="200">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6043.jpg" alt="Birthday Celebration"></div>
+                    <div class="card-overlay text-right text-white">
+                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">events</span>
+                        <h3 class="text-2xl font-black">توثيق المناسبات</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="events" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6049.jpg" alt="Birthday Celebration"></div>
+                    <div class="card-overlay text-right text-white">
+                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">events</span>
+                        <h3 class="text-2xl font-black">أجواء احتفالية</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="events" data-aos="fade-up" data-aos-delay="100">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6051.jpg" alt="Birthday Celebration"></div>
+                    <div class="card-overlay text-right text-white">
+                        <span class="text-[10px] font-bold uppercase tracking-widest mb-2 block opacity-70">events</span>
+                        <h3 class="text-2xl font-black">ذكريات لا تنسى</h3>
+                    </div>
+                </div>
+            </div>
+
+            </div>
     </main>
 
     <div id="bookingModal" class="modal-overlay">
@@ -167,7 +212,6 @@
         const q = query(collection(db, "projects"), orderBy("createdAt", "desc"));
 
         onSnapshot(q, (snapshot) => {
-            portfolioContainer.innerHTML = '';
             snapshot.forEach((doc) => {
                 const project = doc.data();
                 const projectHtml = `
@@ -183,7 +227,7 @@
                         </div>
                     </div>
                 `;
-                portfolioContainer.innerHTML += projectHtml;
+                portfolioContainer.insertAdjacentHTML('beforeend', projectHtml);
             });
             AOS.init();
             initFilters();
@@ -212,6 +256,8 @@
     </script>
 
     <script>
+        AOS.init({ duration: 1000, once: true });
+        
         function openModal() {
             document.getElementById('bookingModal').classList.add('active');
             document.body.style.overflow = 'hidden';
