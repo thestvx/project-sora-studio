@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SORA STUDIO — Portfolio</title>
+    <title>SORA STUDIO — Portfolio Gallery</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --brand: #161B91; --soft-bg: #f8f9ff; }
+        :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; }
         
         .hero-title { color: var(--brand); line-height: 1.2; }
@@ -21,46 +21,43 @@
         .filter-btn { 
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
             color: #6b7280; border: 1.5px solid #f3f4f6; 
-            font-size: 12px; font-weight: 700; background: white;
-            padding: 12px 28px; border-radius: 100px;
+            font-size: 11px; font-weight: 700; background: white;
+            padding: 10px 24px; border-radius: 100px;
+            text-transform: uppercase; letter-spacing: 0.05em;
         }
         .filter-btn.active { 
             background: var(--brand); color: white; border-color: var(--brand);
-            box-shadow: 0 12px 24px rgba(22, 27, 145, 0.2);
+            box-shadow: 0 10px 20px rgba(22, 27, 145, 0.15);
         }
-        .filter-btn:hover:not(.active) { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+        .filter-btn:hover:not(.active) { border-color: var(--brand); color: var(--brand); }
 
-        /* Advanced Work Cards */
+        /* Gallery/Album Grid Styling */
         .work-card { 
-            position: relative; border-radius: 3rem; overflow: hidden;
-            background: #fff; transition: all 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+            position: relative; border-radius: 1.5rem; overflow: hidden;
+            background: #f9fafb; transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
         }
         
         .img-wrapper { 
-            width: 100%; overflow: hidden; border-radius: 3rem;
-            position: relative; aspect-ratio: 4/5;
+            width: 100%; overflow: hidden; position: relative; aspect-ratio: 3/4;
         }
 
         .work-card img { 
             width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 1.5s cubic-bezier(0.2, 1, 0.2, 1); 
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.2, 1); 
         }
         
         .card-info {
-            position: absolute; bottom: 20px; left: 20px; right: 20px;
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2); padding: 25px;
-            border-radius: 2.2rem; transform: translateY(20px); opacity: 0;
-            transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.7), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 20px; opacity: 0; transition: all 0.4s ease;
         }
 
-        .work-card:hover { transform: translateY(-15px); box-shadow: 0 40px 80px rgba(0,0,0,0.1); }
+        .work-card:hover { transform: scale(1.02); }
         .work-card:hover img { transform: scale(1.1); }
-        .work-card:hover .card-info { transform: translateY(0); opacity: 1; }
+        .work-card:hover .card-info { opacity: 1; }
 
         .work-item.hidden { display: none; opacity: 0; }
-
-        .custom-button { transition: all 0.4s ease; }
     </style>
 </head>
 <body>
@@ -78,96 +75,99 @@
                 <a href="portfolio.html" class="text-[#161B91]">Portfolio</a>
                 <a href="services.html" class="hover:text-[#161B91] transition">Services</a> 
             </div>
-
-            <button onclick="openModal()" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#101470] transition-all shadow-lg shadow-[#161B91]/20">Book Now</button>
+            
+            <div class="w-10"></div> 
         </div>
     </nav>
 
-    <header class="pt-64 pb-16 px-8 max-w-7xl mx-auto text-center">
+    <header class="pt-56 pb-12 px-8 max-w-7xl mx-auto text-center">
         <div data-aos="fade-up">
-            <h1 class="hero-title text-6xl md:text-[90px] font-black tracking-tighter mb-8">معرض الصور</h1>
+            <h1 class="hero-title text-6xl md:text-[80px] font-black tracking-tighter mb-8">معرض الأعمال</h1>
             
-            <div class="filter-container flex flex-wrap justify-center gap-3">
+            <div class="filter-container flex flex-wrap justify-center gap-2">
                 <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
                 <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
                 <button class="filter-btn" data-filter="weddings">أعراس</button>
                 <button class="filter-btn" data-filter="events">مناسبات</button>
                 <button class="filter-btn" data-filter="food">طعام</button>
-                <button class="filter-btn" data-filter="cinema">سينما</button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-8 pb-32">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="portfolio-items">
+    <main class="max-w-7xl mx-auto px-6 pb-32">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
             
+            <div class="work-item" data-category="shooting" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" alt="Studio Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">Studio Session</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" alt="Studio Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">Studio Session</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" alt="Studio Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">Studio Session</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3538.jpg" alt="Studio Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">Studio Session</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3594.jpg" alt="Studio Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">Studio Session</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="shooting" data-aos="fade-up">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3637.jpg" alt="Studio Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">Studio Session</h3></div>
+                </div>
+            </div>
+
             <div class="work-item" data-category="birthday" data-aos="fade-up">
                 <div class="work-card">
                     <div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" alt="Birthday"></div>
-                    <div class="card-info text-right">
-                        <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest block mb-1">Birthday</span>
-                        <h3 class="text-xl font-bold text-white">لحظة احتفال</h3>
-                    </div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div>
                 </div>
             </div>
-
-            <div class="work-item" data-category="birthday" data-aos="fade-up" data-aos-delay="100">
+            <div class="work-item" data-category="birthday" data-aos="fade-up">
                 <div class="work-card">
                     <div class="img-wrapper"><img src="portfolio/birthday/IMG_6024.jpg" alt="Birthday"></div>
-                    <div class="card-info text-right">
-                        <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest block mb-1">Birthday</span>
-                        <h3 class="text-xl font-bold text-white">بهجة الميلاد</h3>
-                    </div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div>
                 </div>
             </div>
-
-            <div class="work-item" data-category="birthday" data-aos="fade-up" data-aos-delay="200">
+            <div class="work-item" data-category="birthday" data-aos="fade-up">
                 <div class="work-card">
                     <div class="img-wrapper"><img src="portfolio/birthday/IMG_6043.jpg" alt="Birthday"></div>
-                    <div class="card-info text-right">
-                        <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest block mb-1">Birthday</span>
-                        <h3 class="text-xl font-bold text-white">تفاصيل أنيقة</h3>
-                    </div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div>
                 </div>
             </div>
-
             <div class="work-item" data-category="birthday" data-aos="fade-up">
                 <div class="work-card">
                     <div class="img-wrapper"><img src="portfolio/birthday/IMG_6049.jpg" alt="Birthday"></div>
-                    <div class="card-info text-right">
-                        <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest block mb-1">Birthday</span>
-                        <h3 class="text-xl font-bold text-white">ذكرى خالدة</h3>
-                    </div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div>
                 </div>
             </div>
-
-            <div class="work-item" data-category="birthday" data-aos="fade-up" data-aos-delay="100">
+            <div class="work-item" data-category="birthday" data-aos="fade-up">
                 <div class="work-card">
                     <div class="img-wrapper"><img src="portfolio/birthday/IMG_6051.jpg" alt="Birthday"></div>
-                    <div class="card-info text-right">
-                        <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest block mb-1">Birthday</span>
-                        <h3 class="text-xl font-bold text-white">يوم لا ينسى</h3>
-                    </div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold">عيد ميلاد</h3></div>
                 </div>
             </div>
 
-            </div>
-    </main>
-
-    <div id="bookingModal" class="modal-overlay">
-        <div class="modal-content relative">
-            <button onclick="closeModal()" class="absolute top-10 left-10 text-gray-300 hover:text-[#161B91] transition-all text-2xl"><i class="fa-solid fa-circle-xmark"></i></button>
-            <div class="text-right mb-12">
-                <h2 class="text-4xl font-black text-[#161B91] tracking-tighter mb-4">ابدأ مشروعك</h2>
-                <p class="text-gray-400 font-medium">دعنا نحول فكرتك إلى قصة بصرية.</p>
-            </div>
-            <form class="space-y-6">
-                <input type="text" placeholder="ما هو اسمك؟" class="w-full p-4 border-b-2 border-gray-100 outline-none focus:border-[#161B91] transition text-right font-bold">
-                <input type="tel" placeholder="رقم الهاتف" class="w-full p-4 border-b-2 border-gray-100 outline-none focus:border-[#161B91] transition text-right font-bold">
-                <button type="button" class="w-full bg-[#161B91] text-white py-5 rounded-[2rem] font-black uppercase tracking-widest text-[10px] hover:shadow-2xl transition-all">إرسال الطلب</button>
-            </form>
         </div>
-    </div>
+    </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="module">
@@ -199,8 +199,7 @@
                                 <img src="${project.imageUrl}" alt="${project.title}">
                             </div>
                             <div class="card-info text-right">
-                                <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest block mb-1">${project.category}</span>
-                                <h3 class="text-xl font-bold text-white">${project.title}</h3>
+                                <h3 class="text-white font-bold">${project.title}</h3>
                             </div>
                         </div>
                     </div>
@@ -235,16 +234,6 @@
 
     <script>
         AOS.init({ duration: 1000, once: true });
-        
-        function openModal() {
-            document.getElementById('bookingModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             window.scrollY > 50 ? nav.classList.add('py-4') : nav.classList.remove('py-4');
