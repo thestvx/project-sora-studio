@@ -26,24 +26,34 @@
         }
         .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
 
-        /* موشن خفيف وسلس جداً */
+        /* نظام الموشن الجديد والمحسن */
         .work-item { 
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s linear;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
             will-change: transform, opacity;
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(0) scale(1);
         }
         
+        /* حالة الاختفاء */
         .work-item.hidden { 
             display: none !important;
             opacity: 0;
-            transform: scale(0.9);
+            transform: translateY(20px) scale(0.98);
         }
 
-        /* تحسين أداء الكروت */
+        /* أنيميشن الظهور المتتابع (يتم تفعيله عبر JS) */
+        .work-item.animating {
+            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         .work-card { 
             position: relative; border-radius: 1.2rem; overflow: hidden;
-            background: #f3f4f6; transform: translateZ(0); /* تسريع الـ GPU */
+            background: #f3f4f6; transform: translateZ(0);
         }
         
         .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; }
@@ -143,7 +153,6 @@
         const db = getFirestore(app);
         const portfolioContainer = document.getElementById('portfolio-items');
 
-        // جلب البيانات من Firebase مع تحسين الأداء
         const q = query(collection(db, "projects"), orderBy("createdAt", "desc"));
         onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
@@ -163,7 +172,7 @@
                     portfolioContainer.insertAdjacentHTML('beforeend', html);
                 }
             });
-            initFilters(); // تفعيل الفلترة بعد جلب البيانات
+            initFilters();
         });
 
         function initFilters() {
@@ -176,11 +185,19 @@
                     btn.classList.add('active');
                     const filter = btn.getAttribute('data-filter');
 
-                    // فلترة سريعة بدون setTimeout ثقيل
+                    // تصفية العناصر مع موشن متتابع (Staggered)
+                    let delay = 0;
                     items.forEach(item => {
+                        item.classList.remove('animating'); // إعادة تعيين الأنيميشن
                         const cat = item.getAttribute('data-category');
+                        
                         if (filter === 'all' || cat === filter) {
                             item.classList.remove('hidden');
+                            // إضافة الأنيميشن مع تأخير بسيط لكل عنصر
+                            setTimeout(() => {
+                                item.classList.add('animating');
+                            }, delay);
+                            delay += 50; // 50ms تأخير بين كل صورة وصورة
                         } else {
                             item.classList.add('hidden');
                         }
