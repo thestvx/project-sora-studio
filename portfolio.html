@@ -86,6 +86,7 @@
             
             <div class="filter-container flex flex-wrap justify-center gap-2">
                 <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="brand">العلامات التجارية</button>
                 <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
                 <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
                 <button class="filter-btn" data-filter="weddings">أعراس</button>
@@ -98,6 +99,17 @@
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
             
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2335.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2337.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2342.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2344.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2347.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2349.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2354.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2377.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand" data-aos="fade-up"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2379.jpg" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold">علامة تجارية</h3></div></div></div>
+
             <div class="work-item" data-category="shooting" data-aos="fade-up">
                 <div class="work-card">
                     <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" alt="Studio Shooting"></div>
@@ -230,6 +242,8 @@
                 };
             });
         }
+        // استدعاء أولي لتفعيل الفلاتر على الصور الموجودة مسبقاً في الـ HTML
+        initFilters();
     </script>
 
     <script>
