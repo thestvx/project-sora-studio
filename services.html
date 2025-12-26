@@ -70,6 +70,14 @@
         }
         .service-card:hover .action-arrow { background: var(--brand); border-color: var(--brand); color: white; }
 
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-content { animation: marquee 30s linear infinite; }
+        .marquee-content:hover { animation-play-state: paused; }
+
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 12, 50, 0.4); backdrop-filter: blur(20px);
@@ -244,6 +252,23 @@
                     <h3 class="text-white text-3xl md:text-5xl font-black tracking-widest uppercase">Behind the lens</h3>
                     <p class="text-white/60 text-xs font-bold mt-4 tracking-[0.5em] uppercase">Where magic happens</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 overflow-hidden border-y border-gray-50">
+        <div class="flex marquee-content whitespace-nowrap">
+            <div class="flex items-center gap-20 px-10">
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Sora Studio</span>
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Visual Excellence</span>
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Creative Vision</span>
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Cinema Quality</span>
+            </div>
+            <div class="flex items-center gap-20 px-10">
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Sora Studio</span>
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Visual Excellence</span>
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Creative Vision</span>
+                <span class="text-7xl font-black text-[#161B91]/5 uppercase italic">Cinema Quality</span>
             </div>
         </div>
     </section>
