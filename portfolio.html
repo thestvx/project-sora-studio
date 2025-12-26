@@ -14,10 +14,11 @@
     <style>
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; scroll-behavior: smooth; }
-        
+        * { -webkit-tap-highlight-color: transparent; }
+
         .hero-title { color: var(--brand); line-height: 1.2; }
         
-        /* --- تأثير اللوجو الموحد --- */
+        /* تأثير اللوجو */
         .logo-text {
             max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
             transition: max-width 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
@@ -29,56 +30,54 @@
 
         /* أزرار الفلتر */
         .filter-btn { 
-            transition: all 0.3s ease; 
-            color: #6b7280; border: 1.5px solid #f3f4f6; 
+            transition: all 0.3s ease; color: #6b7280; border: 1.5px solid #f3f4f6; 
             font-size: 11px; font-weight: 700; background: white;
             padding: 10px 24px; border-radius: 100px; cursor: pointer;
         }
         .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
 
-        /* نظام الموشن المحسن للأداء */
+        /* نظام الموشن المحسن */
         .work-item { 
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             will-change: transform, opacity;
-            opacity: 1; transform: translateY(0) scale(1);
+            backface-visibility: hidden;
         }
-        
-        .work-item.hidden { display: none !important; opacity: 0; transform: translateY(20px) scale(0.98); }
-
-        .work-item.animating { animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .work-item.hidden { display: none !important; opacity: 0; transform: scale(0.95); }
+        .work-item.animating { animation: slideIn 0.5s ease forwards; }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .work-card { 
             position: relative; border-radius: 1.2rem; overflow: hidden;
-            background: #f3f4f6; transform: translateZ(0);
+            background: #f9fafb; transform: translateZ(0);
         }
         
-        .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; background: #eee; }
+        .img-wrapper { 
+            width: 100%; position: relative; aspect-ratio: 3/4; 
+            overflow: hidden; background: #f3f4f6;
+        }
+
         .work-card img { 
             width: 100%; height: 100%; object-fit: cover; 
             transition: transform 0.6s ease;
-            content-visibility: auto; /* تحسين الرندر للصور */
+            content-visibility: auto;
         }
         
         .card-info {
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(22, 27, 145, 0.75), transparent);
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.8), transparent 70%);
             display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 15px; opacity: 0; transition: opacity 0.3s ease;
+            padding: 20px; opacity: 0; transition: opacity 0.3s ease;
         }
 
-        .work-card:hover img { transform: scale(1.05); }
+        .work-card:hover img { transform: scale(1.08); }
         .work-card:hover .card-info { opacity: 1; }
 
-        .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
-        
-        .custom-button { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
-        .custom-button:hover { transform: translateY(-5px); scale: 1.02; }
+        .custom-button { transition: all 0.4s ease; box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
+        .social-icon:hover { color: var(--brand); transform: translateY(-3px); }
     </style>
 </head>
 <body>
@@ -106,55 +105,66 @@
         <div class="filter-container flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
             <button class="filter-btn active" data-filter="all">الكل</button>
             <button class="filter-btn" data-filter="brand">العلامات التجارية</button>
-            <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
+            <button class="filter-btn" data-filter="shooting">جلسات الأستوديو</button>
             <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
             <button class="filter-btn" data-filter="weddings">أعراس</button>
-            <button class="filter-btn" data-filter="events">مناسبات</button>
-            <button class="filter-btn" data-filter="food">طعام</button>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/003.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/01.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/03.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/05.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            
+            <div class="work-item" data-category="weddings">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" decoding="async" alt="Wedding"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="weddings">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" loading="lazy" decoding="async" alt="Wedding"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div>
+                </div>
+            </div>
 
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9458.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9459.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9460.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="brand">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/products/01.jpg" loading="lazy" decoding="async" alt="Product"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div>
+                </div>
+            </div>
+            <div class="work-item" data-category="brand">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy" decoding="async" alt="Product"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div>
+                </div>
+            </div>
 
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" decoding="async" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" decoding="async" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="shooting">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" decoding="async" alt="Baby Shooting"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير أطفال</h3></div>
+                </div>
+            </div>
+
+            <div class="work-item" data-category="birthday">
+                <div class="work-card">
+                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" decoding="async" alt="Birthday"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
-                <div class="text-center md:text-right">
-                    <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
-                </div>
-                <div class="flex gap-8 text-2xl text-gray-300">
-                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
+    <footer class="bg-white border-t border-gray-50 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col items-center">
+            <h2 class="text-2xl font-black text-[#161B91] mb-6 uppercase">SORA STUDIO</h2>
+            <div class="flex gap-8 mb-10">
+                <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon text-2xl text-gray-400 transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon text-2xl text-gray-400 transition-all"><i class="fa-brands fa-facebook"></i></a>
             </div>
-            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
-                <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
-                    <a href="portfolio.html" class="hover:text-[#161B91] transition">Portfolio</a>
-                    <a href="services.html" class="hover:text-[#161B91] transition">Services</a>
-                </div>
-            </div>
+            <p class="text-[10px] text-gray-300 tracking-[0.3em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
@@ -177,6 +187,7 @@
         const portfolioContainer = document.getElementById('portfolio-items');
 
         const q = query(collection(db, "projects"), orderBy("createdAt", "desc"));
+        
         onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added") {
@@ -189,7 +200,7 @@
                                          loading="lazy" 
                                          decoding="async" 
                                          alt="${project.title}"
-                                         onload="this.style.opacity=1"
+                                         onload="this.style.opacity=1" 
                                          style="opacity:0; transition: opacity 0.5s ease;">
                                 </div>
                                 <div class="card-info text-right">
@@ -219,7 +230,7 @@
                         if (filter === 'all' || cat === filter) {
                             item.classList.remove('hidden');
                             setTimeout(() => { item.classList.add('animating'); }, delay);
-                            delay += 40;
+                            delay += 50;
                         } else {
                             item.classList.add('hidden');
                         }
@@ -230,10 +241,11 @@
     </script>
 
     <script>
-        AOS.init({ duration: 800, once: true, disable: 'mobile' });
+        AOS.init({ duration: 800, once: true });
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            nav.style.transform = window.scrollY > 50 ? 'translateY(-10px)' : 'translateY(0)';
+            if (window.scrollY > 50) nav.style.background = "rgba(255,255,255,0.9)";
+            else nav.style.background = "transparent";
         });
     </script>
 </body>
