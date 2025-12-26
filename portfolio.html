@@ -19,19 +19,11 @@
         
         /* --- تأثير اللوجو الموحد --- */
         .logo-text {
-            max-width: 0;
-            opacity: 0;
-            overflow: hidden;
-            white-space: nowrap;
-            transition: max-width 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, margin-left 0.5s ease;
-            display: inline-block;
-            vertical-align: middle;
+            max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
+            transition: max-width 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            display: inline-block; vertical-align: middle;
         }
-        .logo-group:hover .logo-text {
-            max-width: 250px;
-            opacity: 1;
-            margin-left: 12px;
-        }
+        .logo-group:hover .logo-text { max-width: 250px; opacity: 1; margin-left: 12px; }
         .logo-img { transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .logo-group:hover .logo-img { transform: rotate(360deg); }
 
@@ -40,28 +32,20 @@
             transition: all 0.3s ease; 
             color: #6b7280; border: 1.5px solid #f3f4f6; 
             font-size: 11px; font-weight: 700; background: white;
-            padding: 10px 24px; border-radius: 100px;
-            cursor: pointer;
+            padding: 10px 24px; border-radius: 100px; cursor: pointer;
         }
         .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
 
-        /* نظام الموشن المحسن */
+        /* نظام الموشن المحسن للأداء */
         .work-item { 
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             will-change: transform, opacity;
-            opacity: 1;
-            transform: translateY(0) scale(1);
+            opacity: 1; transform: translateY(0) scale(1);
         }
         
-        .work-item.hidden { 
-            display: none !important;
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-        }
+        .work-item.hidden { display: none !important; opacity: 0; transform: translateY(20px) scale(0.98); }
 
-        .work-item.animating {
-            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .work-item.animating { animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(20px) scale(0.98); }
@@ -73,12 +57,16 @@
             background: #f3f4f6; transform: translateZ(0);
         }
         
-        .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; }
-        .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; background: #eee; }
+        .work-card img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.6s ease;
+            content-visibility: auto; /* تحسين الرندر للصور */
+        }
         
         .card-info {
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(22, 27, 145, 0.7), transparent);
+            background: linear-gradient(to top, rgba(22, 27, 145, 0.75), transparent);
             display: flex; flex-direction: column; justify-content: flex-end;
             padding: 15px; opacity: 0; transition: opacity 0.3s ease;
         }
@@ -128,43 +116,21 @@
 
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
-            
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/003.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/01.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/03.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/05.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/003.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/01.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/03.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/products/05.jpg" loading="lazy" decoding="async" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
 
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9458.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9459.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9460.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9458.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9459.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings"><div class="work-card"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9460.jpg" loading="lazy" decoding="async" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
 
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2335.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2337.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2342.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2344.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2347.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2349.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2354.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2377.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2379.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
-
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3538.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3594.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3637.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
-
-            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6024.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6043.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6049.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6051.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="shooting"><div class="work-card"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" decoding="async" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
+            <div class="work-item" data-category="birthday"><div class="work-card"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" decoding="async" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
         </div>
     </main>
 
@@ -219,7 +185,12 @@
                         <div class="work-item" data-category="${project.category}">
                             <div class="work-card">
                                 <div class="img-wrapper">
-                                    <img src="${project.imageUrl}" loading="lazy" alt="${project.title}">
+                                    <img src="${project.imageUrl}" 
+                                         loading="lazy" 
+                                         decoding="async" 
+                                         alt="${project.title}"
+                                         onload="this.style.opacity=1"
+                                         style="opacity:0; transition: opacity 0.5s ease;">
                                 </div>
                                 <div class="card-info text-right">
                                     <h3 class="text-white font-bold text-sm">${project.title}</h3>
@@ -234,10 +205,9 @@
 
         function initFilters() {
             const btns = document.querySelectorAll('.filter-btn');
-            const items = document.querySelectorAll('.work-item');
-
             btns.forEach(btn => {
                 btn.onclick = () => {
+                    const items = document.querySelectorAll('.work-item');
                     btns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     const filter = btn.getAttribute('data-filter');
@@ -246,13 +216,10 @@
                     items.forEach(item => {
                         item.classList.remove('animating');
                         const cat = item.getAttribute('data-category');
-                        
                         if (filter === 'all' || cat === filter) {
                             item.classList.remove('hidden');
-                            setTimeout(() => {
-                                item.classList.add('animating');
-                            }, delay);
-                            delay += 50;
+                            setTimeout(() => { item.classList.add('animating'); }, delay);
+                            delay += 40;
                         } else {
                             item.classList.add('hidden');
                         }
@@ -264,14 +231,9 @@
 
     <script>
         AOS.init({ duration: 800, once: true, disable: 'mobile' });
-        
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
-            if (window.scrollY > 50) {
-                nav.style.transform = 'translateY(-10px)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
+            nav.style.transform = window.scrollY > 50 ? 'translateY(-10px)' : 'translateY(0)';
         });
     </script>
 </body>
