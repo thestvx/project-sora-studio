@@ -98,6 +98,8 @@
 
         .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
+        
+        .custom-button { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
     </style>
 </head>
 <body>
@@ -117,7 +119,7 @@
             </div>
             
             <div class="flex items-center">
-                <button onclick="openModal()" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#101470] transition shadow-lg shadow-[#161B91]/20">Book Now</button>
+                <a href="portfolio.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Explore</a>
             </div>
         </div>
     </nav>
@@ -316,8 +318,10 @@
             const nav = document.getElementById('nav');
             if (window.scrollY > 50) {
                 nav.style.transform = 'translateY(-10px)';
+                nav.querySelector('div').classList.add('py-2');
             } else {
                 nav.style.transform = 'translateY(0)';
+                nav.querySelector('div').classList.remove('py-2');
             }
         });
     </script>
