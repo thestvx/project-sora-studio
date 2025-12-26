@@ -70,7 +70,7 @@
             </div>
 
             <div class="flex items-center">
-                <a href="contact.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Book Now</a>
+                <a href="portfolio.html" class="bg-[#161B91] text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest custom-button">Explore</a>
             </div>
         </div>
     </nav>
@@ -107,13 +107,13 @@
 
     <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
         <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16">
-                <div class="text-center md:text-right" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10 pb-16" data-aos="fade-up">
+                <div class="text-center md:text-right">
                     <h2 class="text-2xl font-black text-[#161B91] tracking-tighter mb-2 uppercase">SORA STUDIO</h2>
                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Visual Excellence Since 2020</p>
                 </div>
 
-                <div class="flex gap-8 text-2xl text-gray-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex gap-8 text-2xl text-gray-300">
                     <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-youtube"></i></a>
@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6" data-aos="fade-up" data-aos-delay="200">
                 <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
                 <div class="flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
                     <a href="#" class="hover:text-[#161B91] transition">Privacy Policy</a>
@@ -133,7 +133,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: false });
+        AOS.init({ once: true, duration: 1000 });
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             if (window.scrollY > 50) {
