@@ -103,14 +103,17 @@
         .modal-logo {
             height: 50px;
             width: auto;
-            object-contain: contain;
-            /* إضافة ظل لبروز اللوجو */
+            object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
         }
 
+        /* زر الإغلاق التقليدي في الزاوية */
         .close-video { 
+            position: absolute;
+            top: -50px; /* فوق الحاوية بمسافة واضحة */
+            right: 0;
             color: white; 
-            font-size: 1.5rem; 
+            font-size: 1.8rem; 
             cursor: pointer; 
             width: 45px;
             height: 45px;
@@ -120,11 +123,9 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            position: absolute;
-            right: 10px;
-            top: 10px;
+            z-index: 2100;
         }
-        .close-video:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+        .close-video:hover { background: #ff4d4d; color: white; transform: rotate(90deg); }
 
         #hover-popup {
             position: fixed; pointer-events: none; z-index: 1000; display: none; opacity: 0;
@@ -148,10 +149,11 @@
 
     <div id="video-modal" onclick="closeVideo()">
         <div class="modal-container" onclick="event.stopPropagation()">
+            <span class="close-video" onclick="closeVideo()"><i class="fa-solid fa-xmark"></i></span>
+            
             <div class="modal-header">
                 <img src="images/logo-sora.png" alt="SORA" class="modal-logo">
             </div>
-            <span class="close-video" onclick="closeVideo()"><i class="fa-solid fa-xmark"></i></span>
             
             <div class="iframe-wrapper">
                 <iframe id="youtube-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -190,7 +192,6 @@
 
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
-            
             <div class="work-item" data-category="weddings">
                 <div class="work-card" onclick="openVideo('0idReKq_ZUs')">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
