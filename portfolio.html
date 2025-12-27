@@ -17,7 +17,7 @@
         
         .hero-title { color: var(--brand); line-height: 1.2; }
         
-        /* تأثير اللوجو الموحد */
+        /* تأثير اللوجو الموحد في القائمة */
         .logo-text {
             max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
             transition: max-width 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
@@ -54,7 +54,6 @@
         .work-card:hover img { transform: scale(1.05); }
         .work-card:hover .card-info { opacity: 1; }
 
-        /* أيقونة الفيديو */
         .play-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 50px; height: 50px; background: white; border-radius: 50%;
@@ -75,7 +74,7 @@
             width: 100%; 
             max-width: 1000px; 
             position: relative; 
-            background: white; /* إطار أبيض */
+            background: white; 
             padding: 10px; 
             border-radius: 2rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
@@ -86,22 +85,27 @@
             aspect-ratio: 16/9;
             border-radius: 1.5rem;
             overflow: hidden;
+            background: black;
         }
 
+        /* رأس النافذة المنبثقة - اللوجو في الوسط */
         .modal-header {
             position: absolute;
-            top: -70px;
+            top: -80px;
             left: 0;
             right: 0;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 0 10px;
+            gap: 15px;
         }
 
         .modal-logo {
-            height: 40px;
-            filter: brightness(0) invert(1); /* جعل اللوجو أبيض ليبرز على الخلفية الداكنة */
+            height: 50px;
+            width: auto;
+            object-contain: contain;
+            /* إضافة ظل لبروز اللوجو */
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
         }
 
         .close-video { 
@@ -116,6 +120,9 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            position: absolute;
+            right: 10px;
+            top: 10px;
         }
         .close-video:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
 
@@ -143,8 +150,9 @@
         <div class="modal-container" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <img src="images/logo-sora.png" alt="SORA" class="modal-logo">
-                <span class="close-video" onclick="closeVideo()"><i class="fa-solid fa-xmark"></i></span>
             </div>
+            <span class="close-video" onclick="closeVideo()"><i class="fa-solid fa-xmark"></i></span>
+            
             <div class="iframe-wrapper">
                 <iframe id="youtube-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
