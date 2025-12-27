@@ -81,7 +81,7 @@
         }
         .close-video:hover { background: #ff4d4d; transform: rotate(90deg); }
 
-        /* بوب اب المعاينة عند التمرير */
+        /* بوب اب المعاينة */
         #hover-popup {
             position: fixed; pointer-events: none; z-index: 1000; display: none; opacity: 0;
             transform: scale(0.8); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -138,6 +138,7 @@
             <button class="filter-btn active" data-filter="all">الكل</button>
             <button class="filter-btn" data-filter="brand">العلامات التجارية</button>
             <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
+            <button class="filter-btn" data-filter="food">الطعام</button>
             <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
             <button class="filter-btn" data-filter="weddings">أعراس</button>
         </div>
@@ -158,42 +159,32 @@
                 </div>
             </div>
 
-            <div class="work-item" data-category="brand">
-                <div class="work-card" onmouseenter="showPopup('portfolio/products/002.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)">
-                    <div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy" alt="Product"></div>
-                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div>
-                </div>
-            </div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/002.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/003.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/003.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/01.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/01.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/02.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/03.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/03.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/05.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/05.jpg" loading="lazy" alt="Product"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
 
-            <div class="work-item" data-category="brand">
-                <div class="work-card" onmouseenter="showPopup('portfolio/products/003.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)">
-                    <div class="img-wrapper"><img src="portfolio/products/003.jpg" loading="lazy" alt="Product"></div>
-                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div>
-                </div>
-            </div>
+            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/food1.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/food1.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
+            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/food2.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/food2.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
 
-            <div class="work-item" data-category="weddings">
-                <div class="work-card" onmouseenter="showPopup('portfolio/wedding/IMG_9450.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)">
-                    <div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" alt="Wedding"></div>
-                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div>
-                </div>
-            </div>
+            <div class="work-item" data-category="weddings"><div class="work-card" onmouseenter="showPopup('portfolio/wedding/IMG_9450.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
+            <div class="work-item" data-category="weddings"><div class="work-card" onmouseenter="showPopup('portfolio/wedding/IMG_9457.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
 
-            <div class="work-item" data-category="shooting">
-                <div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3461.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)">
-                    <div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" alt="Studio"></div>
-                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div>
-                </div>
-            </div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2333.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2335.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2335.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2337.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2337.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2342.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2342.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">علامة تجارية</h3></div></div></div>
 
-            <div class="work-item" data-category="birthday">
-                <div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6021.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)">
-                    <div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" alt="Birthday"></div>
-                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div>
-                </div>
-            </div>
-            
-            </div>
+            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3461.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
+            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3536.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
+            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3537.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير</h3></div></div></div>
+
+            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6021.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6024.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6024.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6043.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6043.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
+        </div>
     </main>
 
     <footer class="bg-white pt-20 pb-10 border-t border-gray-50">
@@ -210,7 +201,6 @@
                     <a href="#" class="social-icon opacity-30 cursor-not-allowed"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
-            
             <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
                 <div class="hidden md:flex gap-8 text-[9px] font-black text-gray-400 uppercase tracking-widest">
@@ -223,10 +213,8 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // تهيئة الأنميشن
         AOS.init({ duration: 800, once: true });
 
-        // وظائف الفيديو
         function openVideo(videoId) {
             const modal = document.getElementById('video-modal');
             const iframe = document.getElementById('youtube-iframe');
@@ -243,7 +231,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // وظائف بوب اب الصور عند التحويم
         const popup = document.getElementById('hover-popup');
         const popupImg = document.getElementById('popup-img');
 
@@ -259,21 +246,18 @@
         function movePopup(e) {
             let x = e.clientX + 20;
             let y = e.clientY + 20;
-            // منع خروج البوب اب عن الشاشة
             if (x + 300 > window.innerWidth) x = e.clientX - 320;
             if (y + 300 > window.innerHeight) y = e.clientY - 320;
             popup.style.left = x + 'px';
             popup.style.top = y + 'px';
         }
 
-        // نظام الفلترة
         const btns = document.querySelectorAll('.filter-btn');
         btns.forEach(btn => {
             btn.onclick = () => {
                 btns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.getAttribute('data-filter');
-                
                 document.querySelectorAll('.work-item').forEach(item => {
                     const cat = item.getAttribute('data-category');
                     if (filter === 'all' || cat === filter) {
@@ -287,7 +271,6 @@
             };
         });
 
-        // تأثير القائمة عند السكرول
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             window.scrollY > 50 ? nav.style.transform = 'translateY(-5px)' : nav.style.transform = 'translateY(0)';
