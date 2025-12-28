@@ -15,25 +15,17 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; scroll-behavior: smooth; }
         .hero-title { color: var(--brand); line-height: 1.2; }
-        
-        /* أزرار الفلتر */
         .filter-btn { transition: all 0.3s ease; color: #6b7280; border: 1.5px solid #f3f4f6; font-size: 11px; font-weight: 700; background: white; padding: 10px 24px; border-radius: 100px; cursor: pointer; }
         .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
-        
-        /* تأثيرات الصور */
         .work-item { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; }
         .work-item.hidden { display: none !important; }
         .work-card { position: relative; border-radius: 1.2rem; overflow: hidden; background: #f3f4f6; cursor: pointer; }
         .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; }
         .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .work-card:hover img { transform: scale(1.05); }
-
-        /* نافذة المعاينة السريعة */
         #hover-popup { position: fixed; pointer-events: none; z-index: 1000; display: none; opacity: 0; transform: scale(0.8); transition: opacity 0.3s ease, transform 0.3s ease; max-width: 300px; border-radius: 1rem; border: 4px solid white; overflow: hidden; background: white; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
         #hover-popup img { width: 100%; height: auto; display: block; }
         #hover-popup.active { display: block; opacity: 1; transform: scale(1); }
-
-        /* نافذة الفيديو */
         #video-modal { position: fixed; inset: 0; z-index: 2000; background: rgba(10, 12, 50, 0.95); backdrop-filter: blur(15px); display: none; align-items: center; justify-content: center; padding: 20px; }
         #video-modal.active { display: flex; }
         .modal-container { width: 100%; max-width: 1000px; position: relative; background: white; padding: 10px; border-radius: 2rem; }
@@ -73,6 +65,7 @@
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9250.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9250.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9276.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9276.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9447.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9447.jpg" loading="lazy"></div></div></div>
+            
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2333.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2335.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2335.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2337.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2337.jpg" loading="lazy"></div></div></div>
@@ -94,6 +87,7 @@
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3536.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3537.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3594.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3594.jpg" loading="lazy"></div></div></div>
+            
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9231.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9231.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9235.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9235.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9243.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9243.jpg" loading="lazy"></div></div></div>
@@ -147,27 +141,13 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
         const popup = document.getElementById('hover-popup');
         const popupImg = document.getElementById('popup-img');
         function showPopup(src) { popupImg.src = src; popup.classList.add('active'); }
         function hidePopup() { popup.classList.remove('active'); }
-        function movePopup(e) { 
-            popup.style.left = (e.clientX + 15) + 'px'; 
-            popup.style.top = (e.clientY + 15) + 'px'; 
-        }
-
-        function openVideo(id) {
-            document.getElementById('youtube-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-            document.getElementById('video-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeVideo() {
-            document.getElementById('youtube-iframe').src = '';
-            document.getElementById('video-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
+        function movePopup(e) { popup.style.left = (e.clientX + 15) + 'px'; popup.style.top = (e.clientY + 15) + 'px'; }
+        function openVideo(id) { document.getElementById('youtube-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`; document.getElementById('video-modal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeVideo() { document.getElementById('youtube-iframe').src = ''; document.getElementById('video-modal').classList.remove('active'); document.body.style.overflow = 'auto'; }
         const filterBtns = document.querySelectorAll('.filter-btn');
         const items = document.querySelectorAll('.work-item');
         filterBtns.forEach(btn => {
@@ -175,12 +155,9 @@
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const f = btn.dataset.filter;
-                items.forEach(item => {
-                    item.classList.toggle('hidden', item.dataset.category !== f);
-                });
+                items.forEach(item => { item.classList.toggle('hidden', item.dataset.category !== f); });
             });
         });
-
         window.onload = () => { document.querySelector('.filter-btn.active').click(); };
     </script>
 </body>
