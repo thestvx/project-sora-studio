@@ -15,36 +15,44 @@
         :root { --brand: #161B91; }
         body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; background: #ffffff; overflow-x: hidden; scroll-behavior: smooth; }
         .hero-title { color: var(--brand); line-height: 1.2; }
+        
+        /* Navigation Styles */
         .logo-text { max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: max-width 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; display: inline-block; vertical-align: middle; }
         .logo-group:hover .logo-text { max-width: 250px; opacity: 1; margin-left: 12px; }
         .logo-img { transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .logo-group:hover .logo-img { transform: rotate(360deg); }
+
+        /* Filter Buttons */
         .filter-btn { transition: all 0.3s ease; color: #6b7280; border: 1.5px solid #f3f4f6; font-size: 11px; font-weight: 700; background: white; padding: 10px 24px; border-radius: 100px; cursor: pointer; }
-        .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
-        .work-item { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; will-change: transform, opacity; }
-        .work-item.hidden { display: none !important; opacity: 0; transform: translateY(20px) scale(0.98); }
-        .work-item.animating { animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .filter-btn.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 10px 20px rgba(22, 27, 145, 0.2); }
+        
+        /* Portfolio Items */
+        .work-item { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; }
+        .work-item.hidden { display: none !important; }
+        
         .work-card { position: relative; border-radius: 1.2rem; overflow: hidden; background: #f3f4f6; cursor: pointer; }
         .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; }
         .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .card-info { position: absolute; inset: 0; background: linear-gradient(to top, rgba(22, 27, 145, 0.8), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
         .work-card:hover img { transform: scale(1.05); }
         .work-card:hover .card-info { opacity: 1; }
-        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 1.2rem; z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* Video/Play Specific */
+        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 1.2rem; z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.2); pointer-events: none; }
+
+        /* Video Modal */
         #video-modal { position: fixed; inset: 0; z-index: 2000; background: rgba(10, 12, 50, 0.95); backdrop-filter: blur(15px); display: none; align-items: center; justify-content: center; padding: 20px; }
         #video-modal.active { display: flex; }
         .modal-container { width: 100%; max-width: 1000px; position: relative; background: white; padding: 10px; border-radius: 2rem; }
         .iframe-wrapper { width: 100%; aspect-ratio: 16/9; border-radius: 1.5rem; overflow: hidden; background: black; }
-        .modal-header { position: absolute; top: -80px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; }
-        .modal-logo { height: 50px; width: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); }
-        .close-video { position: absolute; top: -50px; right: 0; color: white; font-size: 1.8rem; cursor: pointer; width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 2100; }
+        .close-video { position: absolute; top: -55px; right: 0; color: white; font-size: 1.8rem; cursor: pointer; width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 2100; }
         .close-video:hover { background: #ff4d4d; transform: rotate(90deg); }
-        #hover-popup { position: fixed; pointer-events: none; z-index: 1000; display: none; opacity: 0; transform: scale(0.8); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border-radius: 1rem; border: 4px solid white; overflow: hidden; background: white; }
+
+        /* Hover Popup Tooltip */
+        #hover-popup { position: fixed; pointer-events: none; z-index: 1000; display: none; opacity: 0; transform: scale(0.8); transition: opacity 0.2s ease, transform 0.2s ease; max-width: 300px; border-radius: 1rem; border: 4px solid white; overflow: hidden; background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
         #hover-popup img { width: 100%; height: auto; display: block; }
         #hover-popup.active { display: block; opacity: 1; transform: scale(1); }
-        .social-icon { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .social-icon:hover { transform: translateY(-5px); color: var(--brand); }
+
         .custom-button { transition: all 0.4s ease; box-shadow: 0 10px 30px -10px rgba(22, 27, 145, 0.3); }
     </style>
 </head>
@@ -55,7 +63,6 @@
     <div id="video-modal" onclick="closeVideo()">
         <div class="modal-container" onclick="event.stopPropagation()">
             <span class="close-video" onclick="closeVideo()"><i class="fa-solid fa-xmark"></i></span>
-            <div class="modal-header"><img src="images/logo-sora.png" alt="SORA" class="modal-logo"></div>
             <div class="iframe-wrapper">
                 <iframe id="youtube-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
@@ -83,7 +90,7 @@
     <header class="pt-64 pb-10 px-8 max-w-7xl mx-auto text-center">
         <h1 class="hero-title text-5xl md:text-7xl font-black tracking-tighter mb-8" data-aos="fade-up">معرض الأعمال</h1>
         <div class="filter-container flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
-            <button class="filter-btn active" data-filter="brand">براندات</button>
+            <button class="filter-btn active" data-filter="brand">العلامات التجارية</button>
             <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
             <button class="filter-btn" data-filter="food">الطعام</button>
             <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
@@ -94,79 +101,23 @@
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
             
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/002.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/02.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/03.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/03.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/05.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/05.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9192.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9192.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9250.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9250.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9276.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9276.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9447.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9447.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9450.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9450.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9457.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9457.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9460.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9460.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/IMG_9970.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/IMG_9970.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2333.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2335.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2335.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2337.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2337.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2342.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2342.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2344.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2344.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2347.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2347.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2349.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2349.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2354.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2354.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2429.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2429.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2435.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2435.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2440.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2440.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2442.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2442.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_9836.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_9836.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_9859.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_9859.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_9863.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_9863.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
-            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_9867.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_9867.jpg" loading="lazy" alt="Brand"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة براند</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/002.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/002.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/02.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/02.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/03.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/03.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
+            <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/products/05.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/products/05.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">منتج تجاري</h3></div></div></div>
 
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3461.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطفال</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3536.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطفال</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3537.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطفال</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3594.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3594.jpg" loading="lazy" alt="Studio"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطفال</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9231.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9231.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9235.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9235.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9243.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9243.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9291.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9291.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9653.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9653.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9658.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9658.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9691.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9691.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
-            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9716.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9716.jpg" loading="lazy" alt="Graduation"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير تخرج</h3></div></div></div>
+            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2333.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2333.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير براند</h3></div></div></div>
+            <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3461.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">جلسة تصوير أطفال</h3></div></div></div>
 
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0028.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0028.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0155.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0155.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0179 for site .jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0179 for site .jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0206-1.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0206-1.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0222-2.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0222-2.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0234.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0234.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0235.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0235.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0237.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0237.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0241.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0241.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0251.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0251.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_4386.JPG')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_4386.JPG" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_4389.JPG')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_4389.JPG" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_4401.JPG')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_4401.JPG" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_4553.JPG')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_4553.JPG" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_9945.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_9945.jpg" loading="lazy" alt="Food"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
-
-            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6021.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6021.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6024.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6024.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6043.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6043.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
-            <div class="work-item" data-category="birthday"><div class="work-card" onmouseenter="showPopup('portfolio/birthday/IMG_6051.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/birthday/IMG_6051.jpg" loading="lazy" alt="Birthday"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">عيد ميلاد</h3></div></div></div>
+            <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0028.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0028.jpg" loading="lazy"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير أطعمة</h3></div></div></div>
 
             <div class="work-item" data-category="weddings">
                 <div class="work-card" onclick="openVideo('0idReKq_ZUs')">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <div class="img-wrapper"><img src="https://img.youtube.com/vi/0idReKq_ZUs/maxresdefault.jpg" alt="Wedding Video"></div>
+                    <div class="img-wrapper"><img src="https://img.youtube.com/vi/0idReKq_ZUs/maxresdefault.jpg"></div>
                     <div class="card-info text-right"><h3 class="text-white font-bold text-sm">فيديو حفل زفاف</h3></div>
                 </div>
             </div>
-            <div class="work-item" data-category="weddings"><div class="work-card" onmouseenter="showPopup('portfolio/wedding/IMG_9450.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9450.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card" onmouseenter="showPopup('portfolio/wedding/IMG_9457.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9457.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
-            <div class="work-item" data-category="weddings"><div class="work-card" onmouseenter="showPopup('portfolio/wedding/IMG_9460.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/wedding/IMG_9460.jpg" loading="lazy" alt="Wedding"></div><div class="card-info text-right"><h3 class="text-white font-bold text-sm">حفل زفاف</h3></div></div></div>
 
         </div>
     </main>
@@ -179,11 +130,11 @@
                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Crafting Visual Excellence</p>
                 </div>
                 <div class="flex gap-8 text-2xl text-gray-300">
-                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/sora_studioo/" target="_blank" class="hover:text-[#161B91] transition duration-300"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://web.facebook.com/SoraStudio.39" target="_blank" class="hover:text-[#161B91] transition duration-300"><i class="fa-brands fa-facebook"></i></a>
                 </div>
             </div>
-            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="border-t border-gray-50 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center">
                 <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">© 2025 SORA STUDIO. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
@@ -192,7 +143,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-        
+
+        // Video Modal Logic
         function openVideo(videoId) {
             const modal = document.getElementById('video-modal');
             const iframe = document.getElementById('youtube-iframe');
@@ -209,49 +161,55 @@
             document.body.style.overflow = 'auto';
         }
 
+        // Hover Popup Logic
         const popup = document.getElementById('hover-popup');
         const popupImg = document.getElementById('popup-img');
 
-        function showPopup(src) {
-            popupImg.src = src;
+        function showPopup(imgSrc) {
+            popupImg.src = imgSrc;
             popup.classList.add('active');
         }
 
-        function hidePopup() { popup.classList.remove('active'); }
+        function hidePopup() {
+            popup.classList.remove('active');
+        }
 
         function movePopup(e) {
-            let x = e.clientX + 20;
-            let y = e.clientY + 20;
-            if (x + 300 > window.innerWidth) x = e.clientX - 320;
-            if (y + 300 > window.innerHeight) y = e.clientY - 320;
-            popup.style.left = x + 'px';
-            popup.style.top = y + 'px';
+            // تحريك التلميح مع الماوس مع إزاحة بسيطة
+            popup.style.left = (e.clientX + 20) + 'px';
+            popup.style.top = (e.clientY + 20) + 'px';
         }
 
-        const btns = document.querySelectorAll('.filter-btn');
-        function applyFilter(filter) {
-            document.querySelectorAll('.work-item').forEach(item => {
-                const cat = item.getAttribute('data-category');
-                if (cat === filter) {
-                    item.classList.remove('hidden');
-                    item.classList.add('animating');
-                } else {
-                    item.classList.add('hidden');
-                    item.classList.remove('animating');
-                }
-            });
-        }
+        // Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const workItems = document.querySelectorAll('.work-item');
 
-        btns.forEach(btn => {
-            btn.onclick = () => {
-                btns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الحالة النشطة من جميع الأزرار
+                filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                applyFilter(btn.getAttribute('data-filter'));
-            };
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                workItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hidden');
+                        item.style.opacity = "0";
+                        setTimeout(() => {
+                            item.style.opacity = "1";
+                            item.style.transform = "translateY(0) scale(1)";
+                        }, 50);
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
         });
 
+        // تشغيل الفلتر الافتراضي عند التحميل
         window.addEventListener('DOMContentLoaded', () => {
-            applyFilter(document.querySelector('.filter-btn.active').getAttribute('data-filter'));
+            document.querySelector('.filter-btn.active').click();
         });
     </script>
 </body>
