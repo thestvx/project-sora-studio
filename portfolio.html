@@ -88,8 +88,7 @@
     <header class="pt-64 pb-10 px-8 max-w-7xl mx-auto text-center">
         <h1 class="hero-title text-5xl md:text-7xl font-black tracking-tighter mb-8" data-aos="fade-up">معرض الأعمال</h1>
         <div class="filter-container flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
-            <button class="filter-btn active" data-filter="all">الكل</button>
-            <button class="filter-btn" data-filter="brand">براندات</button>
+            <button class="filter-btn active" data-filter="brand">براندات</button>
             <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
             <button class="filter-btn" data-filter="food">الطعام</button>
             <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
@@ -220,13 +219,19 @@
                 btn.classList.add('active');
                 const filter = btn.getAttribute('data-filter');
                 items.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    // بما أننا حذفنا فئة "الكل"، الشرط بسيط
+                    if (item.getAttribute('data-category') === filter) {
                         item.classList.remove('hidden');
                     } else {
                         item.classList.add('hidden');
                     }
                 });
             };
+        });
+
+        // تشغيل الفلتر الافتراضي عند تحميل الصفحة (لإخفاء العناصر غير النشطة)
+        window.addEventListener('load', () => {
+            document.querySelector('.filter-btn.active').click();
         });
 
         // نافذة الفيديو
