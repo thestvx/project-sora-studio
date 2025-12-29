@@ -84,6 +84,7 @@
         <h1 class="hero-title text-5xl md:text-7xl font-black tracking-tighter mb-8" data-aos="fade-up">معرض الأعمال</h1>
         <div class="filter-container flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
             <button class="filter-btn active" data-filter="brand">براندات</button>
+            <button class="filter-btn" data-filter="openings">فيديوهات الافتتاحيات</button>
             <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
             <button class="filter-btn" data-filter="food">الطعام</button>
             <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
@@ -94,6 +95,18 @@
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
             
+            <div class="work-item" data-category="openings">
+                <div class="work-card" onclick="openVideo('QPVLm6DSaC4')">
+                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                    <div class="img-wrapper">
+                        <img src="https://img.youtube.com/vi/QPVLm6DSaC4/maxresdefault.jpg" loading="lazy">
+                    </div>
+                    <div class="card-info text-right">
+                        <h3 class="text-white font-bold text-sm">افتتاح تمسليت ترافل</h3>
+                    </div>
+                </div>
+            </div>
+
             <div class="work-item" data-category="weddings">
                 <div class="work-card" onclick="openVideo('0idReKq_ZUs')">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
@@ -128,7 +141,6 @@
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2440.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2440.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="brand"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/brand/_MG_2442.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/brand/_MG_2442.jpg" loading="lazy"></div></div></div>
 
-
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3461.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3461.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3536.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3536.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/baby/IMG_3537.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/baby/IMG_3537.jpg" loading="lazy"></div></div></div>
@@ -142,7 +154,6 @@
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9658.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9658.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9691.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9691.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="shooting"><div class="work-card" onmouseenter="showPopup('portfolio/shooting/graduation/_MG_9716.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/shooting/graduation/_MG_9716.jpg" loading="lazy"></div></div></div>
-
 
             <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0028.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0028.jpg" loading="lazy"></div></div></div>
             <div class="work-item" data-category="food"><div class="work-card" onmouseenter="showPopup('portfolio/food/IMG_0155.jpg')" onmouseleave="hidePopup()" onmousemove="movePopup(event)"><div class="img-wrapper"><img src="portfolio/food/IMG_0155.jpg" loading="lazy"></div></div></div>
