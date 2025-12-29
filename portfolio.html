@@ -27,12 +27,15 @@
         .work-item { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; will-change: transform, opacity; }
         .work-item.hidden { display: none !important; opacity: 0; transform: translateY(20px) scale(0.98); }
 
+        /* فيديوهات الـ Shorts تأخذ عمود واحد لتناسب الطول */
+        .work-item.short-item { grid-column: span 1; } 
         .work-item.video-item { grid-column: span 2; } 
 
         .work-card { position: relative; border-radius: 1.2rem; overflow: hidden; background: #f3f4f6; cursor: pointer; height: 100%; }
         
         .img-wrapper { width: 100%; position: relative; aspect-ratio: 3/4; overflow: hidden; }
         .video-wrapper { aspect-ratio: 16/9 !important; }
+        .short-wrapper { aspect-ratio: 9/16 !important; } /* تناسب فيديوهات الطول */
 
         .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .card-info { position: absolute; inset: 0; background: linear-gradient(to top, rgba(22, 27, 145, 0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 15px; opacity: 0; transition: opacity 0.3s ease; }
@@ -45,6 +48,11 @@
         #video-modal.active { display: flex; }
         .modal-container { width: 100%; max-width: 1000px; position: relative; background: white; padding: 10px; border-radius: 2rem; }
         .iframe-wrapper { width: 100%; aspect-ratio: 16/9; border-radius: 1.5rem; overflow: hidden; background: black; }
+        
+        /* ضبط مقاس المشغل للفيديوهات القصيرة داخل المودال */
+        .modal-container.short-modal { max-width: 400px; }
+        .modal-container.short-modal .iframe-wrapper { aspect-ratio: 9/16; }
+
         .close-video { position: absolute; top: -50px; right: 0; color: white; font-size: 1.8rem; cursor: pointer; width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 2100; }
 
         #hover-popup { position: fixed; pointer-events: none; z-index: 1000; display: none; opacity: 0; transform: scale(0.8); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border-radius: 1rem; border: 4px solid white; overflow: hidden; background: white; }
@@ -61,7 +69,7 @@
     <div id="hover-popup"><img id="popup-img" src="" alt="Preview"></div>
 
     <div id="video-modal" onclick="closeVideo()">
-        <div class="modal-container" onclick="event.stopPropagation()">
+        <div class="modal-container" id="modal-box" onclick="event.stopPropagation()">
             <span class="close-video" onclick="closeVideo()"><i class="fa-solid fa-xmark"></i></span>
             <div class="iframe-wrapper">
                 <iframe id="youtube-iframe" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -90,6 +98,7 @@
         <div class="filter-container flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
             <button class="filter-btn active" data-filter="brand">براندات</button>
             <button class="filter-btn" data-filter="openings">فيديوهات الافتتاحيات</button>
+            <button class="filter-btn" data-filter="shorts">تصوير قصير</button>
             <button class="filter-btn" data-filter="shooting">شوتينق الأستوديو</button>
             <button class="filter-btn" data-filter="food">الطعام</button>
             <button class="filter-btn" data-filter="birthday">عيد ميلاد</button>
@@ -100,6 +109,22 @@
     <main class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-items">
             
+            <div class="work-item short-item" data-category="shorts">
+                <div class="work-card" onclick="openVideo('uYGDzRSeQRk', true)">
+                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                    <div class="img-wrapper short-wrapper"><img src="https://img.youtube.com/vi/uYGDzRSeQRk/maxresdefault.jpg" loading="lazy"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير قصير 1</h3></div>
+                </div>
+            </div>
+
+            <div class="work-item short-item" data-category="shorts">
+                <div class="work-card" onclick="openVideo('neDxijHNbx4', true)">
+                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                    <div class="img-wrapper short-wrapper"><img src="https://img.youtube.com/vi/neDxijHNbx4/maxresdefault.jpg" loading="lazy"></div>
+                    <div class="card-info text-right"><h3 class="text-white font-bold text-sm">تصوير قصير 2</h3></div>
+                </div>
+            </div>
+
             <div class="work-item video-item" data-category="openings">
                 <div class="work-card" onclick="openVideo('QPVLm6DSaC4')">
                     <div class="play-icon"><i class="fa-solid fa-play"></i></div>
@@ -234,11 +259,20 @@
             document.querySelector('.filter-btn.active').click();
         });
 
-        function openVideo(id) {
+        // تحديث وظيفة فتح الفيديو لتتعامل مع مقاسات الـ Shorts
+        function openVideo(id, isShort = false) {
+            const modalBox = document.getElementById('modal-box');
+            if(isShort) {
+                modalBox.classList.add('short-modal');
+            } else {
+                modalBox.classList.remove('short-modal');
+            }
+            
             document.getElementById('youtube-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
             document.getElementById('video-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
         function closeVideo() {
             document.getElementById('youtube-iframe').src = '';
             document.getElementById('video-modal').classList.remove('active');
